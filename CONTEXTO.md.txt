@@ -1,0 +1,77 @@
+# GUÍA DE CONTEXTO E INSTRUCCIONES DEL PROYECTO PARA COPILOT
+
+## 1. Identificación del Proyecto Académico
+ Institución Facultad Politécnica, Universidad Nacional de Asunción (FP-UNA).
+ Carrera  Asignatura Ingeniería Informática  Ciencia de Datos (Electiva, Curso TQ).
+ Proyecto Proyecto Integrador de Ciencia de Datos (Desarrollo en Tres Fases).
+ Título Oficial Factores asociados a la gravedad de las víctimas en los accidentes de tránsito ocurridos en Paraguay durante el año 2021[cite 1, 2].
+ Integrantes del Grupo Leandro Ferreira, Jorge Rios, Alan Alcaraz[cite 2].
+ Fase Actual FASE 1 (Comprensión, preparación y análisis exploratorio - Ponderación 30%).
+
+---
+
+## 2. Marco Metodológico y Pregunta de Investigación
+ Metodología de Trabajo Ciclo CRISP-DM adaptado a la cátedra de FP-UNA (Comprensión del Negocio - Comprensión de Datos - Preparación - Modelado - Evaluación - Despliegue).
+ Pregunta Principal de Investigación 
+   ¿En qué medida la condición de usuario (motociclista vs. otros vehículos), el sexo, la edad y la zona geográfica se asocian con una mayor probabilidad de fallecer en un siniestro vial en Paraguay durante 2021[cite 1, 2]
+ Objetivo General Analizar los factores determinantes de la letalidad en víctimas de accidentes de tránsito en Paraguay durante 2021, integrando análisis exploratorio de datos, pruebas estadísticas de hipótesis y modelos predictivos de Machine Learning[cite 1, 2].
+ Objetivos Específicos (OE)
+   OE1 Construir el diccionario de datos y auditar la calidad, consistencia y limitaciones de las tablas estadísticas del Anuario Policial 2021[cite 1, 2].
+   OE2 Describir y graficar patrones temporales (meses, días y horas críticas), causas más comunes, rutas con más siniestros (Ruta PY02) y distribución demográfica de los afectados[cite 1, 2].
+   OE3 Comprobar mediante pruebas estadísticas (Chi-cuadrado, Odds Ratio, V de Cramér) si motociclistas, hombres, adultos mayores y víctimas del interior presentan mayor letalidad[cite 1, 2, 3].
+   OE4 Entrenar y comparar modelos de Machine Learning (Regresión Logística, Árbol de Decisión, Random Forest) para clasificar riesgo fatal[cite 1, 2, 3].
+
+---
+
+## 3. Arquitectura de Datos Modular (REGLA CRÍTICA NO NEGOCIABLE)
+Advertencia metodológica contra la falacia ecológica
+Los datos oficiales de la Policía Nacional no se publican en una base de microdatos integrada fila por fila; se presentan como tablas de contingencia agregadas e independientes[cite 1, 2]. 
+ESTÁ ESTRICTAMENTE PROHIBIDO
+1. Intentar hacer un `pd.merge()` de la tabla de personas (agrupada por edad) con la tabla de rutas o causas (agrupadas por mes) en una sola fila por persona inventando variables sintéticas.
+2. Trabajar directamente sobre 9 filas de totales marginales en la tabla de edades[cite 2].
+3. Mantener la fila o categoría `'TOTAL'` dentro de los gráficos de barras, histogramas o diagramas de dispersión.
+
+Estructura Modular Implementada
+ Módulo 1 Microdato Individual Nacional (Dataset Principal - 5.493 filas)
+   Fuente Tabla 12.2.1 (Personas afectadas por gravedad y sexo según edad)[cite 1, 2].
+   Transformación Desagregación algorítmica de la matriz de frecuencias a observaciones unitarias ($N = 5.493$)[cite 1, 2].
+   Esquema `id_victima` (PK unívoca 1..5493), `grupo_edad` (category), `sexo` (category), `gravedad` (Target 'Herido'  'Fallecido'), `es_fallecido` (int 01), `es_hombre` (int 01), `es_adulto_mayor` (int 01, corte en $ge 60$ años), `edad_orden` (int ordinal 0..6, -1 para ignorado)[cite 1, 2, 3].
+   Destino `..outputvictimas_individual_limpio.csv` (Base para OE1, OE3, OE4 y ML)[cite 1, 3].
+ Módulo 2 Serie Temporal Consolidada (Dataset Agregado - 12 filas)
+   Fuente Tablas 12.2.6 (ZonasGravedad), 12.2.10 (Motos 2021), 12.2.4 (Horas críticas) y 12.2.9 (Ruta PY02)[cite 1].
+   Transformación Unión relacional `pd.merge` tipo `inner join` sobre la clave común ordinal `mes_id` ($1 le text{mes_id} le 12$).
+   Campos `mes_id`, `fecha` (datetime `2021-MM-01`), `trimestre`, `accidentes_totales`, `accidentes_py02`, `accidentes_tarde_noche` (1500 a 2359), `victimas_totales`, `motos_muertos`, `victimas_interior`[cite 1, 3].
+   Destino `..outputsiniestros_mensual_consolidado_2021.csv` (Base para OE2)[cite 1, 3].
+ Módulo 3 Contraste Vehicular (Deducción Matemática)
+   Fuentes Tabla 12.2.5 (1.324 víctimas totales en CentralInterior) y Tabla 12.2.10 (539 víctimas motociclistas)[cite 1].
+   Operación Resta directa para aislar No Motociclistas ($1.324 - 539 = 785$)[cite 1]. Permite construir la tabla de contingencia $2 times 2$ para Odds Ratio ($OR approx 2,38$)[cite 1, 3].
+ Módulo 4 Contraste Territorial
+   Fuente Tabla 12.2.6 (1.491 víctimas distribuidas en Asunción 167, Central 476, Interior 848)[cite 1].
+
+---
+
+## 4. Inventario Oficial de Archivos y Reglas de SelecciónDescarte
+ Archivos Conservados
+   `12.2.1` Demografía nacional (5.493 personas)[cite 1, 2].
+   `12.2.4` Siniestros por rango horario (pico tarde-noche)[cite 1].
+   `12.2.5` Denominador vehicular Central e Interior (1.324 víctimas)[cite 1].
+   `12.2.6` Macrozonas geográficas (Asunción, Central, Interior)[cite 1].
+   `12.2.7` Siniestros por día de la semana (viernes a domingo críticos)[cite 1].
+   `12.2.9` Calzadas nacionales (Ruta PY02 concentra 711 de 1.942 accidentes)[cite 1].
+   `12.2.10` Víctimas motociclistas CentralInterior (539 víctimas, recorte 2021)[cite 1].
+   `12.2.3` Causas probables (no conservar distancia, velocidad)[cite 1].
+ Archivos Descartados (con justificación documentada)
+   `12.2.8` Descartada (serie multianual fuera del recorte 2021)[cite 1].
+   `12.2.12` Descartada (conteo de motos sin discriminar heridos de muertos)[cite 1].
+   `12.2.2` Descartada (mecánica del hecho redundante frente a causas directas de 12.2.3)[cite 1].
+
+---
+
+## 5. Estructura de Directorios y Estándares de Código
+El proyecto debe ejecutarse estrictamente con rutas relativas y bajo la siguiente estructura
+
+```text
+├── data       # Archivos CSV crudos oficiales del Anuario 2021
+├── notebooks  # Fase1_Accidentes_Transito.ipynb (reproducible de inicio a fin)
+├── output     # victimas_individual_limpio.csv y siniestros_mensual_consolidado_2021.csv
+└── src        # Scripts auxiliares de limpieza y visualización (.py)
