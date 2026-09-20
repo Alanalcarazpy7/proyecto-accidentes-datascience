@@ -1,0 +1,13 @@
+﻿mes_id;mes_nombre;fecha;trimestre;accidentes_totales;accidentes_py02;accidentes_tarde_noche;accidentes_fin_de_semana;causa_no_guardar_distancia
+1;Enero;2021-01-01;2021Q1;140;50;66;71;37
+2;Febrero;2021-02-01;2021Q1;129;42;60;65;30
+3;Marzo;2021-03-01;2021Q1;124;44;58;48;25
+4;Abril;2021-04-01;2021Q2;138;56;60;64;26
+5;Mayo;2021-05-01;2021Q2;145;56;66;63;23
+6;Junio;2021-06-01;2021Q2;140;51;57;72;33
+7;Julio;2021-07-01;2021Q3;173;66;93;94;44
+8;Agosto;2021-08-01;2021Q3;188;68;79;90;53
+9;Setiembre;2021-09-01;2021Q3;198;59;97;94;48
+10;Octubre;2021-10-01;2021Q4;201;72;85;100;32
+11;Noviembre;2021-11-01;2021Q4;179;73;85;83;39
+12;Diciembre;2021-12-01;2021Q4;187;74;87;87;60
