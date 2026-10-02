@@ -1,0 +1,1325 @@
+﻿id_caso;tipo_usuario;gravedad;es_motociclista;es_fallecido
+1;Motociclista;Herido;1;0
+2;Motociclista;Herido;1;0
+3;Motociclista;Herido;1;0
+4;Motociclista;Herido;1;0
+5;Motociclista;Herido;1;0
+6;Motociclista;Herido;1;0
+7;Motociclista;Herido;1;0
+8;Motociclista;Herido;1;0
+9;Motociclista;Herido;1;0
+10;Motociclista;Herido;1;0
+11;Motociclista;Herido;1;0
+12;Motociclista;Herido;1;0
+13;Motociclista;Herido;1;0
+14;Motociclista;Herido;1;0
+15;Motociclista;Herido;1;0
+16;Motociclista;Herido;1;0
+17;Motociclista;Herido;1;0
+18;Motociclista;Herido;1;0
+19;Motociclista;Herido;1;0
+20;Motociclista;Herido;1;0
+21;Motociclista;Herido;1;0
+22;Motociclista;Herido;1;0
+23;Motociclista;Herido;1;0
+24;Motociclista;Herido;1;0
+25;Motociclista;Herido;1;0
+26;Motociclista;Herido;1;0
+27;Motociclista;Herido;1;0
+28;Motociclista;Herido;1;0
+29;Motociclista;Herido;1;0
+30;Motociclista;Herido;1;0
+31;Motociclista;Herido;1;0
+32;Motociclista;Herido;1;0
+33;Motociclista;Herido;1;0
+34;Motociclista;Herido;1;0
+35;Motociclista;Herido;1;0
+36;Motociclista;Herido;1;0
+37;Motociclista;Herido;1;0
+38;Motociclista;Herido;1;0
+39;Motociclista;Herido;1;0
+40;Motociclista;Herido;1;0
+41;Motociclista;Herido;1;0
+42;Motociclista;Herido;1;0
+43;Motociclista;Herido;1;0
+44;Motociclista;Herido;1;0
+45;Motociclista;Herido;1;0
+46;Motociclista;Herido;1;0
+47;Motociclista;Herido;1;0
+48;Motociclista;Herido;1;0
+49;Motociclista;Herido;1;0
+50;Motociclista;Herido;1;0
+51;Motociclista;Herido;1;0
+52;Motociclista;Herido;1;0
+53;Motociclista;Herido;1;0
+54;Motociclista;Herido;1;0
+55;Motociclista;Herido;1;0
+56;Motociclista;Herido;1;0
+57;Motociclista;Herido;1;0
+58;Motociclista;Herido;1;0
+59;Motociclista;Herido;1;0
+60;Motociclista;Herido;1;0
+61;Motociclista;Herido;1;0
+62;Motociclista;Herido;1;0
+63;Motociclista;Herido;1;0
+64;Motociclista;Herido;1;0
+65;Motociclista;Herido;1;0
+66;Motociclista;Herido;1;0
+67;Motociclista;Herido;1;0
+68;Motociclista;Herido;1;0
+69;Motociclista;Herido;1;0
+70;Motociclista;Herido;1;0
+71;Motociclista;Herido;1;0
+72;Motociclista;Herido;1;0
+73;Motociclista;Herido;1;0
+74;Motociclista;Herido;1;0
+75;Motociclista;Herido;1;0
+76;Motociclista;Herido;1;0
+77;Motociclista;Herido;1;0
+78;Motociclista;Herido;1;0
+79;Motociclista;Herido;1;0
+80;Motociclista;Herido;1;0
+81;Motociclista;Herido;1;0
+82;Motociclista;Herido;1;0
+83;Motociclista;Herido;1;0
+84;Motociclista;Herido;1;0
+85;Motociclista;Herido;1;0
+86;Motociclista;Herido;1;0
+87;Motociclista;Herido;1;0
+88;Motociclista;Herido;1;0
+89;Motociclista;Herido;1;0
+90;Motociclista;Herido;1;0
+91;Motociclista;Herido;1;0
+92;Motociclista;Herido;1;0
+93;Motociclista;Herido;1;0
+94;Motociclista;Herido;1;0
+95;Motociclista;Herido;1;0
+96;Motociclista;Herido;1;0
+97;Motociclista;Herido;1;0
+98;Motociclista;Herido;1;0
+99;Motociclista;Herido;1;0
+100;Motociclista;Herido;1;0
+101;Motociclista;Herido;1;0
+102;Motociclista;Herido;1;0
+103;Motociclista;Herido;1;0
+104;Motociclista;Herido;1;0
+105;Motociclista;Herido;1;0
+106;Motociclista;Herido;1;0
+107;Motociclista;Herido;1;0
+108;Motociclista;Herido;1;0
+109;Motociclista;Herido;1;0
+110;Motociclista;Herido;1;0
+111;Motociclista;Herido;1;0
+112;Motociclista;Herido;1;0
+113;Motociclista;Herido;1;0
+114;Motociclista;Herido;1;0
+115;Motociclista;Herido;1;0
+116;Motociclista;Herido;1;0
+117;Motociclista;Herido;1;0
+118;Motociclista;Herido;1;0
+119;Motociclista;Herido;1;0
+120;Motociclista;Herido;1;0
+121;Motociclista;Herido;1;0
+122;Motociclista;Herido;1;0
+123;Motociclista;Herido;1;0
+124;Motociclista;Herido;1;0
+125;Motociclista;Herido;1;0
+126;Motociclista;Herido;1;0
+127;Motociclista;Herido;1;0
+128;Motociclista;Herido;1;0
+129;Motociclista;Herido;1;0
+130;Motociclista;Herido;1;0
+131;Motociclista;Herido;1;0
+132;Motociclista;Herido;1;0
+133;Motociclista;Herido;1;0
+134;Motociclista;Herido;1;0
+135;Motociclista;Herido;1;0
+136;Motociclista;Herido;1;0
+137;Motociclista;Herido;1;0
+138;Motociclista;Herido;1;0
+139;Motociclista;Herido;1;0
+140;Motociclista;Herido;1;0
+141;Motociclista;Herido;1;0
+142;Motociclista;Herido;1;0
+143;Motociclista;Herido;1;0
+144;Motociclista;Herido;1;0
+145;Motociclista;Herido;1;0
+146;Motociclista;Herido;1;0
+147;Motociclista;Herido;1;0
+148;Motociclista;Herido;1;0
+149;Motociclista;Herido;1;0
+150;Motociclista;Herido;1;0
+151;Motociclista;Herido;1;0
+152;Motociclista;Herido;1;0
+153;Motociclista;Herido;1;0
+154;Motociclista;Herido;1;0
+155;Motociclista;Herido;1;0
+156;Motociclista;Herido;1;0
+157;Motociclista;Herido;1;0
+158;Motociclista;Herido;1;0
+159;Motociclista;Herido;1;0
+160;Motociclista;Herido;1;0
+161;Motociclista;Herido;1;0
+162;Motociclista;Herido;1;0
+163;Motociclista;Herido;1;0
+164;Motociclista;Herido;1;0
+165;Motociclista;Herido;1;0
+166;Motociclista;Herido;1;0
+167;Motociclista;Herido;1;0
+168;Motociclista;Herido;1;0
+169;Motociclista;Herido;1;0
+170;Motociclista;Herido;1;0
+171;Motociclista;Herido;1;0
+172;Motociclista;Herido;1;0
+173;Motociclista;Herido;1;0
+174;Motociclista;Herido;1;0
+175;Motociclista;Herido;1;0
+176;Motociclista;Herido;1;0
+177;Motociclista;Herido;1;0
+178;Motociclista;Herido;1;0
+179;Motociclista;Herido;1;0
+180;Motociclista;Herido;1;0
+181;Motociclista;Herido;1;0
+182;Motociclista;Herido;1;0
+183;Motociclista;Herido;1;0
+184;Motociclista;Herido;1;0
+185;Motociclista;Herido;1;0
+186;Motociclista;Herido;1;0
+187;Motociclista;Herido;1;0
+188;Motociclista;Herido;1;0
+189;Motociclista;Herido;1;0
+190;Motociclista;Herido;1;0
+191;Motociclista;Herido;1;0
+192;Motociclista;Herido;1;0
+193;Motociclista;Herido;1;0
+194;Motociclista;Herido;1;0
+195;Motociclista;Herido;1;0
+196;Motociclista;Herido;1;0
+197;Motociclista;Herido;1;0
+198;Motociclista;Herido;1;0
+199;Motociclista;Herido;1;0
+200;Motociclista;Herido;1;0
+201;Motociclista;Herido;1;0
+202;Motociclista;Herido;1;0
+203;Motociclista;Herido;1;0
+204;Motociclista;Herido;1;0
+205;Motociclista;Herido;1;0
+206;Motociclista;Herido;1;0
+207;Motociclista;Herido;1;0
+208;Motociclista;Herido;1;0
+209;Motociclista;Herido;1;0
+210;Motociclista;Herido;1;0
+211;Motociclista;Herido;1;0
+212;Motociclista;Herido;1;0
+213;Motociclista;Herido;1;0
+214;Motociclista;Herido;1;0
+215;Motociclista;Herido;1;0
+216;Motociclista;Herido;1;0
+217;Motociclista;Herido;1;0
+218;Motociclista;Herido;1;0
+219;Motociclista;Herido;1;0
+220;Motociclista;Herido;1;0
+221;Motociclista;Herido;1;0
+222;Motociclista;Herido;1;0
+223;Motociclista;Herido;1;0
+224;Motociclista;Herido;1;0
+225;Motociclista;Herido;1;0
+226;Motociclista;Herido;1;0
+227;Motociclista;Herido;1;0
+228;Motociclista;Herido;1;0
+229;Motociclista;Herido;1;0
+230;Motociclista;Herido;1;0
+231;Motociclista;Herido;1;0
+232;Motociclista;Herido;1;0
+233;Motociclista;Herido;1;0
+234;Motociclista;Herido;1;0
+235;Motociclista;Herido;1;0
+236;Motociclista;Herido;1;0
+237;Motociclista;Herido;1;0
+238;Motociclista;Herido;1;0
+239;Motociclista;Herido;1;0
+240;Motociclista;Herido;1;0
+241;Motociclista;Herido;1;0
+242;Motociclista;Herido;1;0
+243;Motociclista;Herido;1;0
+244;Motociclista;Herido;1;0
+245;Motociclista;Herido;1;0
+246;Motociclista;Herido;1;0
+247;Motociclista;Herido;1;0
+248;Motociclista;Herido;1;0
+249;Motociclista;Herido;1;0
+250;Motociclista;Herido;1;0
+251;Motociclista;Herido;1;0
+252;Motociclista;Herido;1;0
+253;Motociclista;Herido;1;0
+254;Motociclista;Herido;1;0
+255;Motociclista;Herido;1;0
+256;Motociclista;Herido;1;0
+257;Motociclista;Herido;1;0
+258;Motociclista;Herido;1;0
+259;Motociclista;Herido;1;0
+260;Motociclista;Herido;1;0
+261;Motociclista;Herido;1;0
+262;Motociclista;Herido;1;0
+263;Motociclista;Herido;1;0
+264;Motociclista;Herido;1;0
+265;Motociclista;Herido;1;0
+266;Motociclista;Herido;1;0
+267;Motociclista;Herido;1;0
+268;Motociclista;Herido;1;0
+269;Motociclista;Herido;1;0
+270;Motociclista;Herido;1;0
+271;Motociclista;Herido;1;0
+272;Motociclista;Herido;1;0
+273;Motociclista;Herido;1;0
+274;Motociclista;Herido;1;0
+275;Motociclista;Herido;1;0
+276;Motociclista;Herido;1;0
+277;Motociclista;Herido;1;0
+278;Motociclista;Herido;1;0
+279;Motociclista;Herido;1;0
+280;Motociclista;Herido;1;0
+281;Motociclista;Herido;1;0
+282;Motociclista;Herido;1;0
+283;Motociclista;Herido;1;0
+284;Motociclista;Herido;1;0
+285;Motociclista;Herido;1;0
+286;Motociclista;Herido;1;0
+287;Motociclista;Herido;1;0
+288;Motociclista;Herido;1;0
+289;Motociclista;Herido;1;0
+290;Motociclista;Herido;1;0
+291;Motociclista;Herido;1;0
+292;Motociclista;Herido;1;0
+293;Motociclista;Herido;1;0
+294;Motociclista;Herido;1;0
+295;Motociclista;Herido;1;0
+296;Motociclista;Herido;1;0
+297;Motociclista;Herido;1;0
+298;Motociclista;Herido;1;0
+299;Motociclista;Herido;1;0
+300;Motociclista;Herido;1;0
+301;Motociclista;Herido;1;0
+302;Motociclista;Herido;1;0
+303;Motociclista;Herido;1;0
+304;Motociclista;Herido;1;0
+305;Motociclista;Herido;1;0
+306;Motociclista;Herido;1;0
+307;Motociclista;Herido;1;0
+308;Motociclista;Herido;1;0
+309;Motociclista;Herido;1;0
+310;Motociclista;Herido;1;0
+311;Motociclista;Herido;1;0
+312;Motociclista;Herido;1;0
+313;Motociclista;Herido;1;0
+314;Motociclista;Herido;1;0
+315;Motociclista;Herido;1;0
+316;Motociclista;Herido;1;0
+317;Motociclista;Herido;1;0
+318;Motociclista;Herido;1;0
+319;Motociclista;Herido;1;0
+320;Motociclista;Herido;1;0
+321;Motociclista;Herido;1;0
+322;Motociclista;Herido;1;0
+323;Motociclista;Herido;1;0
+324;Motociclista;Herido;1;0
+325;Motociclista;Herido;1;0
+326;Motociclista;Herido;1;0
+327;Motociclista;Herido;1;0
+328;Motociclista;Herido;1;0
+329;Motociclista;Herido;1;0
+330;Motociclista;Herido;1;0
+331;Motociclista;Herido;1;0
+332;Motociclista;Herido;1;0
+333;Motociclista;Herido;1;0
+334;Motociclista;Herido;1;0
+335;Motociclista;Herido;1;0
+336;Motociclista;Herido;1;0
+337;Motociclista;Herido;1;0
+338;Motociclista;Herido;1;0
+339;Motociclista;Herido;1;0
+340;Motociclista;Herido;1;0
+341;Motociclista;Herido;1;0
+342;Motociclista;Herido;1;0
+343;Motociclista;Herido;1;0
+344;Motociclista;Herido;1;0
+345;Motociclista;Herido;1;0
+346;Motociclista;Herido;1;0
+347;Motociclista;Herido;1;0
+348;Motociclista;Herido;1;0
+349;Motociclista;Herido;1;0
+350;Motociclista;Herido;1;0
+351;Motociclista;Herido;1;0
+352;Motociclista;Herido;1;0
+353;Motociclista;Herido;1;0
+354;Motociclista;Herido;1;0
+355;Motociclista;Herido;1;0
+356;Motociclista;Herido;1;0
+357;Motociclista;Herido;1;0
+358;Motociclista;Herido;1;0
+359;Motociclista;Herido;1;0
+360;Motociclista;Herido;1;0
+361;Motociclista;Herido;1;0
+362;Motociclista;Herido;1;0
+363;Motociclista;Herido;1;0
+364;Motociclista;Herido;1;0
+365;Motociclista;Herido;1;0
+366;Motociclista;Herido;1;0
+367;Motociclista;Herido;1;0
+368;Motociclista;Herido;1;0
+369;Motociclista;Herido;1;0
+370;Motociclista;Herido;1;0
+371;Motociclista;Herido;1;0
+372;Motociclista;Herido;1;0
+373;Motociclista;Herido;1;0
+374;Motociclista;Herido;1;0
+375;Motociclista;Herido;1;0
+376;Motociclista;Herido;1;0
+377;Motociclista;Herido;1;0
+378;Motociclista;Herido;1;0
+379;Motociclista;Herido;1;0
+380;Motociclista;Herido;1;0
+381;Motociclista;Herido;1;0
+382;Motociclista;Herido;1;0
+383;Motociclista;Herido;1;0
+384;Motociclista;Herido;1;0
+385;Motociclista;Fallecido;1;1
+386;Motociclista;Fallecido;1;1
+387;Motociclista;Fallecido;1;1
+388;Motociclista;Fallecido;1;1
+389;Motociclista;Fallecido;1;1
+390;Motociclista;Fallecido;1;1
+391;Motociclista;Fallecido;1;1
+392;Motociclista;Fallecido;1;1
+393;Motociclista;Fallecido;1;1
+394;Motociclista;Fallecido;1;1
+395;Motociclista;Fallecido;1;1
+396;Motociclista;Fallecido;1;1
+397;Motociclista;Fallecido;1;1
+398;Motociclista;Fallecido;1;1
+399;Motociclista;Fallecido;1;1
+400;Motociclista;Fallecido;1;1
+401;Motociclista;Fallecido;1;1
+402;Motociclista;Fallecido;1;1
+403;Motociclista;Fallecido;1;1
+404;Motociclista;Fallecido;1;1
+405;Motociclista;Fallecido;1;1
+406;Motociclista;Fallecido;1;1
+407;Motociclista;Fallecido;1;1
+408;Motociclista;Fallecido;1;1
+409;Motociclista;Fallecido;1;1
+410;Motociclista;Fallecido;1;1
+411;Motociclista;Fallecido;1;1
+412;Motociclista;Fallecido;1;1
+413;Motociclista;Fallecido;1;1
+414;Motociclista;Fallecido;1;1
+415;Motociclista;Fallecido;1;1
+416;Motociclista;Fallecido;1;1
+417;Motociclista;Fallecido;1;1
+418;Motociclista;Fallecido;1;1
+419;Motociclista;Fallecido;1;1
+420;Motociclista;Fallecido;1;1
+421;Motociclista;Fallecido;1;1
+422;Motociclista;Fallecido;1;1
+423;Motociclista;Fallecido;1;1
+424;Motociclista;Fallecido;1;1
+425;Motociclista;Fallecido;1;1
+426;Motociclista;Fallecido;1;1
+427;Motociclista;Fallecido;1;1
+428;Motociclista;Fallecido;1;1
+429;Motociclista;Fallecido;1;1
+430;Motociclista;Fallecido;1;1
+431;Motociclista;Fallecido;1;1
+432;Motociclista;Fallecido;1;1
+433;Motociclista;Fallecido;1;1
+434;Motociclista;Fallecido;1;1
+435;Motociclista;Fallecido;1;1
+436;Motociclista;Fallecido;1;1
+437;Motociclista;Fallecido;1;1
+438;Motociclista;Fallecido;1;1
+439;Motociclista;Fallecido;1;1
+440;Motociclista;Fallecido;1;1
+441;Motociclista;Fallecido;1;1
+442;Motociclista;Fallecido;1;1
+443;Motociclista;Fallecido;1;1
+444;Motociclista;Fallecido;1;1
+445;Motociclista;Fallecido;1;1
+446;Motociclista;Fallecido;1;1
+447;Motociclista;Fallecido;1;1
+448;Motociclista;Fallecido;1;1
+449;Motociclista;Fallecido;1;1
+450;Motociclista;Fallecido;1;1
+451;Motociclista;Fallecido;1;1
+452;Motociclista;Fallecido;1;1
+453;Motociclista;Fallecido;1;1
+454;Motociclista;Fallecido;1;1
+455;Motociclista;Fallecido;1;1
+456;Motociclista;Fallecido;1;1
+457;Motociclista;Fallecido;1;1
+458;Motociclista;Fallecido;1;1
+459;Motociclista;Fallecido;1;1
+460;Motociclista;Fallecido;1;1
+461;Motociclista;Fallecido;1;1
+462;Motociclista;Fallecido;1;1
+463;Motociclista;Fallecido;1;1
+464;Motociclista;Fallecido;1;1
+465;Motociclista;Fallecido;1;1
+466;Motociclista;Fallecido;1;1
+467;Motociclista;Fallecido;1;1
+468;Motociclista;Fallecido;1;1
+469;Motociclista;Fallecido;1;1
+470;Motociclista;Fallecido;1;1
+471;Motociclista;Fallecido;1;1
+472;Motociclista;Fallecido;1;1
+473;Motociclista;Fallecido;1;1
+474;Motociclista;Fallecido;1;1
+475;Motociclista;Fallecido;1;1
+476;Motociclista;Fallecido;1;1
+477;Motociclista;Fallecido;1;1
+478;Motociclista;Fallecido;1;1
+479;Motociclista;Fallecido;1;1
+480;Motociclista;Fallecido;1;1
+481;Motociclista;Fallecido;1;1
+482;Motociclista;Fallecido;1;1
+483;Motociclista;Fallecido;1;1
+484;Motociclista;Fallecido;1;1
+485;Motociclista;Fallecido;1;1
+486;Motociclista;Fallecido;1;1
+487;Motociclista;Fallecido;1;1
+488;Motociclista;Fallecido;1;1
+489;Motociclista;Fallecido;1;1
+490;Motociclista;Fallecido;1;1
+491;Motociclista;Fallecido;1;1
+492;Motociclista;Fallecido;1;1
+493;Motociclista;Fallecido;1;1
+494;Motociclista;Fallecido;1;1
+495;Motociclista;Fallecido;1;1
+496;Motociclista;Fallecido;1;1
+497;Motociclista;Fallecido;1;1
+498;Motociclista;Fallecido;1;1
+499;Motociclista;Fallecido;1;1
+500;Motociclista;Fallecido;1;1
+501;Motociclista;Fallecido;1;1
+502;Motociclista;Fallecido;1;1
+503;Motociclista;Fallecido;1;1
+504;Motociclista;Fallecido;1;1
+505;Motociclista;Fallecido;1;1
+506;Motociclista;Fallecido;1;1
+507;Motociclista;Fallecido;1;1
+508;Motociclista;Fallecido;1;1
+509;Motociclista;Fallecido;1;1
+510;Motociclista;Fallecido;1;1
+511;Motociclista;Fallecido;1;1
+512;Motociclista;Fallecido;1;1
+513;Motociclista;Fallecido;1;1
+514;Motociclista;Fallecido;1;1
+515;Motociclista;Fallecido;1;1
+516;Motociclista;Fallecido;1;1
+517;Motociclista;Fallecido;1;1
+518;Motociclista;Fallecido;1;1
+519;Motociclista;Fallecido;1;1
+520;Motociclista;Fallecido;1;1
+521;Motociclista;Fallecido;1;1
+522;Motociclista;Fallecido;1;1
+523;Motociclista;Fallecido;1;1
+524;Motociclista;Fallecido;1;1
+525;Motociclista;Fallecido;1;1
+526;Motociclista;Fallecido;1;1
+527;Motociclista;Fallecido;1;1
+528;Motociclista;Fallecido;1;1
+529;Motociclista;Fallecido;1;1
+530;Motociclista;Fallecido;1;1
+531;Motociclista;Fallecido;1;1
+532;Motociclista;Fallecido;1;1
+533;Motociclista;Fallecido;1;1
+534;Motociclista;Fallecido;1;1
+535;Motociclista;Fallecido;1;1
+536;Motociclista;Fallecido;1;1
+537;Motociclista;Fallecido;1;1
+538;Motociclista;Fallecido;1;1
+539;Motociclista;Fallecido;1;1
+540;Otro Vehiculo;Herido;0;0
+541;Otro Vehiculo;Herido;0;0
+542;Otro Vehiculo;Herido;0;0
+543;Otro Vehiculo;Herido;0;0
+544;Otro Vehiculo;Herido;0;0
+545;Otro Vehiculo;Herido;0;0
+546;Otro Vehiculo;Herido;0;0
+547;Otro Vehiculo;Herido;0;0
+548;Otro Vehiculo;Herido;0;0
+549;Otro Vehiculo;Herido;0;0
+550;Otro Vehiculo;Herido;0;0
+551;Otro Vehiculo;Herido;0;0
+552;Otro Vehiculo;Herido;0;0
+553;Otro Vehiculo;Herido;0;0
+554;Otro Vehiculo;Herido;0;0
+555;Otro Vehiculo;Herido;0;0
+556;Otro Vehiculo;Herido;0;0
+557;Otro Vehiculo;Herido;0;0
+558;Otro Vehiculo;Herido;0;0
+559;Otro Vehiculo;Herido;0;0
+560;Otro Vehiculo;Herido;0;0
+561;Otro Vehiculo;Herido;0;0
+562;Otro Vehiculo;Herido;0;0
+563;Otro Vehiculo;Herido;0;0
+564;Otro Vehiculo;Herido;0;0
+565;Otro Vehiculo;Herido;0;0
+566;Otro Vehiculo;Herido;0;0
+567;Otro Vehiculo;Herido;0;0
+568;Otro Vehiculo;Herido;0;0
+569;Otro Vehiculo;Herido;0;0
+570;Otro Vehiculo;Herido;0;0
+571;Otro Vehiculo;Herido;0;0
+572;Otro Vehiculo;Herido;0;0
+573;Otro Vehiculo;Herido;0;0
+574;Otro Vehiculo;Herido;0;0
+575;Otro Vehiculo;Herido;0;0
+576;Otro Vehiculo;Herido;0;0
+577;Otro Vehiculo;Herido;0;0
+578;Otro Vehiculo;Herido;0;0
+579;Otro Vehiculo;Herido;0;0
+580;Otro Vehiculo;Herido;0;0
+581;Otro Vehiculo;Herido;0;0
+582;Otro Vehiculo;Herido;0;0
+583;Otro Vehiculo;Herido;0;0
+584;Otro Vehiculo;Herido;0;0
+585;Otro Vehiculo;Herido;0;0
+586;Otro Vehiculo;Herido;0;0
+587;Otro Vehiculo;Herido;0;0
+588;Otro Vehiculo;Herido;0;0
+589;Otro Vehiculo;Herido;0;0
+590;Otro Vehiculo;Herido;0;0
+591;Otro Vehiculo;Herido;0;0
+592;Otro Vehiculo;Herido;0;0
+593;Otro Vehiculo;Herido;0;0
+594;Otro Vehiculo;Herido;0;0
+595;Otro Vehiculo;Herido;0;0
+596;Otro Vehiculo;Herido;0;0
+597;Otro Vehiculo;Herido;0;0
+598;Otro Vehiculo;Herido;0;0
+599;Otro Vehiculo;Herido;0;0
+600;Otro Vehiculo;Herido;0;0
+601;Otro Vehiculo;Herido;0;0
+602;Otro Vehiculo;Herido;0;0
+603;Otro Vehiculo;Herido;0;0
+604;Otro Vehiculo;Herido;0;0
+605;Otro Vehiculo;Herido;0;0
+606;Otro Vehiculo;Herido;0;0
+607;Otro Vehiculo;Herido;0;0
+608;Otro Vehiculo;Herido;0;0
+609;Otro Vehiculo;Herido;0;0
+610;Otro Vehiculo;Herido;0;0
+611;Otro Vehiculo;Herido;0;0
+612;Otro Vehiculo;Herido;0;0
+613;Otro Vehiculo;Herido;0;0
+614;Otro Vehiculo;Herido;0;0
+615;Otro Vehiculo;Herido;0;0
+616;Otro Vehiculo;Herido;0;0
+617;Otro Vehiculo;Herido;0;0
+618;Otro Vehiculo;Herido;0;0
+619;Otro Vehiculo;Herido;0;0
+620;Otro Vehiculo;Herido;0;0
+621;Otro Vehiculo;Herido;0;0
+622;Otro Vehiculo;Herido;0;0
+623;Otro Vehiculo;Herido;0;0
+624;Otro Vehiculo;Herido;0;0
+625;Otro Vehiculo;Herido;0;0
+626;Otro Vehiculo;Herido;0;0
+627;Otro Vehiculo;Herido;0;0
+628;Otro Vehiculo;Herido;0;0
+629;Otro Vehiculo;Herido;0;0
+630;Otro Vehiculo;Herido;0;0
+631;Otro Vehiculo;Herido;0;0
+632;Otro Vehiculo;Herido;0;0
+633;Otro Vehiculo;Herido;0;0
+634;Otro Vehiculo;Herido;0;0
+635;Otro Vehiculo;Herido;0;0
+636;Otro Vehiculo;Herido;0;0
+637;Otro Vehiculo;Herido;0;0
+638;Otro Vehiculo;Herido;0;0
+639;Otro Vehiculo;Herido;0;0
+640;Otro Vehiculo;Herido;0;0
+641;Otro Vehiculo;Herido;0;0
+642;Otro Vehiculo;Herido;0;0
+643;Otro Vehiculo;Herido;0;0
+644;Otro Vehiculo;Herido;0;0
+645;Otro Vehiculo;Herido;0;0
+646;Otro Vehiculo;Herido;0;0
+647;Otro Vehiculo;Herido;0;0
+648;Otro Vehiculo;Herido;0;0
+649;Otro Vehiculo;Herido;0;0
+650;Otro Vehiculo;Herido;0;0
+651;Otro Vehiculo;Herido;0;0
+652;Otro Vehiculo;Herido;0;0
+653;Otro Vehiculo;Herido;0;0
+654;Otro Vehiculo;Herido;0;0
+655;Otro Vehiculo;Herido;0;0
+656;Otro Vehiculo;Herido;0;0
+657;Otro Vehiculo;Herido;0;0
+658;Otro Vehiculo;Herido;0;0
+659;Otro Vehiculo;Herido;0;0
+660;Otro Vehiculo;Herido;0;0
+661;Otro Vehiculo;Herido;0;0
+662;Otro Vehiculo;Herido;0;0
+663;Otro Vehiculo;Herido;0;0
+664;Otro Vehiculo;Herido;0;0
+665;Otro Vehiculo;Herido;0;0
+666;Otro Vehiculo;Herido;0;0
+667;Otro Vehiculo;Herido;0;0
+668;Otro Vehiculo;Herido;0;0
+669;Otro Vehiculo;Herido;0;0
+670;Otro Vehiculo;Herido;0;0
+671;Otro Vehiculo;Herido;0;0
+672;Otro Vehiculo;Herido;0;0
+673;Otro Vehiculo;Herido;0;0
+674;Otro Vehiculo;Herido;0;0
+675;Otro Vehiculo;Herido;0;0
+676;Otro Vehiculo;Herido;0;0
+677;Otro Vehiculo;Herido;0;0
+678;Otro Vehiculo;Herido;0;0
+679;Otro Vehiculo;Herido;0;0
+680;Otro Vehiculo;Herido;0;0
+681;Otro Vehiculo;Herido;0;0
+682;Otro Vehiculo;Herido;0;0
+683;Otro Vehiculo;Herido;0;0
+684;Otro Vehiculo;Herido;0;0
+685;Otro Vehiculo;Herido;0;0
+686;Otro Vehiculo;Herido;0;0
+687;Otro Vehiculo;Herido;0;0
+688;Otro Vehiculo;Herido;0;0
+689;Otro Vehiculo;Herido;0;0
+690;Otro Vehiculo;Herido;0;0
+691;Otro Vehiculo;Herido;0;0
+692;Otro Vehiculo;Herido;0;0
+693;Otro Vehiculo;Herido;0;0
+694;Otro Vehiculo;Herido;0;0
+695;Otro Vehiculo;Herido;0;0
+696;Otro Vehiculo;Herido;0;0
+697;Otro Vehiculo;Herido;0;0
+698;Otro Vehiculo;Herido;0;0
+699;Otro Vehiculo;Herido;0;0
+700;Otro Vehiculo;Herido;0;0
+701;Otro Vehiculo;Herido;0;0
+702;Otro Vehiculo;Herido;0;0
+703;Otro Vehiculo;Herido;0;0
+704;Otro Vehiculo;Herido;0;0
+705;Otro Vehiculo;Herido;0;0
+706;Otro Vehiculo;Herido;0;0
+707;Otro Vehiculo;Herido;0;0
+708;Otro Vehiculo;Herido;0;0
+709;Otro Vehiculo;Herido;0;0
+710;Otro Vehiculo;Herido;0;0
+711;Otro Vehiculo;Herido;0;0
+712;Otro Vehiculo;Herido;0;0
+713;Otro Vehiculo;Herido;0;0
+714;Otro Vehiculo;Herido;0;0
+715;Otro Vehiculo;Herido;0;0
+716;Otro Vehiculo;Herido;0;0
+717;Otro Vehiculo;Herido;0;0
+718;Otro Vehiculo;Herido;0;0
+719;Otro Vehiculo;Herido;0;0
+720;Otro Vehiculo;Herido;0;0
+721;Otro Vehiculo;Herido;0;0
+722;Otro Vehiculo;Herido;0;0
+723;Otro Vehiculo;Herido;0;0
+724;Otro Vehiculo;Herido;0;0
+725;Otro Vehiculo;Herido;0;0
+726;Otro Vehiculo;Herido;0;0
+727;Otro Vehiculo;Herido;0;0
+728;Otro Vehiculo;Herido;0;0
+729;Otro Vehiculo;Herido;0;0
+730;Otro Vehiculo;Herido;0;0
+731;Otro Vehiculo;Herido;0;0
+732;Otro Vehiculo;Herido;0;0
+733;Otro Vehiculo;Herido;0;0
+734;Otro Vehiculo;Herido;0;0
+735;Otro Vehiculo;Herido;0;0
+736;Otro Vehiculo;Herido;0;0
+737;Otro Vehiculo;Herido;0;0
+738;Otro Vehiculo;Herido;0;0
+739;Otro Vehiculo;Herido;0;0
+740;Otro Vehiculo;Herido;0;0
+741;Otro Vehiculo;Herido;0;0
+742;Otro Vehiculo;Herido;0;0
+743;Otro Vehiculo;Herido;0;0
+744;Otro Vehiculo;Herido;0;0
+745;Otro Vehiculo;Herido;0;0
+746;Otro Vehiculo;Herido;0;0
+747;Otro Vehiculo;Herido;0;0
+748;Otro Vehiculo;Herido;0;0
+749;Otro Vehiculo;Herido;0;0
+750;Otro Vehiculo;Herido;0;0
+751;Otro Vehiculo;Herido;0;0
+752;Otro Vehiculo;Herido;0;0
+753;Otro Vehiculo;Herido;0;0
+754;Otro Vehiculo;Herido;0;0
+755;Otro Vehiculo;Herido;0;0
+756;Otro Vehiculo;Herido;0;0
+757;Otro Vehiculo;Herido;0;0
+758;Otro Vehiculo;Herido;0;0
+759;Otro Vehiculo;Herido;0;0
+760;Otro Vehiculo;Herido;0;0
+761;Otro Vehiculo;Herido;0;0
+762;Otro Vehiculo;Herido;0;0
+763;Otro Vehiculo;Herido;0;0
+764;Otro Vehiculo;Herido;0;0
+765;Otro Vehiculo;Herido;0;0
+766;Otro Vehiculo;Herido;0;0
+767;Otro Vehiculo;Herido;0;0
+768;Otro Vehiculo;Herido;0;0
+769;Otro Vehiculo;Herido;0;0
+770;Otro Vehiculo;Herido;0;0
+771;Otro Vehiculo;Herido;0;0
+772;Otro Vehiculo;Herido;0;0
+773;Otro Vehiculo;Herido;0;0
+774;Otro Vehiculo;Herido;0;0
+775;Otro Vehiculo;Herido;0;0
+776;Otro Vehiculo;Herido;0;0
+777;Otro Vehiculo;Herido;0;0
+778;Otro Vehiculo;Herido;0;0
+779;Otro Vehiculo;Herido;0;0
+780;Otro Vehiculo;Herido;0;0
+781;Otro Vehiculo;Herido;0;0
+782;Otro Vehiculo;Herido;0;0
+783;Otro Vehiculo;Herido;0;0
+784;Otro Vehiculo;Herido;0;0
+785;Otro Vehiculo;Herido;0;0
+786;Otro Vehiculo;Herido;0;0
+787;Otro Vehiculo;Herido;0;0
+788;Otro Vehiculo;Herido;0;0
+789;Otro Vehiculo;Herido;0;0
+790;Otro Vehiculo;Herido;0;0
+791;Otro Vehiculo;Herido;0;0
+792;Otro Vehiculo;Herido;0;0
+793;Otro Vehiculo;Herido;0;0
+794;Otro Vehiculo;Herido;0;0
+795;Otro Vehiculo;Herido;0;0
+796;Otro Vehiculo;Herido;0;0
+797;Otro Vehiculo;Herido;0;0
+798;Otro Vehiculo;Herido;0;0
+799;Otro Vehiculo;Herido;0;0
+800;Otro Vehiculo;Herido;0;0
+801;Otro Vehiculo;Herido;0;0
+802;Otro Vehiculo;Herido;0;0
+803;Otro Vehiculo;Herido;0;0
+804;Otro Vehiculo;Herido;0;0
+805;Otro Vehiculo;Herido;0;0
+806;Otro Vehiculo;Herido;0;0
+807;Otro Vehiculo;Herido;0;0
+808;Otro Vehiculo;Herido;0;0
+809;Otro Vehiculo;Herido;0;0
+810;Otro Vehiculo;Herido;0;0
+811;Otro Vehiculo;Herido;0;0
+812;Otro Vehiculo;Herido;0;0
+813;Otro Vehiculo;Herido;0;0
+814;Otro Vehiculo;Herido;0;0
+815;Otro Vehiculo;Herido;0;0
+816;Otro Vehiculo;Herido;0;0
+817;Otro Vehiculo;Herido;0;0
+818;Otro Vehiculo;Herido;0;0
+819;Otro Vehiculo;Herido;0;0
+820;Otro Vehiculo;Herido;0;0
+821;Otro Vehiculo;Herido;0;0
+822;Otro Vehiculo;Herido;0;0
+823;Otro Vehiculo;Herido;0;0
+824;Otro Vehiculo;Herido;0;0
+825;Otro Vehiculo;Herido;0;0
+826;Otro Vehiculo;Herido;0;0
+827;Otro Vehiculo;Herido;0;0
+828;Otro Vehiculo;Herido;0;0
+829;Otro Vehiculo;Herido;0;0
+830;Otro Vehiculo;Herido;0;0
+831;Otro Vehiculo;Herido;0;0
+832;Otro Vehiculo;Herido;0;0
+833;Otro Vehiculo;Herido;0;0
+834;Otro Vehiculo;Herido;0;0
+835;Otro Vehiculo;Herido;0;0
+836;Otro Vehiculo;Herido;0;0
+837;Otro Vehiculo;Herido;0;0
+838;Otro Vehiculo;Herido;0;0
+839;Otro Vehiculo;Herido;0;0
+840;Otro Vehiculo;Herido;0;0
+841;Otro Vehiculo;Herido;0;0
+842;Otro Vehiculo;Herido;0;0
+843;Otro Vehiculo;Herido;0;0
+844;Otro Vehiculo;Herido;0;0
+845;Otro Vehiculo;Herido;0;0
+846;Otro Vehiculo;Herido;0;0
+847;Otro Vehiculo;Herido;0;0
+848;Otro Vehiculo;Herido;0;0
+849;Otro Vehiculo;Herido;0;0
+850;Otro Vehiculo;Herido;0;0
+851;Otro Vehiculo;Herido;0;0
+852;Otro Vehiculo;Herido;0;0
+853;Otro Vehiculo;Herido;0;0
+854;Otro Vehiculo;Herido;0;0
+855;Otro Vehiculo;Herido;0;0
+856;Otro Vehiculo;Herido;0;0
+857;Otro Vehiculo;Herido;0;0
+858;Otro Vehiculo;Herido;0;0
+859;Otro Vehiculo;Herido;0;0
+860;Otro Vehiculo;Herido;0;0
+861;Otro Vehiculo;Herido;0;0
+862;Otro Vehiculo;Herido;0;0
+863;Otro Vehiculo;Herido;0;0
+864;Otro Vehiculo;Herido;0;0
+865;Otro Vehiculo;Herido;0;0
+866;Otro Vehiculo;Herido;0;0
+867;Otro Vehiculo;Herido;0;0
+868;Otro Vehiculo;Herido;0;0
+869;Otro Vehiculo;Herido;0;0
+870;Otro Vehiculo;Herido;0;0
+871;Otro Vehiculo;Herido;0;0
+872;Otro Vehiculo;Herido;0;0
+873;Otro Vehiculo;Herido;0;0
+874;Otro Vehiculo;Herido;0;0
+875;Otro Vehiculo;Herido;0;0
+876;Otro Vehiculo;Herido;0;0
+877;Otro Vehiculo;Herido;0;0
+878;Otro Vehiculo;Herido;0;0
+879;Otro Vehiculo;Herido;0;0
+880;Otro Vehiculo;Herido;0;0
+881;Otro Vehiculo;Herido;0;0
+882;Otro Vehiculo;Herido;0;0
+883;Otro Vehiculo;Herido;0;0
+884;Otro Vehiculo;Herido;0;0
+885;Otro Vehiculo;Herido;0;0
+886;Otro Vehiculo;Herido;0;0
+887;Otro Vehiculo;Herido;0;0
+888;Otro Vehiculo;Herido;0;0
+889;Otro Vehiculo;Herido;0;0
+890;Otro Vehiculo;Herido;0;0
+891;Otro Vehiculo;Herido;0;0
+892;Otro Vehiculo;Herido;0;0
+893;Otro Vehiculo;Herido;0;0
+894;Otro Vehiculo;Herido;0;0
+895;Otro Vehiculo;Herido;0;0
+896;Otro Vehiculo;Herido;0;0
+897;Otro Vehiculo;Herido;0;0
+898;Otro Vehiculo;Herido;0;0
+899;Otro Vehiculo;Herido;0;0
+900;Otro Vehiculo;Herido;0;0
+901;Otro Vehiculo;Herido;0;0
+902;Otro Vehiculo;Herido;0;0
+903;Otro Vehiculo;Herido;0;0
+904;Otro Vehiculo;Herido;0;0
+905;Otro Vehiculo;Herido;0;0
+906;Otro Vehiculo;Herido;0;0
+907;Otro Vehiculo;Herido;0;0
+908;Otro Vehiculo;Herido;0;0
+909;Otro Vehiculo;Herido;0;0
+910;Otro Vehiculo;Herido;0;0
+911;Otro Vehiculo;Herido;0;0
+912;Otro Vehiculo;Herido;0;0
+913;Otro Vehiculo;Herido;0;0
+914;Otro Vehiculo;Herido;0;0
+915;Otro Vehiculo;Herido;0;0
+916;Otro Vehiculo;Herido;0;0
+917;Otro Vehiculo;Herido;0;0
+918;Otro Vehiculo;Herido;0;0
+919;Otro Vehiculo;Herido;0;0
+920;Otro Vehiculo;Herido;0;0
+921;Otro Vehiculo;Herido;0;0
+922;Otro Vehiculo;Herido;0;0
+923;Otro Vehiculo;Herido;0;0
+924;Otro Vehiculo;Herido;0;0
+925;Otro Vehiculo;Herido;0;0
+926;Otro Vehiculo;Herido;0;0
+927;Otro Vehiculo;Herido;0;0
+928;Otro Vehiculo;Herido;0;0
+929;Otro Vehiculo;Herido;0;0
+930;Otro Vehiculo;Herido;0;0
+931;Otro Vehiculo;Herido;0;0
+932;Otro Vehiculo;Herido;0;0
+933;Otro Vehiculo;Herido;0;0
+934;Otro Vehiculo;Herido;0;0
+935;Otro Vehiculo;Herido;0;0
+936;Otro Vehiculo;Herido;0;0
+937;Otro Vehiculo;Herido;0;0
+938;Otro Vehiculo;Herido;0;0
+939;Otro Vehiculo;Herido;0;0
+940;Otro Vehiculo;Herido;0;0
+941;Otro Vehiculo;Herido;0;0
+942;Otro Vehiculo;Herido;0;0
+943;Otro Vehiculo;Herido;0;0
+944;Otro Vehiculo;Herido;0;0
+945;Otro Vehiculo;Herido;0;0
+946;Otro Vehiculo;Herido;0;0
+947;Otro Vehiculo;Herido;0;0
+948;Otro Vehiculo;Herido;0;0
+949;Otro Vehiculo;Herido;0;0
+950;Otro Vehiculo;Herido;0;0
+951;Otro Vehiculo;Herido;0;0
+952;Otro Vehiculo;Herido;0;0
+953;Otro Vehiculo;Herido;0;0
+954;Otro Vehiculo;Herido;0;0
+955;Otro Vehiculo;Herido;0;0
+956;Otro Vehiculo;Herido;0;0
+957;Otro Vehiculo;Herido;0;0
+958;Otro Vehiculo;Herido;0;0
+959;Otro Vehiculo;Herido;0;0
+960;Otro Vehiculo;Herido;0;0
+961;Otro Vehiculo;Herido;0;0
+962;Otro Vehiculo;Herido;0;0
+963;Otro Vehiculo;Herido;0;0
+964;Otro Vehiculo;Herido;0;0
+965;Otro Vehiculo;Herido;0;0
+966;Otro Vehiculo;Herido;0;0
+967;Otro Vehiculo;Herido;0;0
+968;Otro Vehiculo;Herido;0;0
+969;Otro Vehiculo;Herido;0;0
+970;Otro Vehiculo;Herido;0;0
+971;Otro Vehiculo;Herido;0;0
+972;Otro Vehiculo;Herido;0;0
+973;Otro Vehiculo;Herido;0;0
+974;Otro Vehiculo;Herido;0;0
+975;Otro Vehiculo;Herido;0;0
+976;Otro Vehiculo;Herido;0;0
+977;Otro Vehiculo;Herido;0;0
+978;Otro Vehiculo;Herido;0;0
+979;Otro Vehiculo;Herido;0;0
+980;Otro Vehiculo;Herido;0;0
+981;Otro Vehiculo;Herido;0;0
+982;Otro Vehiculo;Herido;0;0
+983;Otro Vehiculo;Herido;0;0
+984;Otro Vehiculo;Herido;0;0
+985;Otro Vehiculo;Herido;0;0
+986;Otro Vehiculo;Herido;0;0
+987;Otro Vehiculo;Herido;0;0
+988;Otro Vehiculo;Herido;0;0
+989;Otro Vehiculo;Herido;0;0
+990;Otro Vehiculo;Herido;0;0
+991;Otro Vehiculo;Herido;0;0
+992;Otro Vehiculo;Herido;0;0
+993;Otro Vehiculo;Herido;0;0
+994;Otro Vehiculo;Herido;0;0
+995;Otro Vehiculo;Herido;0;0
+996;Otro Vehiculo;Herido;0;0
+997;Otro Vehiculo;Herido;0;0
+998;Otro Vehiculo;Herido;0;0
+999;Otro Vehiculo;Herido;0;0
+1000;Otro Vehiculo;Herido;0;0
+1001;Otro Vehiculo;Herido;0;0
+1002;Otro Vehiculo;Herido;0;0
+1003;Otro Vehiculo;Herido;0;0
+1004;Otro Vehiculo;Herido;0;0
+1005;Otro Vehiculo;Herido;0;0
+1006;Otro Vehiculo;Herido;0;0
+1007;Otro Vehiculo;Herido;0;0
+1008;Otro Vehiculo;Herido;0;0
+1009;Otro Vehiculo;Herido;0;0
+1010;Otro Vehiculo;Herido;0;0
+1011;Otro Vehiculo;Herido;0;0
+1012;Otro Vehiculo;Herido;0;0
+1013;Otro Vehiculo;Herido;0;0
+1014;Otro Vehiculo;Herido;0;0
+1015;Otro Vehiculo;Herido;0;0
+1016;Otro Vehiculo;Herido;0;0
+1017;Otro Vehiculo;Herido;0;0
+1018;Otro Vehiculo;Herido;0;0
+1019;Otro Vehiculo;Herido;0;0
+1020;Otro Vehiculo;Herido;0;0
+1021;Otro Vehiculo;Herido;0;0
+1022;Otro Vehiculo;Herido;0;0
+1023;Otro Vehiculo;Herido;0;0
+1024;Otro Vehiculo;Herido;0;0
+1025;Otro Vehiculo;Herido;0;0
+1026;Otro Vehiculo;Herido;0;0
+1027;Otro Vehiculo;Herido;0;0
+1028;Otro Vehiculo;Herido;0;0
+1029;Otro Vehiculo;Herido;0;0
+1030;Otro Vehiculo;Herido;0;0
+1031;Otro Vehiculo;Herido;0;0
+1032;Otro Vehiculo;Herido;0;0
+1033;Otro Vehiculo;Herido;0;0
+1034;Otro Vehiculo;Herido;0;0
+1035;Otro Vehiculo;Herido;0;0
+1036;Otro Vehiculo;Herido;0;0
+1037;Otro Vehiculo;Herido;0;0
+1038;Otro Vehiculo;Herido;0;0
+1039;Otro Vehiculo;Herido;0;0
+1040;Otro Vehiculo;Herido;0;0
+1041;Otro Vehiculo;Herido;0;0
+1042;Otro Vehiculo;Herido;0;0
+1043;Otro Vehiculo;Herido;0;0
+1044;Otro Vehiculo;Herido;0;0
+1045;Otro Vehiculo;Herido;0;0
+1046;Otro Vehiculo;Herido;0;0
+1047;Otro Vehiculo;Herido;0;0
+1048;Otro Vehiculo;Herido;0;0
+1049;Otro Vehiculo;Herido;0;0
+1050;Otro Vehiculo;Herido;0;0
+1051;Otro Vehiculo;Herido;0;0
+1052;Otro Vehiculo;Herido;0;0
+1053;Otro Vehiculo;Herido;0;0
+1054;Otro Vehiculo;Herido;0;0
+1055;Otro Vehiculo;Herido;0;0
+1056;Otro Vehiculo;Herido;0;0
+1057;Otro Vehiculo;Herido;0;0
+1058;Otro Vehiculo;Herido;0;0
+1059;Otro Vehiculo;Herido;0;0
+1060;Otro Vehiculo;Herido;0;0
+1061;Otro Vehiculo;Herido;0;0
+1062;Otro Vehiculo;Herido;0;0
+1063;Otro Vehiculo;Herido;0;0
+1064;Otro Vehiculo;Herido;0;0
+1065;Otro Vehiculo;Herido;0;0
+1066;Otro Vehiculo;Herido;0;0
+1067;Otro Vehiculo;Herido;0;0
+1068;Otro Vehiculo;Herido;0;0
+1069;Otro Vehiculo;Herido;0;0
+1070;Otro Vehiculo;Herido;0;0
+1071;Otro Vehiculo;Herido;0;0
+1072;Otro Vehiculo;Herido;0;0
+1073;Otro Vehiculo;Herido;0;0
+1074;Otro Vehiculo;Herido;0;0
+1075;Otro Vehiculo;Herido;0;0
+1076;Otro Vehiculo;Herido;0;0
+1077;Otro Vehiculo;Herido;0;0
+1078;Otro Vehiculo;Herido;0;0
+1079;Otro Vehiculo;Herido;0;0
+1080;Otro Vehiculo;Herido;0;0
+1081;Otro Vehiculo;Herido;0;0
+1082;Otro Vehiculo;Herido;0;0
+1083;Otro Vehiculo;Herido;0;0
+1084;Otro Vehiculo;Herido;0;0
+1085;Otro Vehiculo;Herido;0;0
+1086;Otro Vehiculo;Herido;0;0
+1087;Otro Vehiculo;Herido;0;0
+1088;Otro Vehiculo;Herido;0;0
+1089;Otro Vehiculo;Herido;0;0
+1090;Otro Vehiculo;Herido;0;0
+1091;Otro Vehiculo;Herido;0;0
+1092;Otro Vehiculo;Herido;0;0
+1093;Otro Vehiculo;Herido;0;0
+1094;Otro Vehiculo;Herido;0;0
+1095;Otro Vehiculo;Herido;0;0
+1096;Otro Vehiculo;Herido;0;0
+1097;Otro Vehiculo;Herido;0;0
+1098;Otro Vehiculo;Herido;0;0
+1099;Otro Vehiculo;Herido;0;0
+1100;Otro Vehiculo;Herido;0;0
+1101;Otro Vehiculo;Herido;0;0
+1102;Otro Vehiculo;Herido;0;0
+1103;Otro Vehiculo;Herido;0;0
+1104;Otro Vehiculo;Herido;0;0
+1105;Otro Vehiculo;Herido;0;0
+1106;Otro Vehiculo;Herido;0;0
+1107;Otro Vehiculo;Herido;0;0
+1108;Otro Vehiculo;Herido;0;0
+1109;Otro Vehiculo;Herido;0;0
+1110;Otro Vehiculo;Herido;0;0
+1111;Otro Vehiculo;Herido;0;0
+1112;Otro Vehiculo;Herido;0;0
+1113;Otro Vehiculo;Herido;0;0
+1114;Otro Vehiculo;Herido;0;0
+1115;Otro Vehiculo;Herido;0;0
+1116;Otro Vehiculo;Herido;0;0
+1117;Otro Vehiculo;Herido;0;0
+1118;Otro Vehiculo;Herido;0;0
+1119;Otro Vehiculo;Herido;0;0
+1120;Otro Vehiculo;Herido;0;0
+1121;Otro Vehiculo;Herido;0;0
+1122;Otro Vehiculo;Herido;0;0
+1123;Otro Vehiculo;Herido;0;0
+1124;Otro Vehiculo;Herido;0;0
+1125;Otro Vehiculo;Herido;0;0
+1126;Otro Vehiculo;Herido;0;0
+1127;Otro Vehiculo;Herido;0;0
+1128;Otro Vehiculo;Herido;0;0
+1129;Otro Vehiculo;Herido;0;0
+1130;Otro Vehiculo;Herido;0;0
+1131;Otro Vehiculo;Herido;0;0
+1132;Otro Vehiculo;Herido;0;0
+1133;Otro Vehiculo;Herido;0;0
+1134;Otro Vehiculo;Herido;0;0
+1135;Otro Vehiculo;Herido;0;0
+1136;Otro Vehiculo;Herido;0;0
+1137;Otro Vehiculo;Herido;0;0
+1138;Otro Vehiculo;Herido;0;0
+1139;Otro Vehiculo;Herido;0;0
+1140;Otro Vehiculo;Herido;0;0
+1141;Otro Vehiculo;Herido;0;0
+1142;Otro Vehiculo;Herido;0;0
+1143;Otro Vehiculo;Herido;0;0
+1144;Otro Vehiculo;Herido;0;0
+1145;Otro Vehiculo;Herido;0;0
+1146;Otro Vehiculo;Herido;0;0
+1147;Otro Vehiculo;Herido;0;0
+1148;Otro Vehiculo;Herido;0;0
+1149;Otro Vehiculo;Herido;0;0
+1150;Otro Vehiculo;Herido;0;0
+1151;Otro Vehiculo;Herido;0;0
+1152;Otro Vehiculo;Herido;0;0
+1153;Otro Vehiculo;Herido;0;0
+1154;Otro Vehiculo;Herido;0;0
+1155;Otro Vehiculo;Herido;0;0
+1156;Otro Vehiculo;Herido;0;0
+1157;Otro Vehiculo;Herido;0;0
+1158;Otro Vehiculo;Herido;0;0
+1159;Otro Vehiculo;Herido;0;0
+1160;Otro Vehiculo;Herido;0;0
+1161;Otro Vehiculo;Herido;0;0
+1162;Otro Vehiculo;Herido;0;0
+1163;Otro Vehiculo;Herido;0;0
+1164;Otro Vehiculo;Herido;0;0
+1165;Otro Vehiculo;Herido;0;0
+1166;Otro Vehiculo;Herido;0;0
+1167;Otro Vehiculo;Herido;0;0
+1168;Otro Vehiculo;Herido;0;0
+1169;Otro Vehiculo;Herido;0;0
+1170;Otro Vehiculo;Herido;0;0
+1171;Otro Vehiculo;Herido;0;0
+1172;Otro Vehiculo;Herido;0;0
+1173;Otro Vehiculo;Herido;0;0
+1174;Otro Vehiculo;Herido;0;0
+1175;Otro Vehiculo;Herido;0;0
+1176;Otro Vehiculo;Herido;0;0
+1177;Otro Vehiculo;Herido;0;0
+1178;Otro Vehiculo;Herido;0;0
+1179;Otro Vehiculo;Herido;0;0
+1180;Otro Vehiculo;Herido;0;0
+1181;Otro Vehiculo;Herido;0;0
+1182;Otro Vehiculo;Herido;0;0
+1183;Otro Vehiculo;Herido;0;0
+1184;Otro Vehiculo;Herido;0;0
+1185;Otro Vehiculo;Herido;0;0
+1186;Otro Vehiculo;Herido;0;0
+1187;Otro Vehiculo;Herido;0;0
+1188;Otro Vehiculo;Herido;0;0
+1189;Otro Vehiculo;Herido;0;0
+1190;Otro Vehiculo;Herido;0;0
+1191;Otro Vehiculo;Herido;0;0
+1192;Otro Vehiculo;Herido;0;0
+1193;Otro Vehiculo;Herido;0;0
+1194;Otro Vehiculo;Herido;0;0
+1195;Otro Vehiculo;Herido;0;0
+1196;Otro Vehiculo;Herido;0;0
+1197;Otro Vehiculo;Herido;0;0
+1198;Otro Vehiculo;Herido;0;0
+1199;Otro Vehiculo;Herido;0;0
+1200;Otro Vehiculo;Herido;0;0
+1201;Otro Vehiculo;Herido;0;0
+1202;Otro Vehiculo;Herido;0;0
+1203;Otro Vehiculo;Herido;0;0
+1204;Otro Vehiculo;Herido;0;0
+1205;Otro Vehiculo;Herido;0;0
+1206;Otro Vehiculo;Herido;0;0
+1207;Otro Vehiculo;Herido;0;0
+1208;Otro Vehiculo;Herido;0;0
+1209;Otro Vehiculo;Herido;0;0
+1210;Otro Vehiculo;Herido;0;0
+1211;Otro Vehiculo;Fallecido;0;1
+1212;Otro Vehiculo;Fallecido;0;1
+1213;Otro Vehiculo;Fallecido;0;1
+1214;Otro Vehiculo;Fallecido;0;1
+1215;Otro Vehiculo;Fallecido;0;1
+1216;Otro Vehiculo;Fallecido;0;1
+1217;Otro Vehiculo;Fallecido;0;1
+1218;Otro Vehiculo;Fallecido;0;1
+1219;Otro Vehiculo;Fallecido;0;1
+1220;Otro Vehiculo;Fallecido;0;1
+1221;Otro Vehiculo;Fallecido;0;1
+1222;Otro Vehiculo;Fallecido;0;1
+1223;Otro Vehiculo;Fallecido;0;1
+1224;Otro Vehiculo;Fallecido;0;1
+1225;Otro Vehiculo;Fallecido;0;1
+1226;Otro Vehiculo;Fallecido;0;1
+1227;Otro Vehiculo;Fallecido;0;1
+1228;Otro Vehiculo;Fallecido;0;1
+1229;Otro Vehiculo;Fallecido;0;1
+1230;Otro Vehiculo;Fallecido;0;1
+1231;Otro Vehiculo;Fallecido;0;1
+1232;Otro Vehiculo;Fallecido;0;1
+1233;Otro Vehiculo;Fallecido;0;1
+1234;Otro Vehiculo;Fallecido;0;1
+1235;Otro Vehiculo;Fallecido;0;1
+1236;Otro Vehiculo;Fallecido;0;1
+1237;Otro Vehiculo;Fallecido;0;1
+1238;Otro Vehiculo;Fallecido;0;1
+1239;Otro Vehiculo;Fallecido;0;1
+1240;Otro Vehiculo;Fallecido;0;1
+1241;Otro Vehiculo;Fallecido;0;1
+1242;Otro Vehiculo;Fallecido;0;1
+1243;Otro Vehiculo;Fallecido;0;1
+1244;Otro Vehiculo;Fallecido;0;1
+1245;Otro Vehiculo;Fallecido;0;1
+1246;Otro Vehiculo;Fallecido;0;1
+1247;Otro Vehiculo;Fallecido;0;1
+1248;Otro Vehiculo;Fallecido;0;1
+1249;Otro Vehiculo;Fallecido;0;1
+1250;Otro Vehiculo;Fallecido;0;1
+1251;Otro Vehiculo;Fallecido;0;1
+1252;Otro Vehiculo;Fallecido;0;1
+1253;Otro Vehiculo;Fallecido;0;1
+1254;Otro Vehiculo;Fallecido;0;1
+1255;Otro Vehiculo;Fallecido;0;1
+1256;Otro Vehiculo;Fallecido;0;1
+1257;Otro Vehiculo;Fallecido;0;1
+1258;Otro Vehiculo;Fallecido;0;1
+1259;Otro Vehiculo;Fallecido;0;1
+1260;Otro Vehiculo;Fallecido;0;1
+1261;Otro Vehiculo;Fallecido;0;1
+1262;Otro Vehiculo;Fallecido;0;1
+1263;Otro Vehiculo;Fallecido;0;1
+1264;Otro Vehiculo;Fallecido;0;1
+1265;Otro Vehiculo;Fallecido;0;1
+1266;Otro Vehiculo;Fallecido;0;1
+1267;Otro Vehiculo;Fallecido;0;1
+1268;Otro Vehiculo;Fallecido;0;1
+1269;Otro Vehiculo;Fallecido;0;1
+1270;Otro Vehiculo;Fallecido;0;1
+1271;Otro Vehiculo;Fallecido;0;1
+1272;Otro Vehiculo;Fallecido;0;1
+1273;Otro Vehiculo;Fallecido;0;1
+1274;Otro Vehiculo;Fallecido;0;1
+1275;Otro Vehiculo;Fallecido;0;1
+1276;Otro Vehiculo;Fallecido;0;1
+1277;Otro Vehiculo;Fallecido;0;1
+1278;Otro Vehiculo;Fallecido;0;1
+1279;Otro Vehiculo;Fallecido;0;1
+1280;Otro Vehiculo;Fallecido;0;1
+1281;Otro Vehiculo;Fallecido;0;1
+1282;Otro Vehiculo;Fallecido;0;1
+1283;Otro Vehiculo;Fallecido;0;1
+1284;Otro Vehiculo;Fallecido;0;1
+1285;Otro Vehiculo;Fallecido;0;1
+1286;Otro Vehiculo;Fallecido;0;1
+1287;Otro Vehiculo;Fallecido;0;1
+1288;Otro Vehiculo;Fallecido;0;1
+1289;Otro Vehiculo;Fallecido;0;1
+1290;Otro Vehiculo;Fallecido;0;1
+1291;Otro Vehiculo;Fallecido;0;1
+1292;Otro Vehiculo;Fallecido;0;1
+1293;Otro Vehiculo;Fallecido;0;1
+1294;Otro Vehiculo;Fallecido;0;1
+1295;Otro Vehiculo;Fallecido;0;1
+1296;Otro Vehiculo;Fallecido;0;1
+1297;Otro Vehiculo;Fallecido;0;1
+1298;Otro Vehiculo;Fallecido;0;1
+1299;Otro Vehiculo;Fallecido;0;1
+1300;Otro Vehiculo;Fallecido;0;1
+1301;Otro Vehiculo;Fallecido;0;1
+1302;Otro Vehiculo;Fallecido;0;1
+1303;Otro Vehiculo;Fallecido;0;1
+1304;Otro Vehiculo;Fallecido;0;1
+1305;Otro Vehiculo;Fallecido;0;1
+1306;Otro Vehiculo;Fallecido;0;1
+1307;Otro Vehiculo;Fallecido;0;1
+1308;Otro Vehiculo;Fallecido;0;1
+1309;Otro Vehiculo;Fallecido;0;1
+1310;Otro Vehiculo;Fallecido;0;1
+1311;Otro Vehiculo;Fallecido;0;1
+1312;Otro Vehiculo;Fallecido;0;1
+1313;Otro Vehiculo;Fallecido;0;1
+1314;Otro Vehiculo;Fallecido;0;1
+1315;Otro Vehiculo;Fallecido;0;1
+1316;Otro Vehiculo;Fallecido;0;1
+1317;Otro Vehiculo;Fallecido;0;1
+1318;Otro Vehiculo;Fallecido;0;1
+1319;Otro Vehiculo;Fallecido;0;1
+1320;Otro Vehiculo;Fallecido;0;1
+1321;Otro Vehiculo;Fallecido;0;1
+1322;Otro Vehiculo;Fallecido;0;1
+1323;Otro Vehiculo;Fallecido;0;1
+1324;Otro Vehiculo;Fallecido;0;1
