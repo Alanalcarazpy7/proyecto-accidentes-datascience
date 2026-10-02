@@ -1,0 +1,39 @@
+{
+  "alpha": 0.05,
+  "H1_territorial": {
+    "variable": "zona (Interior vs. Metropolitana)",
+    "prueba": "Chi-cuadrado de independencia",
+    "N": 1491,
+    "chi2_stat": 6.3647,
+    "p_value": 0.011641168702253164,
+    "dof": 1,
+    "odds_ratio": 1.4014,
+    "or_ci_95_asintotico": [
+      1.0775,
+      1.8228
+    ],
+    "cramer_v": 0.0653,
+    "supuestos_cumplidos": true,
+    "decision": "Rechazar H0"
+  },
+  "H2_genero": {
+    "variable": "sexo (Hombre vs. Mujer)",
+    "prueba": "Chi-cuadrado de independencia + Bootstrap OR",
+    "N": 5493,
+    "chi2_stat": 51.8141,
+    "p_value": 6.101275149908714e-13,
+    "dof": 1,
+    "odds_ratio": 2.037,
+    "or_ci_95_asintotico": [
+      1.6729,
+      2.4803
+    ],
+    "or_ci_95_bootstrap": [
+      1.6787,
+      2.5066
+    ],
+    "bootstrap_iterations": 10000,
+    "supuestos_cumplidos": true,
+    "decision": "Rechazar H0"
+  }
+}
