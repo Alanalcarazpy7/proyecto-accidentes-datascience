@@ -1,0 +1,42 @@
+{
+  "metodo_ajuste": "Holm-Bonferroni",
+  "alpha": 0.05,
+  "hipotesis": [
+    {
+      "hipótesis": "H1",
+      "prueba_estadística": "Chi-cuadrado de independencia",
+      "estadístico": "chi2 = 6.3647 (gl = 1)",
+      "p_valor_crudo": 0.011641168702253164,
+      "p_valor_ajustado": 0.011641168702253164,
+      "tamaño_del_efecto": "OR = 1.4014; V de Cramer = 0.0653",
+      "decisión": "Rechazar H0"
+    },
+    {
+      "hipótesis": "H2",
+      "prueba_estadística": "Chi-cuadrado de independencia",
+      "estadístico": "chi2 = 51.8141 (gl = 1)",
+      "p_valor_crudo": 6.101275149908714e-13,
+      "p_valor_ajustado": 1.830382544972614e-12,
+      "tamaño_del_efecto": "OR = 2.0370; V de Cramer = 0.0971",
+      "decisión": "Rechazar H0"
+    },
+    {
+      "hipótesis": "H3",
+      "prueba_estadística": "Prueba Z de dos proporciones",
+      "estadístico": "Z = 6.3244",
+      "p_valor_crudo": 1.2712438129521372e-10,
+      "p_valor_ajustado": 2.5424876259042743e-10,
+      "tamaño_del_efecto": "RR = 1.9802; OR = 2.3758",
+      "decisión": "Rechazar H0"
+    },
+    {
+      "hipótesis": "H4",
+      "prueba_estadística": "U de Mann-Whitney unilateral",
+      "estadístico": "U = 2576490.0000; Z = 8.4020",
+      "p_valor_crudo": 2.1956703482936283e-17,
+      "p_valor_ajustado": 8.782681393174513e-17,
+      "tamaño_del_efecto": "r de Rosenthal = 0.1134",
+      "decisión": "Rechazar H0"
+    }
+  ]
+}

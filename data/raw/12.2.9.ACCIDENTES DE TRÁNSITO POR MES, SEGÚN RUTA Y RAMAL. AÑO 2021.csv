@@ -1,0 +1,60 @@
+RUTA Y RAMAL;TOTAL;ENE.;FEB.;MAR.;ABR.;MAY.;JUN.;JUL.;AGO.;SET.;OCT.;NOV.;DIC.
+   TOTAL;1.942;140;129;124;138;145;140;173;188;198;201;179;187
+   Rutas Nacionales y Departamentales;1.890;122;117;114;136;140;138;173;188;195;201;179;187
+       Ruta PY01;265;18;21;12;20;22;16;17;27;29;29;28;26
+       Ruta PY02;711;50;42;44;56;56;51;66;68;59;72;73;74
+       Ruta PY03;116;11;13;10;5;16;7;8;17;5;12;6;6
+       Ruta PY04;10;1;-;-;1;-;-;-;1;1;2;1;3
+       Ruta PY05;43;2;2;2;1;1;3;8;5;6;6;7;-
+       Ruta PY06;150;13;10;7;7;9;14;16;14;17;16;11;16
+       Ruta PY07;77;2;3;5;7;8;5;10;11;6;4;4;12
+       Ruta PY08;68;6;5;6;7;1;5;7;8;8;4;9;2
+       Ruta PY09;93;4;7;6;6;6;7;8;8;11;15;8;7
+       Ruta PY10;23;1;1;-;4;1;1;2;3;1;5;-;4
+       Ruta PY11;7;-;2;1;-;2;-;-;1;-;-;-;1
+       Ruta PY13;10;2;2;1;-;-;2;1;-;-;2;-;-
+       Ruta PY16;1;-;-;-;-;-;-;-;-;-;-;1;-
+       Ruta PY17;1;-;-;-;-;-;-;-;-;1;-;-;-
+       Ruta PY18;7;-;-;-;-;-;1;-;-;2;3;-;1
+       Ruta PY19;1;-;-;-;-;-;-;-;1;-;-;-;-
+       Ruta PY22;2;1;1;-;-;-;-;-;-;-;-;-;-
+       D012 Cordillera - Central;17;-;-;1;-;-;-;1;-;2;1;7;5
+       D025 Central - Presidente Hayes;117;5;1;12;5;7;10;12;9;21;13;10;12
+       D027 Central;99;6;7;7;11;7;6;5;8;15;8;8;11
+       D076 Central;2;-;-;-;-;-;1;1;-;-;-;-;-
+       D066 Central Pto. Pabla - Asuncion;4;-;-;-;-;-;-;-;1;1;1;1;-
+       D067 Central - San Antonio - Piquete Cue;5;-;-;-;-;-;1;-;-;2;-;1;1
+       D035 Tacuati - San Pedro Ycuamandiyu;1;-;-;-;-;-;-;-;-;-;-;1;-
+       D036 Cordillera - Arroyos y Esteros;3;-;-;-;-;-;1;-;-;2;-;-;-
+       D037 PY02 Caacupe - Emboscada;1;-;-;-;-;-;-;-;1;-;-;-;-
+       D040 J.E. Estigarribia - Nueva Toledo;1;-;-;-;-;-;-;1;-;-;-;-;-
+       D045 Isla Yobai - Caazapa;1;-;-;-;-;-;-;-;-;-;1;-;-
+       D043 Jose D. Ocampos - Nueva Toledo;1;-;-;-;-;-;-;-;1;-;-;-;-
+       D047 Carmen del Parana - PY06;5;-;-;-;-;-;-;1;-;-;3;1;-
+       D048 Trinidad - San Pedro del Parana;1;-;-;-;-;-;-;-;-;1;-;-;-
+       D068 Ypane - San Lorenzo;9;-;-;-;1;1;-;3;1;-;-;-;3
+       D009 Yaguaron - Itapiru;4;-;-;-;1;-;-;2;-;-;1;-;-
+       D010 Paraguari - Piribebuy;1;-;-;-;-;-;-;-;-;1;-;-;-
+       D015 Naville - Coronel Oviedo;2;-;-;-;-;-;-;-;-;-;1;1;-
+       D021 Itapua - Caazapa;1;-;-;-;-;-;-;-;1;-;-;-;-
+       D023 Paraguari - Central;23;-;-;-;3;1;4;4;2;4;2;1;2
+       D093 Loma Plata - Filadelfia;2;-;-;-;1;-;1;-;-;-;-;-;-
+       D017 Guaira - Paraguari;2;-;-;-;-;-;1;-;-;-;-;-;1
+       D003 Capitan Bado - Rio Verde;1;-;-;-;-;-;1;-;-;-;-;-;-
+       D007 Alto Parana - Caaguazu;1;-;-;-;-;1;-;-;-;-;-;-;-
+       D005 Villa Ygatimi - Gral. Resquin;1;-;-;-;-;1;-;-;-;-;-;-;-
+   Ramales, Avenidas, Autopistas, Tramo y Accesos;52;18;12;10;2;5;2;-;-;3;-;-;-
+       Ramal Ruta PY01;2;1;-;-;-;1;-;-;-;-;-;-;-
+       Ramal Ruta PY02;2;-;2;-;-;-;-;-;-;-;-;-;-
+       Ramal Luque - San Bernardino;2;1;1;-;-;-;-;-;-;-;-;-;-
+       Ramal Aregua - Patino;1;1;-;-;-;-;-;-;-;-;-;-;-
+       Ramal San Bernardino - Ypacarai;1;1;-;-;-;-;-;-;-;-;-;-;-
+       Ramal Graneros del Sur;6;1;-;-;1;3;1;-;-;-;-;-;-
+       Otros ramales;17;5;4;4;1;-;-;-;-;3;-;-;-
+       Avda. Mariscal Lopez;7;3;2;2;-;-;-;-;-;-;-;-;-
+       Avda. Julia Miranda Cueto (San Lorenzo);1;1;-;-;-;-;-;-;-;-;-;-;-
+       Avda. Avelino Martinez (San Lorenzo);1;-;-;1;-;-;-;-;-;-;-;-;-
+       Autopista Asuncion - Luque;5;2;1;1;-;1;-;-;-;-;-;-;-
+       Tramo San Lorenzo - Luque;2;-;1;1;-;-;-;-;-;-;-;-;-
+       Saturio Rios (San Lorenzo);2;1;-;-;-;-;1;-;-;-;-;-;-
+       Acceso Sur;3;1;1;1;-;-;-;-;-;-;-;-;-
