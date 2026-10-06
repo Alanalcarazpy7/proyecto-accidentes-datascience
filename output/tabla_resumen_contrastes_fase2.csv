@@ -1,0 +1,5 @@
+﻿Hipótesis,Prueba Aplicada,Supuestos Verificados,Estadístico,p-valor Crudo,p-valor (Bonferroni),p-valor (FDR-BH),Tamaño del Efecto,Decisión Final
+H1: Territorial,Chi-cuadrado (indep.),Cochran cumplido (E_ij >= 5),chi2 = 6.3647 (gl=1),1.16412e-02,4.65647e-02,1.16412e-02,OR = 1.4014 | V = 0.0653,Rechazar H0
+H2: Género,Chi-cuadrado + Bootstrap,Cochran cumplido (E_ij >= 5),chi2 = 51.8141 (gl=1),6.10128e-13,2.44051e-12,1.22026e-12,OR = 2.0370 | V = 0.0971,Rechazar H0
+H3: Motocicletas,Z de dos proporciones,Aprox. normal e independ.,Z = 6.3244,1.27124e-10,5.08498e-10,1.69499e-10,RR = 1.9802 | OR = 2.3758,Rechazar H0
+H4: Edad,U de Mann-Whitney,"No normal (Shapiro), no homoced.","U = 2,576,490 (Z=8.4020)",2.19567e-17,8.78268e-17,8.78268e-17,r = 0.1134,Rechazar H0
