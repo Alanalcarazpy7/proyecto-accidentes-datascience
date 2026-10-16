@@ -25,12 +25,13 @@ def publicar_resultados(ns):
               'brechas': ns['df_brechas'], 'coeficientes': ns['df_coef'],
               'metricas_train': ns['metricas_train'], 'metricas_cv': pd.DataFrame(ns['cv_metricas']),
               'vehicular': ns['tabla_vehicular'], 'sensibilidad_ganador': ns['df_sensibilidad'],
-              **ns['tablas_extra'], **{'grilla_' + k: v[['params', 'mean_train_f1_macro', 'mean_test_f1_macro', 'std_test_f1_macro', 'rank_test_f1_macro']].assign(params=lambda d: d.params.astype(str)) for k, v in ns['grillas_cv'].items()}}
+              **ns['tablas_contexto'], **ns['tablas_extra'], **{'grilla_' + k: v[['params', 'mean_train_f1_macro', 'mean_test_f1_macro', 'std_test_f1_macro', 'rank_test_f1_macro']].assign(params=lambda d: d.params.astype(str)) for k, v in ns['grillas_cv'].items()}}
     evidencia = {'tablas': {k: json.loads(v.to_json(orient='table', double_precision=15, force_ascii=False))
                            for k, v in tablas.items()}, 'seleccion': ns['seleccion_cerrada'],
                  'metadatos': ns['metadatos'], 'versiones': ns['versiones'],
                  'solapamiento': ns['solapamiento_FN'], 'equivalencia': ns['equivalencia_frecuencias'],
-                 'conclusiones': ns['conclusion'], 'procedencia': ns['auditoria_fuente']}
+                 'conclusiones': ns['conclusion'], 'procedencia': ns['auditoria_fuente'],
+                 'contexto': ns['auditoria_contexto']}
     display({MIME_RESULTADOS: evidencia, 'text/plain':
              'Resultados estructurados embebidos: las tablas, metadatos y conclusiones anteriores permiten regenerar los informes sin archivos intermedios.'}, raw=True)
 
@@ -61,9 +62,158 @@ def leer_figuras(root=ROOT):
             if len(claves) != len(imagenes):
                 raise ValueError(f'Imágenes incompletas en {claves}: ejecutar el notebook completo.')
             figuras.update({k: base64.b64decode(v) for k, v in zip(claves, imagenes)})
-    if set(figuras) != {f'F3-{i:02d}' for i in range(1, 10)}:
+    if set(figuras) != {f'F3-{i:02d}' for i in range(1, 12)}:
         raise ValueError('Faltan figuras embebidas de Fase 3.')
     return figuras
+
+
+def preparar_contexto(root=ROOT):
+    """Audita tablas agregadas H1/H3 y la edad sin expandir ni unir sus universos."""
+    import hashlib
+
+    def original(prefijo):
+        p = next((root / 'data').glob(prefijo + '*.csv'))
+        hashes[p.name] = hashlib.sha256(p.read_bytes()).hexdigest()
+        return pd.read_csv(p, sep=';', dtype=str, encoding='utf-8-sig')
+
+    def numero(valor):
+        # En las celdas de conteos de estas tablas, '-' indica ausencia de casos.
+        s = str(valor).strip()
+        return 0 if s == '-' else int(s.replace('.', ''))
+
+    hashes = {}
+    zonas = pd.read_csv(root / 'output/victimas_zona_resumen.csv').set_index('zona')
+    zonas = zonas.loc[['Asunción', 'Central', 'Interior'], ['heridos', 'fallecidos', 'total_victimas']].copy()
+    raw_z = original('12.2.6.')
+    z_total = raw_z.iloc[0]
+    for zona, col in [('Asunción', 'ASUNCION'), ('Central', 'ZONA CENTRAL'), ('Interior', 'INTERIOR')]:
+        esperado = [numero(z_total['HERIDOS - ' + col]), numero(z_total['MUERTOS - ' + col]),
+                    numero(z_total['TOTAL - ' + col])]
+        if zonas.loc[zona].tolist() != esperado:
+            raise ValueError('El resumen territorial no coincide con 12.2.6: ' + zona)
+    assert (zonas.heridos + zonas.fallecidos == zonas.total_victimas).all()
+    zonas['tasa_fallecidos_pct'] = 100 * zonas.fallecidos / zonas.total_victimas
+    h1 = pd.DataFrame([zonas.loc[['Asunción', 'Central']].iloc[:, :3].sum(), zonas.loc['Interior'].iloc[:3]],
+                      index=pd.Index(['Metropolitana', 'Interior'], name='grupo')).astype(int)
+    h1['tasa_fallecidos_pct'] = 100 * h1.fallecidos / h1.total_victimas
+
+    raw_t, raw_m = original('12.2.5.'), original('12.2.10.')
+    anual_t = raw_t.iloc[0]
+    posiciones = raw_m.index[raw_m.iloc[:, 0].str.strip().eq('2021')]
+    assert len(posiciones) == 1
+    pos = posiciones[0]
+    anual_m = raw_m.loc[pos]
+    meses_t, meses_m = raw_t.iloc[1:].reset_index(drop=True), raw_m.iloc[pos+1:pos+13].reset_index(drop=True)
+    assert len(meses_t) == len(meses_m) == 12
+    assert meses_t.iloc[:, 0].str.strip().tolist() == meses_m.iloc[:, 0].str.strip().tolist()
+    filas = []
+    for i in range(12):
+        h, f = [numero(meses_t.loc[i, c]) for c in ['HERIDOS - TOTAL', 'MUERTOS - TOTAL']]
+        hm, fm = [numero(meses_m.loc[i, c]) for c in ['HERIDOS', 'MUERTOS']]
+        assert h + f == numero(meses_t.loc[i, 'TOTAL - TOTAL'])
+        assert hm + fm == numero(meses_m.loc[i, 'TOTAL'])
+        assert h >= hm and f >= fm
+        # 12.2.5 coincide numéricamente con 12.2.6 sin Asunción, también por mes.
+        for campo, valor in [('HERIDOS', h), ('MUERTOS', f)]:
+            z = raw_z.iloc[i+1]
+            assert valor == numero(z[campo + ' - TOTAL']) - numero(z[campo + ' - ASUNCION'])
+        filas.append(dict(mes=meses_t.iloc[i, 0].strip(), heridos_12_2_5=h, fallecidos_12_2_5=f,
+                          heridos_12_2_10=hm, fallecidos_12_2_10=fm,
+                          heridos_resta=h-hm, fallecidos_resta=f-fm))
+    mensual = pd.DataFrame(filas)
+    th, tf = numero(anual_t['HERIDOS - TOTAL']), numero(anual_t['MUERTOS - TOTAL'])
+    mh, mf = numero(anual_m['HERIDOS']), numero(anual_m['MUERTOS'])
+    assert mensual[['heridos_12_2_5', 'fallecidos_12_2_5', 'heridos_12_2_10', 'fallecidos_12_2_10']].sum().tolist() == [th, tf, mh, mf]
+    vehicular = pd.DataFrame([
+        {'grupo': '12.2.10: siniestros con motociclistas', 'heridos': mh, 'fallecidos': mf},
+        {'grupo': '12.2.5: total de su cobertura', 'heridos': th, 'fallecidos': tf},
+        {'grupo': 'Resta histórica (cobertura no demostrada)', 'heridos': th-mh, 'fallecidos': tf-mf}])
+    vehicular['fraccion_fallecidos'] = vehicular.fallecidos / (vehicular.heridos + vehicular.fallecidos)
+    # Se comprueba la procedencia del CSV anterior, sin acreditar sus etiquetas.
+    anterior = pd.read_csv(root / 'output/victimas_vehiculo_limpio.csv')
+    conteos = pd.crosstab(anterior.tipo_usuario, anterior.es_fallecido).reindex(
+        index=['Motociclista', 'Otro Vehiculo'], columns=[0, 1])
+    if conteos.isna().any().any() or conteos.to_numpy().tolist() != [[mh, mf], [th-mh, tf-mf]]:
+        raise ValueError('El CSV vehicular no reproduce los conteos y la resta histórica.')
+    assert len(anterior) == th + tf
+    assert anterior.es_motociclista.eq(anterior.tipo_usuario.eq('Motociclista').astype(int)).all()
+    assert anterior.es_fallecido.eq(anterior.gravedad.eq('Fallecido').astype(int)).all()
+    conteos.columns = ['heridos', 'fallecidos']
+    conteos['total'] = conteos.sum(axis=1)
+    conteos['origen'] = ['Conteos de 12.2.10; rol de víctima no acreditado',
+                         'Resta 12.2.5 menos 12.2.10; categoría no acreditada']
+
+    demo = pd.read_csv(root / 'output/victimas_individual_limpio.csv')
+    ignorada = demo.grupo_edad.eq('Ignorado')
+    mayor = demo.grupo_edad.eq('De 60 anos y mas')
+    masks = [('Menor de 60, edad conocida', ~ignorada & ~mayor), ('60 años o más', mayor), ('Edad desconocida', ignorada)]
+    edad = pd.DataFrame([{'grupo': nombre, 'victimas': int(mask.sum()),
+                         'heridos': int(demo.loc[mask, 'es_fallecido'].eq(0).sum()),
+                         'fallecidos': int(demo.loc[mask, 'es_fallecido'].sum())} for nombre, mask in masks]).set_index('grupo')
+    assert edad.victimas.tolist() == [4832, 308, 353]
+    assert demo.loc[ignorada, 'edad_orden'].eq(-1).all() and demo.loc[ignorada, 'es_adulto_mayor'].eq(0).all()
+    assert demo.loc[~ignorada, 'edad_orden'].ge(0).all()
+    hist = json.loads((root / 'output/fase2/resultados_fase2_consolidados.json').read_text(encoding='utf-8'))
+    antecedentes = pd.DataFrame(hist['hipotesis']).set_index('hipótesis')
+    integrado = pd.DataFrame([
+        ['H1', 'Zona', '12.2.6', 'Tasas y contraste histórico territorial', 'Cobertura y agrupación; no vínculo individual'],
+        ['H2', 'Sexo', '12.2.1', 'Asociación histórica y predictor demográfico', 'Señal limitada; no causa ni riesgo individual'],
+        ['H3', 'Motocicletas', '12.2.5 / 12.2.10', 'Descripción y contraste histórico condicionado', 'Rol de víctima y subconjunto no acreditados'],
+        ['H4', 'Edad', '12.2.1', 'Categoría nominal en modelo; antecedente ordinal', 'Histórico incluyó -1; desconocidos separados']
+    ], columns=['hipotesis', 'factor', 'fuente', 'evidencia', 'limite']).set_index('hipotesis')
+    tablas = {'territorio': zonas, 'territorio_h1': h1, 'vehicular_mensual': mensual,
+              'vehicular_procedencia': conteos, 'edad_auditoria': edad,
+              'antecedentes_historicos': antecedentes, 'hipotesis_integradas': integrado}
+    auditoria = {'sha256_originales': hashes, 'periodo': 2021, 'meses_verificados': 12,
+                 'csv_vehicular_reconstruido': True, 'categorias_vehiculares_acreditadas': False,
+                 'universo_vehicular_comparable_acreditado': False,
+                 'fuente_pdf': 'https://www.ine.gov.py/Publicaciones/Biblioteca/documento/240/Anuario%20Estadistico%202021.pdf',
+                 'paginas_fuente': [307, 311],
+                 'fuente_territorial_pdf': 'Patrulla Caminera, MOPC y Policía Nacional (12.2.6)',
+                 'nota': 'Las igualdades aritméticas no validan una clasificación por vehículo de la víctima.'}
+    diferencia = h1.loc['Interior', 'tasa_fallecidos_pct'] - h1.loc['Metropolitana', 'tasa_fallecidos_pct']
+    auditoria['interpretacion_h1'] = (
+        f'Las fracciones de fallecidos entre víctimas registradas son Asunción {zonas.loc["Asunción", "tasa_fallecidos_pct"]:.2f} %, '
+        f'Central {zonas.loc["Central", "tasa_fallecidos_pct"]:.2f} % e Interior {zonas.loc["Interior", "tasa_fallecidos_pct"]:.2f} %. '
+        f'Metropolitana agrupa Asunción y Central: 108/643 = {h1.loc["Metropolitana", "tasa_fallecidos_pct"]:.2f} %; '
+        f'Interior la supera en {diferencia:.2f} puntos porcentuales. H1 de Fase 2 informó '
+        f'{antecedentes.loc["H1", "estadístico"]}, p crudo {antecedentes.loc["H1", "p_valor_crudo"]:.6f} '
+        f'y p Bonferroni {antecedentes.loc["H1", "p_valor_ajustado_bonferroni"]:.6f}; '
+        f'{antecedentes.loc["H1", "tamaño_del_efecto"]}. El efecto es pequeño y el p ajustado queda cerca de 0,05. '
+        'La decisión corresponde a esa agrupación y familia de cuatro contrastes, no a todas las comparaciones entre zonas. '
+        'Mostrar tres tasas revela la heterogeneidad que la dicotomía oculta; no se buscan nuevos p-valores. '
+        'La cobertura institucional, el registro, la exposición y la atención pueden influir. Son proporciones entre víctimas, '
+        'no riesgo poblacional de accidente ni un efecto causal de residir en una zona. Tres agregados no justifican un '
+        'predictor individual generalizable; no se expanden ni se enlazan con los perfiles demográficos.')
+    auditoria['interpretacion_h3'] = (
+        f'12.2.10 documenta {mh+mf} víctimas de siniestros protagonizados por motociclistas: {mh} heridos y {mf} fallecidos '
+        f'({100*mf/(mh+mf):.2f} %). 12.2.5 registra {th+tf} víctimas: {th} heridos y {tf} fallecidos '
+        f'({100*tf/(th+tf):.2f} %) en Central e Interior. Se selecciona 2021 en ambas y se verifican los doce meses. '
+        f'La resta histórica da {th-mh} heridos y {tf-mf} fallecidos; es la procedencia numérica del CSV vehicular, '
+        'no una validación de sus etiquetas. Aunque ambos cuadros citan a Patrulla Caminera y las restas mensuales son '
+        'no negativas, no se acredita que cada víctima viajara en moto ni que sean subconjuntos de cobertura idéntica. '
+        'Las barras representan fuentes posiblemente superpuestas y no deben sumarse. La serie mensual describe esa '
+        'cobertura, sin demostrar estacionalidad ni causas. H3 histórico informó '
+        f'{antecedentes.loc["H3", "tamaño_del_efecto"]} y p Bonferroni '
+        f'{antecedentes.loc["H3", "p_valor_ajustado_bonferroni"]:.4g}; se conserva como contraste condicionado. '
+        'Ni RR, OR ni significación acreditan mayor riesgo individual de motociclistas si las categorías no están validadas. '
+        'No se entrena un segundo predictor ni se unen estas filas expandidas con la base demográfica.')
+    auditoria['interpretacion_edad'] = (
+        'H4: 353 víctimas de edad ignorada (292 heridas y 61 fallecidas) se conservan como categoría nominal independiente. '
+        'edad_orden = -1 significa edad desconocida, no inferior a la de los niños. es_adulto_mayor = 0 en esos registros '
+        'no acredita edad menor de 60 años. Los grupos separados son 4.832 menores de 60 con edad conocida, 308 de 60 años '
+        'o más y 353 desconocidos. El modelo usa únicamente sexo y grupo_edad. El contraste ordinal histórico de Fase 2 '
+        'eliminó nulos pero conservó -1; sus resultados no validan una comparación entre mayores y menores de 60. '
+        'No se recalcula aquí: un nuevo análisis ordinal debe excluir los desconocidos del orden y reportarlos aparte.')
+    auditoria['conclusion_integral'] = (
+        'H1 aporta diferencias territoriales descriptivas y un contraste histórico de efecto pequeño, condicionado por '
+        'agrupación y cobertura. H2 aporta una asociación por sexo y H4 patrones por categorías de edad, incorporadas como '
+        'los únicos predictores del experimento demográfico; el antecedente ordinal de H4 conserva la limitación de -1. '
+        'H3 aporta conteos de siniestros con motociclistas y un contraste anterior condicionado a categorías no acreditadas. '
+        'Se responde parcialmente la pregunta original: existe señal demográfica retrospectiva limitada y evidencia '
+        'territorial separada; no se acredita un riesgo individual por vehículo ni el efecto conjunto de los cuatro factores. '
+        'No se predice ocurrencia de siniestros, no se vinculan artificialmente registros y no se afirma causalidad.')
+    return tablas, vehicular, auditoria
 
 
 def mostrar_complementos(ns):

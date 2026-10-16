@@ -70,6 +70,64 @@ class Fase3Test(unittest.TestCase):
         self.assertEqual(len(self.df[['sexo', 'grupo_edad']].drop_duplicates()), 16)
         self.assertTrue((self.df.es_fallecido == self.df.gravedad.eq('Fallecido')).all())
 
+    def test_territorio_cotejado_y_contraste_historico(self):
+        t = self.ns['tablas_contexto']['territorio']
+        self.assertEqual(len(t), 3)
+        self.assertEqual(t.total_victimas.tolist(), [167, 476, 848])
+        self.assertEqual(t.fallecidos.tolist(), [26, 82, 187])
+        np.testing.assert_allclose(t.tasa_fallecidos_pct, 100*t.fallecidos/t.total_victimas)
+        h1 = self.ns['tablas_contexto']['territorio_h1']
+        self.assertEqual(h1.loc['Metropolitana', ['heridos','fallecidos','total_victimas']].tolist(), [535,108,643])
+        self.assertEqual(h1.loc['Interior','total_victimas'], 848)
+        hist = self.ns['tablas_contexto']['antecedentes_historicos']
+        self.assertAlmostEqual(hist.loc['H1','p_valor_ajustado_bonferroni'], .046564674809012656)
+        self.assertIn('pequeño', self.resultados['contexto']['interpretacion_h1'])
+        self.assertEqual(len(self.ns['X_demog']), 5493)
+        self.assertEqual(list(self.ns['X_demog'].columns), ['sexo','grupo_edad'])
+
+    def test_procedencia_vehicular_y_limites(self):
+        t = self.ns['tabla_vehicular']
+        self.assertEqual(t[['heridos','fallecidos']].to_numpy().tolist(), [[384,155],[1055,269],[671,114]])
+        mensual = self.ns['tablas_contexto']['vehicular_mensual']
+        self.assertEqual(len(mensual),12)
+        self.assertEqual(mensual[['heridos_resta','fallecidos_resta']].sum().tolist(),[671,114])
+        self.assertTrue((mensual[['heridos_resta','fallecidos_resta']]>=0).all().all())
+        p = self.ns['tablas_contexto']['vehicular_procedencia']
+        self.assertEqual(p[['heridos','fallecidos']].to_numpy().tolist(),[[384,155],[671,114]])
+        a = self.resultados['contexto']
+        self.assertTrue(a['csv_vehicular_reconstruido'])
+        self.assertFalse(a['categorias_vehiculares_acreditadas'])
+        self.assertFalse(a['universo_vehicular_comparable_acreditado'])
+        self.assertEqual(a['periodo'],2021)
+        self.assertEqual(a['meses_verificados'],12)
+        for nombre,digest in a['sha256_originales'].items():
+            self.assertEqual(hashlib.sha256((ROOT/'data'/nombre).read_bytes()).hexdigest(),digest)
+
+    def test_edad_desconocida_separada(self):
+        desconocida = self.df.grupo_edad.eq('Ignorado')
+        self.assertEqual(int(desconocida.sum()),353)
+        self.assertEqual(int(self.df.loc[desconocida,'es_fallecido'].sum()),61)
+        self.assertTrue(self.df.loc[desconocida,'edad_orden'].eq(-1).all())
+        self.assertTrue(self.df.loc[desconocida,'es_adulto_mayor'].eq(0).all())
+        grupos = self.ns['tablas_contexto']['edad_auditoria']
+        self.assertEqual(grupos.victimas.tolist(),[4832,308,353])
+        self.assertEqual(int(grupos.victimas.sum()),5493)
+        enc = self.modelo.named_steps['prep'].named_transformers_['cat']
+        self.assertIn('grupo_edad_Ignorado',enc.get_feature_names_out(['sexo','grupo_edad']))
+        dos = pd.DataFrame({'sexo':['Hombre','Hombre'], 'grupo_edad':['Ignorado','De 0 a 13 anos']})
+        transformado = self.modelo.named_steps['prep'].transform(dos)
+        self.assertFalse(np.array_equal(transformado[0],transformado[1]))
+
+    def test_integracion_hipotesis_y_salidas_de_contexto(self):
+        t = self.resultados['tablas']['hipotesis_integradas']
+        self.assertEqual(t.index.tolist(),['H1','H2','H3','H4'])
+        self.assertIn('H1',self.resultados['conclusiones'])
+        self.assertIn('H3',self.resultados['conclusiones'])
+        self.assertIn('H4',self.resultados['conclusiones'])
+        self.assertIn('conservó -1',self.resultados['contexto']['interpretacion_edad'])
+        for nombre,tabla in self.ns['tablas_contexto'].items():
+            pd.testing.assert_frame_equal(self.resultados['tablas'][nombre],tabla,check_dtype=False,atol=1e-14)
+
     def test_reconstruccion_sin_csv_previo(self):
         with tempfile.TemporaryDirectory(prefix='accidentes_datos_') as carpeta:
             base = Path(carpeta)
@@ -205,12 +263,12 @@ class Fase3Test(unittest.TestCase):
                 self.assertNotIn('.savefig(',c.source)
                 self.assertNotIn('.to_csv(',c.source)
         figuras = leer_figuras()
-        self.assertEqual(len(figuras),9)
+        self.assertEqual(len(figuras),11)
         self.assertTrue(all(v.startswith(b'\x89PNG\r\n\x1a\n') for v in figuras.values()))
         f3 = ROOT/'output/fase3'
         self.assertEqual({p.name for p in f3.iterdir()}, {'Fase3_Accidentes_AUDITADA.html','mejor_modelo_fase3.joblib'})
         html = (f3/'Fase3_Accidentes_AUDITADA.html').read_text(encoding='utf-8')
-        self.assertGreaterEqual(html.count('data:image/png;base64,'),9)
+        self.assertGreaterEqual(html.count('data:image/png;base64,'),11)
 
     def test_paquete_sin_material_local(self):
         paths = archivos_entrega()
@@ -225,17 +283,25 @@ class Fase3Test(unittest.TestCase):
     def test_informes_autocontenidos_y_limites_pdf(self):
         import pymupdf
         from xml.etree import ElementTree as ET
-        for nombre,limite,min_imagenes in [('Informe_Fase3',15,5),('Informe_Integrador_DataScience',30,3)]:
+        for nombre,limite,min_imagenes in [('Informe_Fase3',15,7),('Informe_Integrador_DataScience',30,5)]:
             carpeta = ROOT/'docs'/('fase3' if nombre == 'Informe_Fase3' else 'integrador')
             with ZipFile(carpeta/(nombre+'.docx')) as z:
                 self.assertIsNone(z.testzip())
                 self.assertGreaterEqual(len([f for f in z.namelist() if f.startswith('word/media/')]),min_imagenes)
                 rels=ET.fromstring(z.read('word/_rels/document.xml.rels'))
                 self.assertFalse(any(r.get('Type','').endswith('/image') and r.get('TargetMode')=='External' for r in rels))
+                raiz = ET.fromstring(z.read('word/document.xml'))
+                word = ''.join(raiz.itertext())
             with pymupdf.open(carpeta/(nombre+'.pdf')) as pdf:
                 self.assertLessEqual(len(pdf),limite)
                 self.assertGreaterEqual(sum(len(p.get_images()) for p in pdf),min_imagenes)
                 self.assertIn('33+81-15=99',''.join(p.get_text() for p in pdf).replace(' ',''))
+                texto = ''.join(p.get_text() for p in pdf)
+                for clave in ['H1','H2','H3','H4','353','308','0.5299','0.5809']:
+                    self.assertIn(clave,word)
+                    self.assertIn(clave,texto)
+                self.assertRegex(word,r'4[.\s]?832')
+                self.assertRegex(texto,r'4[.\s]?832')
 
 
 if __name__ == '__main__':

@@ -87,7 +87,7 @@ Fases 1/2 para reproducir Fase 3.
 
 ## Gráficos, tablas e informes sin archivos auxiliares
 
-Los nueve gráficos de Fase 3 se muestran mediante `plt.show()` y permanecen
+Los once gráficos de Fase 3 se muestran mediante `plt.show()` y permanecen
 embebidos en el `.ipynb` y el HTML, junto con títulos e interpretaciones. No hay
 llamadas a `savefig()` en el notebook ni en su análisis complementario.
 
@@ -101,7 +101,7 @@ del notebook. Los informes leen esas salidas y las imágenes embebidas; usan
 
 Este comando solo produce los cuatro informes. La opción adicional `--guia-local`
 genera material de estudio opcional en `docs/local/`. Los PDF tienen
-12 páginas (Fase 3) y 15 páginas (integrador), incluidos carátula e índice, y las
+15 páginas (Fase 3) y 18 páginas (integrador), incluidos carátula e índice, y las
 pruebas comprueban el límite real de 15/30 páginas y la presencia de imágenes.
 Ambos formatos son autocontenidos: no enlazan imágenes de `output/`.
 
@@ -173,6 +173,25 @@ La tabla 12.2.10 no acredita el vehículo de cada víctima; el complemento vehic
 se mantiene descriptivo. Ningún resultado autoriza uso clínico, triaje, seguros,
 vigilancia por perfil ni atribución causal.
 
+Las cuatro hipótesis se conectan explícitamente en el notebook y los informes:
+
+| Hipótesis | Evidencia y alcance en Fase 3 |
+|---|---|
+| H1 — Zona | Tres agregados sin expandir. Asunción: 26/167 (15,57 %); Central: 82/476 (17,23 %); Interior: 187/848 (22,05 %). El contraste histórico Interior/Metropolitana tiene p Bonferroni 0,046565 y V de Cramér 0,0653: efecto pequeño y resultado condicionado a esa agrupación. |
+| H2 — Sexo | Asociación histórica y uno de los dos predictores demográficos; no atribución causal ni riesgo individual. |
+| H3 — Motocicletas | 12.2.10 documenta 539 víctimas de siniestros con motociclistas, 384 heridas y 155 fallecidas. Se cotejan los doce meses y la construcción del CSV anterior; sus etiquetas y la relación de subconjunto no quedan acreditadas. RR/OR históricos se conservan condicionados, sin segundo predictor. |
+| H4 — Edad | Categoría nominal en el modelo. Se separan 4.832 menores de 60 con edad conocida, 308 de 60 o más y 353 desconocidos. El contraste ordinal histórico de Fase 2 conservó -1 y no valida una comparación de mayores/menores de 60. |
+
+`edad_orden = -1` significa edad desconocida, no inferior a la de los niños.
+`es_adulto_mayor = 0` en `Ignorado` no acredita edad menor de 60. Ninguna de esas
+dos columnas derivadas entra al predictor. Los análisis adicionales separan a los
+desconocidos; las nuevas pruebas comprueban categorías y denominadores.
+
+La pregunta original se responde parcialmente: hay señal demográfica retrospectiva
+limitada y evidencia territorial separada. No se acredita el efecto conjunto de
+los cuatro factores ni un riesgo individual por vehículo. La integración ampliada
+queda disponible para la revisión final del grupo.
+
 ## Pruebas y trazabilidad de la limpieza
 
 ```powershell
@@ -184,6 +203,8 @@ anteriores a la limpieza y las salidas embebidas, observan que las búsquedas us
 solo train, verifican pliegues, recarga del modelo, categorías, CLI, errores,
 solapamiento, reconstrucción desde originales y hashes de Fases 1/2. También
 prohíben guardar figuras durante el análisis de prueba y comprueban Word/PDF.
+Son 19 pruebas; incluyen el cotejo de H1/H3 con originales, los desconocidos y la
+coincidencia de las cuatro hipótesis y métricas en notebook, Word y PDF.
 
 Se retiraron las 12 copias de `data/raw` después de comprobar igualdad SHA-256 con
 los originales conservados; el dataset procesado obsoleto no tenía referencias
@@ -223,8 +244,9 @@ resultados. Faltan legajos, confirmación administrativa de apellidos y fecha de
 campus, los Word históricos anunciados y la revisión personal del contenido.
 
 Fuente: [Anuario oficial del INE](https://www.datos.gov.py/dataset/anuario-2021-estadisticas-policiales-y-de-accidentes-de-transito).
-12.2.1 procede de Policía Nacional; las tablas viales territoriales y de siniestros
-con motociclistas proceden de Patrulla Caminera. Referencias técnicas: documentación
+12.2.1 procede de Policía Nacional; 12.2.5 y 12.2.10 citan a Patrulla Caminera.
+El PDF original de 12.2.6 cita a Patrulla Caminera, MOPC y Policía Nacional.
+Referencias técnicas: documentación
 oficial de scikit-learn enlazada en el notebook y los informes; consigna local,
 apartados 7, 9.3, 9.5, 10, 11 y 12.
 

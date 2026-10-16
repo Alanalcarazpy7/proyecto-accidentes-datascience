@@ -88,6 +88,74 @@ def geometria(t):
     repeat = OxmlElement('w:tblHeader'); t.rows[0]._tr.get_or_add_trPr().append(repeat)
 
 
+def integrar_contexto_informes(p3, pi, tablas, contexto):
+    """Añade H1/H3 y la síntesis a partir de las mismas salidas del notebook."""
+    zonas = tablas['territorio'].reset_index().rename(columns={
+        'zona': 'Zona', 'heridos': 'Heridos', 'fallecidos': 'Fallecidos',
+        'total_victimas': 'Víctimas', 'tasa_fallecidos_pct': 'Fallecidos (%)'})
+    fuentes = tablas['vehicular'].copy()
+    fuentes['grupo'] = ['12.2.10: siniestros con motociclistas', '12.2.5: cobertura total', 'Resta condicionada']
+    fuentes['Fallecidos (%)'] = 100 * fuentes.fraccion_fallecidos
+    fuentes = fuentes[['grupo', 'heridos', 'fallecidos', 'Fallecidos (%)']].rename(columns={
+        'grupo': 'Fuente / operación', 'heridos': 'Heridos', 'fallecidos': 'Fallecidos'})
+    hip = tablas['hipotesis_integradas'].reset_index()[['hipotesis', 'factor', 'evidencia', 'limite']]
+    hip.columns = ['Hipótesis', 'Factor', 'Evidencia disponible', 'Límite principal']
+    nuevas = [
+        ('H1: gravedad registrada por zona', [
+            tabla(zonas, 'Tabla H1. Frecuencias territoriales cotejadas con 12.2.6.'),
+            imagen('F3-10', 'Figura F3-10. Fracción de fallecidos por zona; cada barra indica fallecidos/total de víctimas.'),
+            text(contexto['interpretacion_h1'])]),
+        ('H3: siniestros con motociclistas', [
+            tabla(fuentes, 'Tabla H3. Dos fuentes y una resta histórica: las filas no son categorías oficiales excluyentes.'),
+            imagen('F3-11', 'Figura F3-11. Conteos documentados y fracción mensual de fallecidos en 12.2.10; las fuentes no deben sumarse.'),
+            text(contexto['interpretacion_h3'])]),
+        ('Integración de las cuatro hipótesis y edad desconocida', [
+            tabla(hip, 'Tabla H1-H4. Relación entre antecedentes, predictor y límites de las fuentes.'),
+            text(contexto['interpretacion_edad']), text(contexto['conclusion_integral'])])]
+
+    def revisar(paginas):
+        salida = []
+        for titulo, elementos in paginas:
+            revisados = []
+            for item in elementos:
+                if item[0] == 'p':
+                    s = item[1]
+                    # El análisis completo de H3 pasa a su sección propia.
+                    if s.startswith('12.2.10 registra 539 víctimas'):
+                        continue
+                    if s.startswith('La pregunta original plantea la asociación'):
+                        s = contexto['conclusion_integral']
+                    if s.startswith('No hubo devolución docente de Fase 2, confirmado por el grupo.'):
+                        s = ('No hubo devolución docente de Fase 2, confirmado por el grupo. Aclaraciones propias de esta revisión: '
+                             'H1 conserva el contraste Interior/Metropolitana y explicita su cobertura y efecto pequeño; '
+                             'H3 audita las fuentes sin acreditar categorías individuales por vehículo; H4 separa 353 edades '
+                             'ignoradas y advierte que el contraste ordinal anterior conservó -1. Se mantiene la reserva '
+                             'históricamente inspeccionada y el alcance retrospectivo del modelo. Los notebooks de Fases 1 y 2 se preservan.')
+                    s = s.replace('las tablas territoriales y de siniestros con motociclistas, de la Patrulla Caminera.',
+                        '12.2.5 y 12.2.10 citan a Patrulla Caminera; 12.2.6 también cita a Policía Nacional.')
+                    s = s.replace('12.2.2 a 12.2.12: tablas de Patrulla Caminera según su encabezado y metadatos.',
+                        '12.2.2 a 12.2.12: cuadros viales; 12.2.6 cita a Patrulla Caminera, MOPC y Policía Nacional en el PDF original.')
+                    s = s.replace('Ignorado se conserva como edad no informada.',
+                        'Las 353 víctimas de edad ignorada permanecen separadas; -1 significa desconocido y el indicador de adulto mayor en 0 no acredita edad menor de 60.')
+                    s = s.replace('La codificación representa intervalos de diferente amplitud, no edades exactas; Ignorado exige exclusión o tratamiento separado en cualquier análisis ordinal.',
+                        'La codificación representa intervalos de diferente amplitud, no edades exactas. El contraste histórico conservó -1 tras eliminar nulos: no valida una comparación de mayores y menores de 60. Un nuevo contraste ordinal requiere excluir del orden las edades ignoradas y reportarlas aparte.')
+                    s = s.replace('No se hicieron commits ni pushes.', 'Esta revisión no realiza nuevos commits ni pushes.')
+                    revisados.append(text(s))
+                else:
+                    revisados.append(item)
+            salida.append((titulo, revisados))
+        return salida
+
+    p3, pi = revisar(p3), revisar(pi)
+    p3 = p3[:8] + nuevas + p3[8:]
+    pi = pi[:6] + nuevas + pi[6:]
+
+    def numerar(paginas):
+        return [(f'{i}. ' + re.sub(r'^\d+\.\s*', '', titulo), items)
+                for i, (titulo, items) in enumerate(paginas, 1)]
+    return numerar(p3), numerar(pi)
+
+
 def crear_docx(nombre, subtitulo, paginas):
     d = Document()
     s = d.sections[0]
@@ -121,7 +189,7 @@ def crear_docx(nombre, subtitulo, paginas):
     d.add_paragraph('Integrantes: ' + AUTORES)
     d.add_paragraph('Legajos: no proporcionados para esta revisión. Deben incorporarse antes de presentar.')
     d.add_paragraph('Fecha de la versión: ' + FECHA)
-    d.add_paragraph('Resultados reproducidos. Interpretación acotada validada por el grupo.')
+    d.add_paragraph('Resultados reproducidos. Integración de hipótesis para revisión final del grupo.')
     d.add_page_break()
     d.add_heading('Índice', level=1)
     for idx, (titulo, _) in enumerate(paginas, 3):
@@ -190,7 +258,7 @@ def crear_pdf(nombre, subtitulo, paginas):
              p('Factores asociados a la gravedad de las víctimas en los accidentes de tránsito en Paraguay (2021)', title),
              p(subtitulo, heading), p('Asignatura: Ciencia de Datos (Electiva) · Curso TQ'), p('Integrantes: ' + AUTORES),
              p('Legajos: no proporcionados para esta revisión. Deben incorporarse antes de presentar.'),
-             p('Fecha de la versión: ' + FECHA), p('Resultados reproducidos. Interpretación acotada validada por el grupo.'), PageBreak(), p('Índice', heading)]
+             p('Fecha de la versión: ' + FECHA), p('Resultados reproducidos. Integración de hipótesis para revisión final del grupo.'), PageBreak(), p('Índice', heading)]
     for idx, (titulo_p, _) in enumerate(paginas, 3):
         story.append(p(f'{titulo_p} ................................................................ {idx}'))
     for titulo_p, items in paginas:
@@ -335,7 +403,8 @@ def main():
         'las decisiones, métricas e interpretaciones; esa validación no acredita automáticamente el dominio personal de todo el contenido. La asistencia '
         'excedió sintaxis y redacción: corresponde al grupo comprobar la compatibilidad con el apartado 11 y consultar al docente '
         'si procede. No se atribuyen a los integrantes decisiones o validaciones que no hayan comunicado.')
-    refs = ('INE. Anuario 2021 - Estadísticas policiales y de accidentes de tránsito. Tablas originales del repositorio. Catálogo: ' + SOURCE,
+    refs = ('INE. Anuario 2021 - Estadísticas policiales y de accidentes de tránsito. Cuadros 12.2.5/12.2.6, p. 307, y 12.2.10, p. 311. PDF: '
+        'https://www.ine.gov.py/Publicaciones/Biblioteca/documento/240/Anuario%20Estadistico%202021.pdf . Catálogo: ' + SOURCE,
         'Scikit-learn. Documentación oficial: https://scikit-learn.org/stable/modules/naive_bayes.html ; '
         'https://scikit-learn.org/stable/modules/cross_validation.html ; '
         'https://scikit-learn.org/stable/modules/permutation_importance.html ; https://scikit-learn.org/stable/modules/calibration.html . Consulta: 16/10/2026.',
@@ -378,6 +447,7 @@ def main():
         ('11. Integración de los tres niveles de evidencia', [text('Descripción: los conteos caracterizan víctimas y siniestros dentro de cada fuente. Inferencia: los contrastes históricos cuantifican asociaciones bajo supuestos y corrección múltiple. Predicción: los modelos asignan clases/puntajes y se comparan mediante un protocolo interno fijo. Una asociación significativa puede coexistir con AUC limitada; ni los p-valores ni las importancias prueban causalidad.'), text(respuesta), text(calibracion), imagen('F3-01', 'Figura F3-01. Discriminación limitada en los mismos perfiles reconstruidos; no equivale a validación externa.')]),
         ('12. Conclusión general y recomendaciones', [text(resumen), text('La contribución defendible es una cadena trazable desde conteos oficiales hasta evaluación comparativa, acompañada de un reconocimiento explícito de cobertura, repetición y revisión histórica del test. El objetivo de superar una base puede cumplirse en F1 macro dentro del protocolo, mientras la utilidad fuera de esa tabla permanece sin demostrar.'), text(futuro), text('El grupo debe revisar los errores por sexo y edad sin estigmatizar categorías, y distinguir incertidumbre de datos de incertidumbre algorítmica. Priorizar obtención y enlace legítimo de microdatos aporta más información potencial que aumentar la complejidad de modelos sobre 16 perfiles.'), text('El grupo validó el alcance y la interpretación acotada de estos resultados; debe revisar personalmente todo el código y texto para su defensa. Los Word históricos anunciados por el grupo aún no estaban disponibles al generar esta versión.')]),
         ('13. Reproducción, referencias y uso de IA', [text('El repositorio conserva data/, notebooks/, src/ y output/, y añade docs/ y tests/. README registra instalación, reconstrucción, kernel nuevo, HTML, inferencia, pruebas y documentos. Las versiones exactas y la partición reproducible se documentan dentro del notebook; los informes se componen a partir de tablas calculadas. No se hicieron commits ni pushes.'), *[text(x) for x in refs], text(ia), text('Antes de presentar: incorporar legajos, verificar apellidos y nomenclatura ZIP, confirmar fecha del campus y revisar personalmente las conclusiones. Los límites de 15 páginas para Fase 3 y 30 para integrador se comprueban sobre los PDF exportados, no sobre estimaciones de Word.')])]
+    p3, pi = integrar_contexto_informes(p3, pi, tablas, resultados['contexto'])
     esperadas = {'Informe_Fase3': crear_docx('Informe_Fase3', 'Fase 3 · Análisis predictivo', p3),
                  'Informe_Integrador_DataScience': crear_docx('Informe_Integrador_DataScience', 'Informe integrador · Fases 1, 2 y 3', pi)}
     if args.pdf:

@@ -21,7 +21,27 @@ def sincronizar_markdown(nb, resultados):
     cm = resultados['tablas']['matrices']
     nombre = resultados['metadatos']['modelo']
     c = cm.loc[nombre]
+    contexto = resultados['contexto']
+    interpretaciones = {
+        '### Interpretación territorial H1': contexto['interpretacion_h1'],
+        '### Interpretación de las fuentes H3': contexto['interpretacion_h3'],
+        '### H4 y edad desconocida: alcance del antecedente': contexto['interpretacion_edad'],
+        '### Respuesta integrada a la pregunta original': contexto['conclusion_integral']}
     for celda in nb.cells:
+        if celda.cell_type == 'markdown':
+            for titulo, texto in interpretaciones.items():
+                if celda.source.startswith(titulo):
+                    celda.source = titulo + '\n' + texto + '\n'
+            if celda.source.startswith('### Interpretación de las métricas y la línea base'):
+                t = resultados['tablas']['metricas_test']; cv = resultados['tablas']['validacion']
+                b = resultados['tablas']['brechas']; ganador = t.loc[nombre]; base = t.loc['Línea Base (Dummy)']
+                celda.source = f'''### Interpretación de las métricas y la línea base
+Dummy obtiene accuracy {base['Accuracy']:.4f}, pero recall fallecidos {base['Recall (Fallecido)']:.4f} y F1 macro {base['F1-Macro']:.4f}: predecir siempre herido oculta todas las fatalidades. El seleccionado por CV es {nombre}, con F1 macro CV {cv.loc[nombre, 'F1-Macro (Validación CV)']:.4f}. En la misma reserva obtiene F1 macro {ganador['F1-Macro']:.4f} (diferencia frente a Dummy {ganador['F1-Macro']-base['F1-Macro']:+.4f}), recall {ganador['Recall (Fallecido)']:.4f}, precisión {ganador['Precision (Fallecido)']:.4f} y AUC {ganador['ROC-AUC']:.4f}. Otro candidato puede tener AUC mayor sin cambiar el criterio de selección previamente fijado.
+
+El F1 macro train del seleccionado es {b.loc[nombre, 'F1-Macro (Train)']:.4f} y la brecha train-test es {b.loc[nombre, 'Brecha Absoluta']:+.4f}. La tabla CV informa además train y validación por pliegue; el desvío no es un intervalo poblacional. La brecha pequeña puede reflejar perfiles compartidos y no garantiza ausencia de sobreajuste a la distribución agregada.
+
+Precisión divide los verdaderos positivos por las predicciones positivas; recall divide por los fallecidos reales; F1 combina ambas y F1 macro pondera igual las dos clases. AUC mide ordenamiento, no calibración ni riesgo individual. Las matrices y curvas siguientes permiten evaluar los costos de error que una accuracy aislada ocultaría.
+'''
         if celda.cell_type == 'markdown' and celda.source.startswith('### Interpretación de fallos'):
             celda.source = f'''### Interpretación de fallos: conteos y solapamiento verificados
 El seleccionado produce **TN={int(c.TN)}, TP={int(c.TP)}, FP={int(c.FP)} y FN={int(c.FN)}** sobre 1.099 filas expandidas. TN/TP son aciertos; FP clasifica una lesión como fatal y FN omite una fatalidad registrada. El FN es prioritario para el objetivo académico, sin convertirlo en un costo clínico ni ajustar umbrales después de mirar test.
@@ -48,7 +68,8 @@ def main():
     destino.mkdir(parents=True, exist_ok=True)
     nbpath = ROOT / 'notebooks/Fase3_Accidentes_AUDITADA.ipynb'
     nb = nbformat.read(nbpath, as_version=4)
-    png_antes = {p.resolve() for p in (ROOT / 'output').rglob('*.png')}
+    auxiliares_antes = {p.resolve() for carpeta in ['data', 'notebooks', 'src', 'output', 'docs']
+                        for p in (ROOT / carpeta).rglob('*') if p.suffix.lower() in {'.png', '.csv', '.json'}}
     with tempfile.TemporaryDirectory(prefix='accidentes_fase3_') as runtime:
         env = dict(os.environ, JUPYTER_RUNTIME_DIR=str(Path(runtime) / 'jupyter'),
                    MPLCONFIGDIR=str(Path(runtime) / 'matplotlib'), IPYTHONDIR=str(Path(runtime) / 'ipython'),
@@ -68,9 +89,12 @@ def main():
     figuras = leer_figuras()
     html, _ = HTMLExporter().from_notebook_node(nb)
     (destino / 'Fase3_Accidentes_AUDITADA.html').write_text(html, encoding='utf-8')
-    assert len(figuras) == 9 and html.count('data:image/png;base64,') >= 9
-    assert png_antes == {p.resolve() for p in (ROOT / 'output').rglob('*.png')}, 'Aparecieron PNG inesperados.'
-    print('Notebook y HTML: 13 celdas de código ejecutadas, 9 figuras embebidas, ningún PNG generado.', flush=True)
+    assert len(figuras) == 11 and html.count('data:image/png;base64,') >= 11
+    auxiliares_despues = {p.resolve() for carpeta in ['data', 'notebooks', 'src', 'output', 'docs']
+                          for p in (ROOT / carpeta).rglob('*') if p.suffix.lower() in {'.png', '.csv', '.json'}}
+    assert auxiliares_antes == auxiliares_despues, 'Aparecieron PNG, CSV o JSON inesperados.'
+    n_codigo = sum(c.cell_type == 'code' for c in nb.cells)
+    print(f'Notebook y HTML: {n_codigo} celdas de código ejecutadas, 11 figuras embebidas, ningún PNG/CSV/JSON generado.', flush=True)
     if args.documentos:
         subprocess.run([sys.executable, str(ROOT / 'src/generar_documentos.py'), '--pdf'], cwd=ROOT, check=True)
     if args.verificar:
