@@ -1,0 +1,13 @@
+# Conservar los bytes de documentos, imágenes y modelos al guardar y clonar.
+*.pdf binary
+*.docx binary
+*.png binary
+*.joblib binary
+
+# Los hashes de procedencia e integridad requieren conservar los bytes originales.
+data/** -text -whitespace
+notebooks/*.ipynb -text whitespace=cr-at-eol
+output/** -text -whitespace
+
+# HTML exportado: conservar el formato generado y el contenido histórico.
+*.html -whitespace

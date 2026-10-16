@@ -1,0 +1,6 @@
+﻿Paso,Detalle,Registros Afectados,Justificación Metodológica
+1. Estandarización de Encabezados,"Se aplicó conversión snake_case (remoción de tildes, mayúsculas y espacios) a las 8 tablas conservadas.",Todas las columnas de las 8 tablas.,Evitar errores de sintaxis en consultas numéricas y visualizaciones de Python.
+2. Tratamiento de Nulos Implícitos,"Reemplazo de caracteres ('-', 'sin datos') por 0 o np.nan y conversión forzada a dtypes numéricos.",Celdas vacías o con formato texto inconsistente.,"Garantizar la integridad de cálculos de sumatorias, medias y varianzas."
+3. Aislamiento de Filas 'TOTAL',Filtro de filas de sumatorias generales en las tablas de análisis.,1 a 2 filas por tabla (filas de totales generales).,Prevenir la duplicación de frecuencias (doble conteo) en el cálculo de métricas.
+4. Estructuración Tidy Data (12.2.1),Despivote de matriz de Edad x Sexo x Gravedad a microdatos agrupados.,Transformación de 9 filas matriciales a un DataFrame estructurado.,Permite realizar tabulaciones cruzadas bivariadas y análisis de letalidad.
+5. Ingeniería de Variables Derivadas,"Creación de 'gravedad_num' (1=Fallecido, 0=Herido) y estandarización de etiquetas.",Todas las filas del dataset procesado.,Preparación de la variable objetivo para la Fase 2 (Modelado Predictivo).

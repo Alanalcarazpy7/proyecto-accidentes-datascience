@@ -1,0 +1,41 @@
+.venv/
+venv/
+env/
+__pycache__/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+tmp/
+*.pyc
+*.pyo
+*.log
+*.tmp
+*.temp
+~$*
+*.zip
+# Las imágenes se conservan embebidas en notebooks, HTML e informes.
+*.[pP][nN][gG]
+# Exportaciones locales para Excel; los CSV usados por el código se conservan.
+*_excel.csv
+
+# Copias y datasets retirados; los originales únicos permanecen en data/.
+/data/raw/
+/data/processed/
+
+# Entregables de Fase 3: un modelo y el HTML. Las tablas/figuras viven en el ipynb.
+/output/fase3/*
+!/output/fase3/Fase3_Accidentes_AUDITADA.html
+!/output/fase3/mejor_modelo_fase3.joblib
+/output/*.joblib
+/output/*fase3*.csv
+/output/*fase3*.json
+
+# Paquetes locales, documentación redundante y archivos que no son código fuente.
+/entrega/
+# Solo el README forma parte de la documentación Markdown publicada.
+*.md
+!/README.md
+/docs/local/
+/src/*.html
+/src/*.pdf
