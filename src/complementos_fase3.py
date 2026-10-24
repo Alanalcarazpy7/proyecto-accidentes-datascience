@@ -31,21 +31,15 @@ def serializar_tabla(tabla):
     return resultado
 
 
-def publicar_resultados(ns):
-    """Guarda las tablas en las salidas del ipynb; no crea archivos auxiliares."""
-    tablas = {'metricas_test': ns['df_resultados_test'], 'validacion': ns['df_reporte_cv'],
-              'brechas': ns['df_brechas'], 'coeficientes': ns['df_coef'],
-              'metricas_train': ns['metricas_train'], 'metricas_cv': pd.DataFrame(ns['cv_metricas']),
-              'vehicular': ns['tabla_vehicular'], 'sensibilidad_ganador': ns['df_sensibilidad'],
-              **ns['tablas_contexto'], **ns['tablas_extra'], **{'grilla_' + k: v[['params', 'mean_train_f1_macro', 'mean_test_f1_macro', 'std_test_f1_macro', 'rank_test_f1_macro']].assign(params=lambda d: d.params.astype(str)) for k, v in ns['grillas_cv'].items()}}
-    evidencia = {'tablas': {k: serializar_tabla(v)
-                           for k, v in tablas.items()}, 'seleccion': ns['seleccion_cerrada'],
-                 'metadatos': ns['metadatos'], 'versiones': ns['versiones'],
-                 'solapamiento': ns['solapamiento_FN'], 'equivalencia': ns['equivalencia_frecuencias'],
-                 'conclusiones': ns['conclusion'], 'procedencia': ns['auditoria_fuente'],
-                 'contexto': ns['auditoria_contexto']}
+def publicar_resultados(tablas, *, seleccion, metadatos, versiones, solapamiento,
+                        equivalencia, conclusiones, procedencia, contexto):
+    """Publica evidencia explícita; no lee ni modifica variables del notebook."""
+    evidencia = {'tablas': {nombre: serializar_tabla(tabla) for nombre, tabla in tablas.items()},
+                 'seleccion': seleccion, 'metadatos': metadatos, 'versiones': versiones,
+                 'solapamiento': solapamiento, 'equivalencia': equivalencia,
+                 'conclusiones': conclusiones, 'procedencia': procedencia, 'contexto': contexto}
     display({MIME_RESULTADOS: evidencia, 'text/plain':
-             'Resultados estructurados embebidos: las tablas, metadatos y conclusiones anteriores permiten regenerar los informes sin archivos intermedios.'}, raw=True)
+             'Evidencia estructurada para comprobar resultados; las tablas de estudio se muestran en las secciones anteriores.'}, raw=True)
 
 
 def leer_resultados(root=ROOT, notebook=None):
@@ -79,7 +73,7 @@ def leer_figuras(root=ROOT):
     return figuras
 
 
-def preparar_contexto(root=ROOT):
+def preparar_contexto(root=ROOT, analisis=None):
     """Audita tablas agregadas H1/H3 y la edad sin expandir ni unir sus universos."""
     import hashlib
 
@@ -216,7 +210,7 @@ def preparar_contexto(root=ROOT):
         'Ni RR, OR ni significación acreditan mayor riesgo individual de motociclistas si las categorías no están validadas. '
         'No se entrena un segundo predictor ni se unen estas filas expandidas con la base demográfica.')
     from src.auditoria_fase3 import complementos_auditados
-    tablas.update(complementos_auditados(demo, root))
+    tablas.update(complementos_auditados(demo, root) if analisis is None else analisis)
     h4 = tablas['h4_ordinal'].loc['Corregido edad conocida']
     mayor60 = tablas['h4_mayores60'].iloc[0]
     auditoria['interpretacion_edad'] = (
@@ -248,65 +242,24 @@ def preparar_contexto(root=ROOT):
     return tablas, vehicular, auditoria
 
 
-def mostrar_complementos(ns):
-    modelos = {'Línea Base (Dummy)': ns['dummy_baseline'], **ns['modelos_optimizados']}
-    xt, yt = ns['X_test_d'], ns['y_test_d']
-    ganador = ns['nombre_mejor_modelo']
+def calcular_diagnosticos(modelos, ganador, x_train, y_train, x_test, y_test,
+                          predicciones, reporte_cv, brechas):
+    """Diagnósticos en reserva; sensibilidad y equivalencia ajustadas solo en train.
+
+    predicciones contiene clases y puntajes ya calculados durante la evaluación.
+    Devuelve tablas y evidencia; la presentación se decide en el notebook.
+    """
+    xt, yt = x_test, y_test
     elegido = modelos[ganador]
     tablas = {}
-    def mostrar(fig, nombre):
-        fig.tight_layout()
-        plt.show()
-        plt.close(fig)
-        interpretaciones = {
-            'F3-01': 'Las curvas comparan los mismos 1.099 registros expandidos. AUC y Precision-Recall describen discriminación interna; la línea PR corresponde a la prevalencia de esa reserva. La tabla de métricas permite comprobar las diferencias sin atribuir superioridad externa.',
-            'F3-02': 'Dummy no identifica ninguna fatalidad. Cada matriz permite contrastar omisiones y falsas alarmas con denominadores idénticos; 0 = herido y 1 = fallecido. La diagonal contiene aciertos y las otras celdas errores.',
-            'F3-03': 'El árbol se elige por CV, aunque otro candidato pueda tener AUC de prueba mayor. La mejora de F1 macro frente a Dummy no implica mejor calibración ni una regla clínica.',
-            'F3-04': 'La tasa de error divide por todas las filas del grupo; la tasa FN divide solo por sus fallecidos. En particular, el seleccionado no detecta fatalidades entre mujeres de esta reserva y omite las de varios grupos jóvenes. Una tasa global pequeña puede coexistir con omisión total de la clase minoritaria.',
-            'F3-05': 'Gini agrega la reducción de impureza de los indicadores de cada variable. La permutación mide caída de F1 macro al desordenar la columna completa; sus barras muestran variación entre permutaciones. No representan causalidad ni intervalos poblacionales.',
-            'F3-06': 'La distancia a la diagonal revela discrepancias entre puntuaciones y frecuencia observada. Brier debe compararse con la base, incluso si el modelo mejora F1. No se ajusta calibración en test y no se informa riesgo individual real.',
-            'F3-07': 'Las brechas se cuantifican en las tablas. Su tamaño pequeño está condicionado por perfiles repetidos y por la selección dentro de CV; no acredita generalización externa.'}
-        display(Markdown('**Interpretación:** ' + interpretaciones[nombre]))
-
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4.5))
     cms = []
-    for nombre, modelo in modelos.items():
-        pred, prob = modelo.predict(xt), modelo.predict_proba(xt)[:, 1]
-        fpr, tpr, _ = roc_curve(yt, prob)
-        pr, re, _ = precision_recall_curve(yt, prob)
-        axes[0].plot(fpr, tpr, label=f'{nombre} ({roc_auc_score(yt, prob):.3f})')
-        axes[1].step(re, pr, where='post', label=nombre)
-        tn, fp, fn, tp = confusion_matrix(yt, pred, labels=[0, 1]).ravel()
+    for nombre, prediccion in predicciones.items():
+        tn, fp, fn, tp = confusion_matrix(yt, prediccion['clase'], labels=[0, 1]).ravel()
         cms.append(dict(Modelo=nombre, TN=int(tn), FP=int(fp), FN=int(fn), TP=int(tp)))
-    axes[0].plot([0, 1], [0, 1], '--', color='grey')
-    axes[0].set(xlabel='Tasa de falsos positivos', ylabel='Recall fallecidos', title='Figura F3-01A. Curvas ROC (misma prueba)')
-    axes[1].axhline(np.mean(yt), ls='--', color='grey', label='Prevalencia de prueba')
-    axes[1].set(xlabel='Recall fallecidos', ylabel='Precisión fallecidos', title='Figura F3-01B. Curvas Precision-Recall')
-    for ax in axes:
-        ax.legend(fontsize=7)
-    mostrar(fig, 'F3-01')
     tablas['matrices'] = pd.DataFrame(cms).set_index('Modelo')
-
-    fig, axes = plt.subplots(2, 3, figsize=(11, 6))
-    for ax, (nombre, modelo) in zip(axes.flat, modelos.items()):
-        cm = confusion_matrix(yt, modelo.predict(xt), labels=[0, 1])
-        ax.imshow(cm, cmap='Blues')
-        for (i, j), val in np.ndenumerate(cm):
-            ax.text(j, i, str(val), ha='center', va='center', color='white' if val > cm.max() / 2 else 'black')
-        ax.set(xticks=[0, 1], yticks=[0, 1], xlabel='Predicho (0 herido; 1 fallecido)', ylabel='Real', title=nombre)
-    axes.flat[-1].axis('off')
-    fig.suptitle('Figura F3-02. Matrices de confusión en 1.099 filas expandidas')
-    mostrar(fig, 'F3-02')
-
-    fig, ax = plt.subplots(figsize=(10, 4.5))
-    ns['df_resultados_test'][['F1-Macro', 'Recall (Fallecido)', 'ROC-AUC']].plot.bar(ax=ax)
-    ax.set(title='Figura F3-03. Comparación de métricas de prueba', ylabel='Puntuación (0 a 1)', xlabel='Modelo', ylim=(0, 1))
-    ax.tick_params(axis='x', rotation=12)
-    mostrar(fig, 'F3-03')
-
     errores = xt.copy()
-    errores['real'], errores['predicho'] = yt, elegido.predict(xt)
-    errores['puntaje'] = elegido.predict_proba(xt)[:, 1]
+    errores['real'], errores['predicho'] = yt, predicciones[ganador]['clase']
+    errores['puntaje'] = predicciones[ganador]['puntaje']
     for k, cond in {'FN': (errores.real == 1) & (errores.predicho == 0),
                     'FP': (errores.real == 0) & (errores.predicho == 1),
                     'TP': (errores.real == 1) & (errores.predicho == 1),
@@ -314,7 +267,6 @@ def mostrar_complementos(ns):
         errores[k] = cond.astype(int)
     errores['error'] = (errores.real != errores.predicho).astype(int)
     errores['residuo_absoluto'] = abs(errores.real - errores.puntaje)
-    ns['predicciones_prueba'] = errores
     fn = errores.FN.eq(1)
     mujer = errores.sexo.eq('Mujer')
     joven = errores.grupo_edad.isin(['De 0 a 13 anos', 'De 14 a 17 anos', 'De 18 a 29 anos'])
@@ -323,14 +275,12 @@ def mostrar_complementos(ns):
         'edades_0_29': int((fn & joven).sum()), 'interseccion': int((fn & mujer & joven).sum()),
         'union': int((fn & (mujer | joven)).sum()), 'restantes': int((fn & ~(mujer | joven)).sum())}
     assert solapamiento['union'] == solapamiento['mujeres'] + solapamiento['edades_0_29'] - solapamiento['interseccion']
-    ns['solapamiento_FN'] = solapamiento
     desglose = []
     for sexo in ['Hombre', 'Mujer']:
         for tramo, mask in [('0-29 años', joven), ('30 años o más', ~joven & ~ignorada), ('Edad ignorada', ignorada)]:
             desglose.append({'Sexo': sexo, 'Tramo': tramo, 'FN': int((fn & errores.sexo.eq(sexo) & mask).sum())})
     tablas['descomposicion_FN'] = pd.DataFrame(desglose)
     assert tablas['descomposicion_FN'].FN.sum() == fn.sum()
-    display(Markdown(f"**Solapamiento de omisiones:** mujeres={solapamiento['mujeres']}; edades 0-29={solapamiento['edades_0_29']}; intersección={solapamiento['interseccion']}. La unión contiene {solapamiento['union']} filas, no la suma directa de ambos grupos. Restan {solapamiento['restantes']} FN de hombres con edad ignorada. Son frecuencias reconstruidas, no expedientes individuales."))
     for nombre, columnas in [('perfil', ['sexo', 'grupo_edad']), ('sexo', ['sexo']), ('edad', ['grupo_edad'])]:
         t = errores.groupby(columnas, observed=True).agg(n=('real', 'size'), fallecidos=('real', 'sum'),
                     FN=('FN', 'sum'), FP=('FP', 'sum'), TP=('TP', 'sum'), TN=('TN', 'sum'),
@@ -339,16 +289,6 @@ def mostrar_complementos(ns):
         t['recall_fallecidos'] = t.TP / t.fallecidos.replace(0, np.nan)
         t['tasa_FN'] = t.FN / t.fallecidos.replace(0, np.nan)
         tablas[f'errores_{nombre}'] = t
-    fig, axes = plt.subplots(1, 2, figsize=(11, 5))
-    tablas['errores_edad'][['tasa_error', 'tasa_FN']].rename(columns={'tasa_error': 'Error global', 'tasa_FN': 'Omisión de fallecidos'}).plot.barh(ax=axes[0])
-    tablas['errores_sexo'][['tasa_error', 'tasa_FN']].rename(columns={'tasa_error': 'Error global', 'tasa_FN': 'Omisión de fallecidos'}).plot.bar(ax=axes[1], rot=0)
-    axes[0].set_ylabel('Grupo de edad')
-    for ax in axes:
-        ax.set(xlabel='Fracción (0 a 1)' if ax == axes[0] else 'Sexo', xlim=(0, 1) if ax == axes[0] else None)
-    axes[0].set_title('F3-04A. Error y omisiones por edad')
-    axes[1].set(title='F3-04B. Error y omisiones por sexo', ylabel='Fracción (0 a 1)', ylim=(0, 1))
-    mostrar(fig, 'F3-04')
-
     gini = []
     for nombre in ['Árbol de Decisión', 'Random Forest']:
         model = modelos[nombre]
@@ -361,62 +301,128 @@ def mostrar_complementos(ns):
     tablas['gini_variables'] = pd.DataFrame(gini).groupby(['Modelo', 'variable']).importancia.sum().unstack()
     perm = permutation_importance(elegido, xt, yt, scoring='f1_macro', n_repeats=30, random_state=42, n_jobs=1)
     tablas['permutacion'] = pd.DataFrame({'variable': xt.columns, 'media': perm.importances_mean, 'desvio': perm.importances_std})
-    fig, axes = plt.subplots(1, 2, figsize=(10, 4))
-    tablas['gini_variables'].plot.bar(ax=axes[0], rot=10)
-    axes[0].set(title='F3-05A. Importancia Gini agregada', ylabel='Reducción de impureza normalizada')
-    axes[1].bar(tablas['permutacion'].variable, tablas['permutacion'].media, yerr=tablas['permutacion'].desvio)
-    axes[1].set(title='F3-05B. Permutación del seleccionado', ylabel='Caída de F1 macro (media ± desvío)')
-    mostrar(fig, 'F3-05')
-
     calibracion = []
-    fig, axes = plt.subplots(1, 2, figsize=(11, 4.2))
-    axes[0].plot([0, 1], [0, 1], '--', color='grey', label='Calibración ideal')
-    for nombre, modelo in modelos.items():
-        prob = modelo.predict_proba(xt)[:, 1]
-        frac, media = calibration_curve(yt, prob, n_bins=5, strategy='uniform')
-        axes[0].plot(media, frac, 'o-', label=nombre)
+    for nombre, prediccion in predicciones.items():
+        frac, media = calibration_curve(yt, prediccion['puntaje'], n_bins=5, strategy='uniform')
         for x, y in zip(media, frac):
             calibracion.append({'Modelo': nombre, 'puntaje_medio': x, 'fraccion_fallecidos': y})
-    axes[0].set(title='F3-06A. Diagnóstico de calibración', xlabel='Puntuación media', ylabel='Fracción observada de fallecidos')
-    axes[0].legend(fontsize=7)
-    ns['df_resultados_test'][['Brier']].plot.bar(ax=axes[1], legend=False, rot=15)
-    axes[1].set(title='F3-06B. Brier (menor es mejor)', ylabel='Error cuadrático de puntuación')
-    mostrar(fig, 'F3-06')
     tablas['calibracion'] = pd.DataFrame(calibracion)
-
-    brechas = ns['df_brechas'].copy()
-    brechas['F1-Macro (CV)'] = ns['df_reporte_cv']['F1-Macro (Validación CV)']
-    tablas['comparacion_etapas'] = brechas
-    fig, ax = plt.subplots(figsize=(10, 4))
-    brechas[['F1-Macro (Train)', 'F1-Macro (CV)', 'F1-Macro (Test)']].plot.bar(ax=ax, rot=12)
-    ax.set(title='Figura F3-07. Entrenamiento, validación y prueba', ylabel='F1 macro (0 a 1)', ylim=(0, .8))
-    mostrar(fig, 'F3-07')
-
+    comparacion = brechas.copy()
+    comparacion['F1-Macro (CV)'] = reporte_cv['F1-Macro (Validación CV)']
+    tablas['comparacion_etapas'] = comparacion
     # Mismos hiperparámetros ya fijados; sensibilidad de todos los modelos, sin retuning.
-    grupos = ns['X_train_d'].astype(str).agg(' | '.join, axis=1)
+    grupos = x_train.astype(str).agg(' | '.join, axis=1)
     sens = []
-    for fold, (tr, va) in enumerate(GroupKFold(4).split(ns['X_train_d'], ns['y_train_d'], grupos), 1):
+    for fold, (tr, va) in enumerate(GroupKFold(4).split(x_train, y_train, grupos), 1):
         assert not set(grupos.iloc[tr]) & set(grupos.iloc[va])
         for nombre, model in modelos.items():
-            m = clone(model).fit(ns['X_train_d'].iloc[tr], ns['y_train_d'][tr])
-            xv, yv = ns['X_train_d'].iloc[va], ns['y_train_d'][va]
+            m = clone(model).fit(x_train.iloc[tr], y_train[tr])
+            xv, yv = x_train.iloc[va], y_train[va]
             sens.append({'Modelo': nombre, 'pliegue': fold, 'F1_macro': f1_score(yv, m.predict(xv), average='macro'),
                          'AUC_ROC': roc_auc_score(yv, m.predict_proba(xv)[:, 1]),
                          'n_validacion': len(va), 'perfiles_validacion': grupos.iloc[va].nunique()})
     tablas['sensibilidad_todos'] = pd.DataFrame(sens)
     # Equivalencia exacta de log-verosimilitud expandida frente a frecuencias ponderadas.
-    train = ns['X_train_d'].copy()
-    train['y'] = ns['y_train_d']
+    train = x_train.copy()
+    train['y'] = y_train
     agregado = train.groupby(['sexo', 'grupo_edad', 'y']).size().rename('frecuencia').reset_index()
     lr = clone(modelos['Regresión Logística'])
     lr.set_params(clf__class_weight=None)
     n = len(train)
-    class_n = np.bincount(ns['y_train_d'])
+    class_n = np.bincount(y_train)
     pesos = agregado.frecuencia.to_numpy() * n / (2 * class_n[agregado.y.to_numpy()])
     lr.fit(agregado[['sexo', 'grupo_edad']], agregado.y, clf__sample_weight=pesos)
     diferencia = float(np.max(abs(lr.predict_proba(xt) - modelos['Regresión Logística'].predict_proba(xt))))
     assert diferencia < .002, diferencia
-    ns['equivalencia_frecuencias'] = {'celdas_train': len(agregado),
+    equivalencia = {'celdas_train': len(agregado),
         'max_diferencia_puntuacion': diferencia, 'tolerancia_numerica': .002,
         'interpretacion': 'La expansión no aporta información adicional a los conteos.'}
-    return tablas
+    return tablas, errores, solapamiento, equivalencia
+
+
+def mostrar_complementos(figuras, tablas, predicciones, y_test, resultados_test):
+    """Muestra solo las figuras solicitadas, reutilizando los diagnósticos."""
+    yt = y_test
+    def mostrar(fig, nombre):
+        fig.tight_layout()
+        plt.show()
+        plt.close(fig)
+        interpretaciones = {
+            'F3-01': 'Las curvas comparan los mismos 1.099 registros expandidos. AUC y Precision-Recall describen discriminación interna; la línea PR corresponde a la prevalencia de esa reserva. La tabla de métricas permite comprobar las diferencias sin atribuir superioridad externa.',
+            'F3-05': 'Dummy no identifica ninguna fatalidad. Cada matriz permite contrastar omisiones y falsas alarmas con denominadores idénticos; 0 = herido y 1 = fallecido. La diagonal contiene aciertos y las otras celdas errores.',
+            'F3-02': 'El árbol se elige por CV, aunque otro candidato pueda tener AUC de prueba mayor. La mejora de F1 macro frente a Dummy no implica mejor calibración ni una regla clínica.',
+            'F3-06': 'La tasa de error divide por todas las filas del grupo; la tasa FN divide solo por sus fallecidos. En particular, el seleccionado no detecta fatalidades entre mujeres de esta reserva y omite las de varios grupos jóvenes. Una tasa global pequeña puede coexistir con omisión total de la clase minoritaria.',
+            'F3-08': 'Gini agrega la reducción de impureza de los indicadores de cada variable. La permutación mide caída de F1 macro al desordenar la columna completa; sus barras muestran variación entre permutaciones. No representan causalidad ni intervalos poblacionales.',
+            'F3-09': 'La distancia a la diagonal revela discrepancias entre puntuaciones y frecuencia observada. Brier debe compararse con la base, incluso si el modelo mejora F1. No se ajusta calibración en test y no se informa riesgo individual real.',
+            'F3-03': 'Las brechas se cuantifican en las tablas. Su tamaño pequeño está condicionado por perfiles repetidos y por la selección dentro de CV; no acredita generalización externa.'}
+        display(Markdown('**Interpretación:** ' + interpretaciones[nombre]))
+    for figura in figuras:
+        if figura == 'F3-01':
+            fig, axes = plt.subplots(1, 2, figsize=(12, 4.5))
+            for nombre, prediccion in predicciones.items():
+                prob = prediccion['puntaje']
+                fpr, tpr, _ = roc_curve(yt, prob)
+                pr, re, _ = precision_recall_curve(yt, prob)
+                axes[0].plot(fpr, tpr, label=f'{nombre} ({roc_auc_score(yt, prob):.3f})')
+                axes[1].step(re, pr, where='post', label=nombre)
+            axes[0].plot([0, 1], [0, 1], '--', color='grey')
+            axes[0].set(xlabel='Tasa de falsos positivos', ylabel='Recall fallecidos', title='Figura F3-01A. Curvas ROC (misma prueba)')
+            axes[1].axhline(np.mean(yt), ls='--', color='grey', label='Prevalencia de prueba')
+            axes[1].set(xlabel='Recall fallecidos', ylabel='Precisión fallecidos', title='Figura F3-01B. Curvas Precision-Recall')
+            for ax in axes:
+                ax.legend(fontsize=7)
+            mostrar(fig, 'F3-01')
+        elif figura == 'F3-05':
+            fig, axes = plt.subplots(2, 3, figsize=(11, 6))
+            for ax, nombre in zip(axes.flat, predicciones):
+                cm = tablas['matrices'].loc[nombre, ['TN', 'FP', 'FN', 'TP']].to_numpy().reshape(2, 2)
+                ax.imshow(cm, cmap='Blues')
+                for (i, j), val in np.ndenumerate(cm):
+                    ax.text(j, i, str(val), ha='center', va='center', color='white' if val > cm.max() / 2 else 'black')
+                ax.set(xticks=[0, 1], yticks=[0, 1], xlabel='Predicho (0 herido; 1 fallecido)', ylabel='Real', title=nombre)
+            axes.flat[-1].axis('off')
+            fig.suptitle('Figura F3-05. Matrices de confusión en 1.099 filas expandidas')
+            mostrar(fig, 'F3-05')
+        elif figura == 'F3-02':
+            fig, ax = plt.subplots(figsize=(10, 4.5))
+            resultados_test[['F1-Macro', 'Recall (Fallecido)', 'ROC-AUC']].plot.bar(ax=ax)
+            ax.set(title='Figura F3-02. Comparación de métricas de prueba', ylabel='Puntuación (0 a 1)', xlabel='Modelo', ylim=(0, 1))
+            ax.tick_params(axis='x', rotation=12)
+            mostrar(fig, 'F3-02')
+        elif figura == 'F3-06':
+            fig, axes = plt.subplots(1, 2, figsize=(11, 5))
+            tablas['errores_edad'][['tasa_error', 'tasa_FN']].rename(columns={'tasa_error': 'Error global', 'tasa_FN': 'Omisión de fallecidos'}).plot.barh(ax=axes[0])
+            tablas['errores_sexo'][['tasa_error', 'tasa_FN']].rename(columns={'tasa_error': 'Error global', 'tasa_FN': 'Omisión de fallecidos'}).plot.bar(ax=axes[1], rot=0)
+            axes[0].set_ylabel('Grupo de edad')
+            for ax in axes:
+                ax.set(xlabel='Fracción (0 a 1)' if ax == axes[0] else 'Sexo', xlim=(0, 1) if ax == axes[0] else None)
+            axes[0].set_title('F3-06A. Error y omisiones por edad')
+            axes[1].set(title='F3-06B. Error y omisiones por sexo', ylabel='Fracción (0 a 1)', ylim=(0, 1))
+            mostrar(fig, 'F3-06')
+        elif figura == 'F3-08':
+            fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+            tablas['gini_variables'].plot.bar(ax=axes[0], rot=10)
+            axes[0].set(title='F3-08A. Importancia Gini agregada', ylabel='Reducción de impureza normalizada')
+            axes[1].bar(tablas['permutacion'].variable, tablas['permutacion'].media, yerr=tablas['permutacion'].desvio)
+            axes[1].set(title='F3-08B. Permutación del seleccionado', ylabel='Caída de F1 macro (media ± desvío)')
+            mostrar(fig, 'F3-08')
+        elif figura == 'F3-09':
+            fig, axes = plt.subplots(1, 2, figsize=(11, 4.2))
+            axes[0].plot([0, 1], [0, 1], '--', color='grey', label='Calibración ideal')
+            for nombre, prediccion in predicciones.items():
+                prob = prediccion['puntaje']
+                t = tablas['calibracion'].loc[tablas['calibracion'].Modelo.eq(nombre)]
+                media, frac = t.puntaje_medio, t.fraccion_fallecidos
+                axes[0].plot(media, frac, 'o-', label=nombre)
+            axes[0].set(title='F3-09A. Diagnóstico de calibración', xlabel='Puntuación media', ylabel='Fracción observada de fallecidos')
+            axes[0].legend(fontsize=7)
+            resultados_test[['Brier']].plot.bar(ax=axes[1], legend=False, rot=15)
+            axes[1].set(title='F3-09B. Brier (menor es mejor)', ylabel='Error cuadrático de puntuación')
+            mostrar(fig, 'F3-09')
+        elif figura == 'F3-03':
+            fig, ax = plt.subplots(figsize=(10, 4))
+            tablas['comparacion_etapas'][['F1-Macro (Train)', 'F1-Macro (CV)', 'F1-Macro (Test)']].plot.bar(ax=ax, rot=12)
+            ax.set(title='Figura F3-03. Entrenamiento, validación y prueba', ylabel='F1 macro (0 a 1)', ylim=(0, .8))
+            mostrar(fig, 'F3-03')
+        else:
+            raise ValueError('Figura no reconocida: ' + figura)

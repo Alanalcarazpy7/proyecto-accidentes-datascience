@@ -24,7 +24,6 @@ sys.path.insert(0, str(ROOT))
 from src.preparar_datos import reconstruir
 from src.inferencia import inferir
 from src.complementos_fase3 import leer_resultados, leer_figuras
-from src.empaquetar_entrega import archivos_entrega
 
 HISTORICOS = {
     'Fase1_Accidentes_Transito.ipynb': 'abd33db56fead6e534c608e3a5f48a270e8f4adbe859b280a949a46d38fb9834',
@@ -41,13 +40,20 @@ REFERENCIA = {
 class Fase3Test(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        from sklearn.model_selection import GridSearchCV
+        from sklearn.model_selection import GridSearchCV, GroupKFold
         cls.df, _ = reconstruir()
         cls.resultados = leer_resultados()
         cls.modelo = joblib.load(ROOT / 'output/fase3/mejor_modelo_fase3.joblib')
         cls.nb = nbformat.read(ROOT / 'notebooks/Fase3_Accidentes_AUDITADA.ipynb', as_version=4)
         cls.ns = {'__name__': '__fase3_test__'}
         cls.ajustes = []
+        cls.evaluaciones_por_grupos = 0
+        dividir_original = GroupKFold.split
+
+        def dividir(cv, *args, **kwargs):
+            cls.evaluaciones_por_grupos += 1
+            return dividir_original(cv, *args, **kwargs)
+
         ajustar_original = GridSearchCV.fit
 
         def ajustar(busqueda, x, y, *args, **kwargs):
@@ -59,7 +65,7 @@ class Fase3Test(unittest.TestCase):
         with redirect_stdout(StringIO()), patch('IPython.display.display'), \
              patch('src.complementos_fase3.display'), patch('matplotlib.pyplot.show'), \
              patch('matplotlib.figure.Figure.savefig', side_effect=AssertionError('No guardar PNG')), \
-             patch.object(GridSearchCV, 'fit', ajustar), patch('joblib.dump') as dump:
+             patch.object(GridSearchCV, 'fit', ajustar), patch.object(GroupKFold, 'split', dividir), patch('joblib.dump') as dump:
             for i, c in enumerate(cls.nb.cells):
                 if c.cell_type == 'code':
                     exec(compile(c.source, f'notebook:celda-{i}', 'exec'), cls.ns)
@@ -270,15 +276,31 @@ class Fase3Test(unittest.TestCase):
         html = (f3/'Fase3_Accidentes_AUDITADA.html').read_text(encoding='utf-8')
         self.assertGreaterEqual(html.count('data:image/png;base64,'),11)
 
-    def test_paquete_sin_material_local(self):
-        paths = archivos_entrega()
-        self.assertTrue(all(p.is_file() for p in paths))
-        self.assertEqual([p.relative_to(ROOT).as_posix() for p in paths if p.suffix == '.md'], ['README.md'])
-        self.assertTrue(all('local' not in p.relative_to(ROOT).parts for p in paths))
-        self.assertFalse(any(p.suffix.lower() == '.png' or p.name.endswith('_excel.csv') for p in paths))
-        self.assertIn(ROOT/'src/inferencia.py', paths)
-        self.assertIn(ROOT/'tests/test_fase3.py', paths)
-        self.assertIn(ROOT/'output/fase3/mejor_modelo_fase3.joblib', paths)
+    def test_entregables_del_flujo_manual(self):
+        # Los entregables siguen siendo obligatorios, aunque Word/PDF/ZIP se armen a mano.
+        necesarios = ['README.md', 'requirements-lock.txt',
+            'notebooks/Fase3_Accidentes_AUDITADA.ipynb',
+            'output/fase3/Fase3_Accidentes_AUDITADA.html',
+            'output/fase3/mejor_modelo_fase3.joblib', 'src/inferencia.py',
+            'src/preparar_datos.py', 'src/complementos_fase3.py', 'src/auditoria_fase3.py',
+            'docs/fase3/Informe_Fase3.pdf', 'docs/integrador/Informe_Integrador_DataScience.pdf']
+        for nombre in necesarios:
+            self.assertTrue((ROOT/nombre).is_file(), nombre)
+        # No se exige un ZIP generado ni scripts opcionales eliminados por el grupo.
+
+    def test_diagnosticos_explicitos_y_sensibilidad_sin_duplicar(self):
+        from src.complementos_fase3 import calcular_diagnosticos
+        import inspect
+        self.assertNotIn('globals()', ''.join(c.source for c in self.nb.cells))
+        self.assertNotIn('ns[', inspect.getsource(calcular_diagnosticos))
+        self.assertEqual(self.evaluaciones_por_grupos, 1)
+        sensibilidad = self.ns['tablas_extra']['sensibilidad_todos']
+        esperado = (sensibilidad.loc[sensibilidad.Modelo.eq(self.ns['nombre_mejor_modelo']),
+                    ['pliegue','F1_macro','AUC_ROC']]
+                    .rename(columns={'pliegue':'Pliegue'}).reset_index(drop=True))
+        pd.testing.assert_frame_equal(esperado, self.ns['df_sensibilidad'])
+        orden = [f for c in self.nb.cells for f in c.metadata.get('figuras_fase3', [])]
+        self.assertEqual(orden, [f'F3-{i:02d}' for i in range(1,12)])
 
     def test_informes_autocontenidos_y_limites_pdf(self):
         import pymupdf

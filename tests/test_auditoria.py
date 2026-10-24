@@ -1,4 +1,4 @@
-﻿"""Pruebas de las correcciones inferenciales y del experimento agregado."""
+"""Pruebas de las correcciones inferenciales y del experimento agregado."""
 from pathlib import Path
 import shutil
 import tempfile
@@ -110,7 +110,7 @@ class AuditoriaTest(unittest.TestCase):
             with self.assertRaises(AssertionError): reconstruir(root)
 
     def test_resumenes_regenerados_sin_output_previo(self):
-        from src.regenerar_contexto import regenerar_resumenes
+        from src.preparar_datos import regenerar_resumenes
         with tempfile.TemporaryDirectory() as t:
             root=Path(t)
             shutil.copytree(ROOT/'data',root/'data')

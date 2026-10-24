@@ -13,12 +13,10 @@ explicaciones, tablas, gráficos y conclusiones dentro del notebook ejecutado.
 data/              11 tablas originales únicas del anuario
 notebooks/         Fases 1, 2 y 3; salidas y gráficos embebidos
 src/
-  preparar_datos.py       reconstrucción y comparación con los conteos originales
+  preparar_datos.py       reconstrucción demográfica y resúmenes de contexto
+  auditoria_fase3.py      contrastes de edad y evaluación territorial agregada
   complementos_fase3.py   análisis en memoria y lectura de tablas/figuras del ipynb
-  ejecutar_fase3.py       kernel nuevo, HTML y verificaciones opcionales
   inferencia.py          carga independiente del único modelo serializado
-  generar_documentos.py  Word/PDF con imágenes en memoria; guía local opcional
-  empaquetar_entrega.py   ZIP con lista explícita de archivos y manifiesto interno
 output/
   fase1/            bitácora de limpieza
   fase2/            HTML, JSON y tabla resumen históricos
@@ -30,7 +28,9 @@ docs/
   fase2/Fase2_Analisis_Inferencial.pdf
   fase3/Informe_Fase3.docx / .pdf
   integrador/Informe_Integrador_DataScience.docx / .pdf
-tests/test_fase3.py
+tests/
+  test_fase3.py
+  test_auditoria.py
 README.md
 requirements.txt
 requirements-lock.txt
@@ -40,9 +40,9 @@ requirements-lock.txt
 
 `.venv/`, `tmp/`, cachés, checkpoints, `entrega/` y `docs/local/` son locales e
 ignorados por Git. Solo este README se publica como Markdown; las notas auxiliares
-se conservan localmente y tampoco forman parte del ZIP.
+se conservan localmente. Al preparar el ZIP manualmente, revisar qué archivos se incluyen.
 Los PNG de cualquier carpeta y las exportaciones `*_excel.csv` también permanecen
-locales, fuera de Git y del ZIP. Los gráficos se consultan dentro de los notebooks,
+locales y fuera de Git; excluirlos del ZIP si no son necesarios. Los gráficos se consultan dentro de los notebooks,
 HTML e informes. Se conservan los CSV y JSON históricos que necesita el proyecto.
 Los cuatro candidatos se evalúan en memoria; solo se guarda el ganador.
 Sus metadatos de variables, categorías y alcance están integrados en el mismo joblib.
@@ -64,59 +64,81 @@ Desde la raíz del repositorio, en PowerShell:
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
-.\.venv\Scripts\python.exe src/regenerar_contexto.py
-.\.venv\Scripts\python.exe src/ejecutar_fase3.py --verificar
+.\.venv\Scripts\python.exe src/preparar_datos.py
 ```
 
-En Linux/macOS sustituir el ejecutable por `.venv/bin/python`. El último comando
-ejecuta todas las celdas en un kernel nuevo, exporta HTML y
-ejecuta las pruebas. Usa un directorio temporal del sistema que se limpia al cerrar;
-no escribe logs, capturas, tablas intermedias ni PNG en el proyecto.
+En Linux/macOS sustituir el ejecutable por `.venv/bin/python`.
+El último comando prepara o coteja el dataset demográfico y los tres resúmenes;
+no entrena modelos ni exporta HTML.
 
-También se puede abrir el notebook de Fase 3 y ejecutar todas sus celdas. Para
-ejecutar únicamente Fase 3 y exportar HTML:
+Para ejecutar Fase 3 manualmente:
+
+1. Abrir `notebooks/Fase3_Accidentes_AUDITADA.ipynb` en VS Code o Jupyter.
+2. Seleccionar como kernel el entorno `.venv` con las dependencias instaladas.
+3. Elegir **Reiniciar kernel y ejecutar todas las celdas** y esperar a que termine.
+4. Comprobar que no haya errores y guardar el notebook con sus salidas.
+5. Revisar las interpretaciones metodológicas Markdown si se cambia el experimento.
+   Los resúmenes numéricos generados por Python se actualizan al ejecutar sus celdas.
+
+El notebook prepara/coteja los datos, entrena y evalúa los candidatos y guarda
+`output/fase3/mejor_modelo_fase3.joblib`. La exportación a HTML es un paso separado.
+Después de guardar el notebook ejecutado, exportarlo desde el editor o utilizar:
 
 ```powershell
-.\.venv\Scripts\python.exe src/ejecutar_fase3.py
+.\.venv\Scripts\python.exe -m nbconvert --to html notebooks/Fase3_Accidentes_AUDITADA.ipynb --output Fase3_Accidentes_AUDITADA --output-dir output/fase3
 ```
 
-`preparar_datos.py` reconstruye 12.2.1 y verifica sus frecuencias y orden; corrige
-los indicadores de edad desconocida a NA. `regenerar_contexto.py` añade la
-regeneración de los resúmenes territorial, mensual y de rutas desde originales.
+Este comando exporta las salidas guardadas; no vuelve a ejecutar las celdas.
+La ejecución del notebook, los tests, la preparación de informes y el armado del
+ZIP se realizan por separado.
+
+`preparar_datos.py` reúne la reconstrucción de 12.2.1 y la regeneración de resúmenes
+territorial, mensual y de rutas. Verifica las frecuencias y el orden demográficos;
+los indicadores de edad desconocida son NA. `reconstruir()` y
+`regenerar_resumenes()` son funciones separadas del mismo módulo; ejecutar el
+script llama a ambas. El anterior `regenerar_contexto.py` fue fusionado en él.
 El CSV vehicular se conserva únicamente como antecedente de construcción no
 acreditada y no es necesario para entrenar. No se deben ejecutar Fases 1/2 sobre
 el proyecto actualizado: sus versiones históricas pueden reintroducir -1 y 0.
 Se ejecutaron en copias aisladas para comprobar su reproducibilidad histórica.
 
-La auditoría completa está en [AUDITORIA_TECNICA_FASE3.md](AUDITORIA_TECNICA_FASE3.md).
+El diagnóstico técnico previo a esta simplificación está en
+[AUDITORIA_TECNICA_FASE3.md](AUDITORIA_TECNICA_FASE3.md); sus referencias a scripts
+anteriores describen esa revisión histórica. La organización vigente es la de este README.
 Ese archivo es local porque la configuración existente ignora Markdown adicionales;
 no se modificó la configuración de Git. `docs/` está congelado para revisión posterior.
 
-## Gráficos, tablas e informes sin archivos auxiliares
+## Recorrido de estudio, gráficos e informes manuales
+
+El notebook sigue este orden: datos y preparación → modelos → validación cruzada
+→ evaluación → errores → interpretación y sensibilidad → hipótesis H1–H4 →
+modelo guardado e inferencia → conclusiones. El anexo conserva las grillas completas
+y tablas detalladas; train/CV, H4 y los diagnósticos ya no dependen de leer un bloque
+técnico oculto para comprender sus resultados.
+
+`calcular_diagnosticos()` calcula una vez errores, calibración, importancia y
+sensibilidad por perfiles. `mostrar_complementos()` presenta las figuras elegidas
+con esos resultados. Las funciones reciben argumentos explícitos y devuelven sus
+resultados; no leen ni modifican `globals()` del notebook. La sensibilidad del
+ganador se extrae de la evaluación por grupos de todos los candidatos, sin volver
+a entrenarlo sobre los mismos cuatro pliegues.
 
 Los once gráficos de Fase 3 se muestran mediante `plt.show()` y permanecen
 embebidos en el `.ipynb` y el HTML, junto con títulos e interpretaciones. No hay
 llamadas a `savefig()` en el notebook ni en su análisis complementario.
 
 Las tablas y los metadatos de resultados se conservan en las salidas estructuradas
-del notebook. Los informes leen esas salidas y las imágenes embebidas; usan
-`BytesIO` para incrustarlas en Word y PDF, sin PNG permanentes ni un nuevo ajuste.
+del notebook. Los Word se editan manualmente y los PDF se exportan desde el editor
+de documentos. Ejecutar el notebook o exportar su HTML no actualiza los informes.
 
-La generación de informes mediante `src/generar_documentos.py --pdf` queda
-pendiente de la revisión del grupo; no ejecutarla durante esta auditoría.
+Utilizar el notebook ejecutado como evidencia para incorporar tablas, figuras e
+interpretaciones. Revisar los resultados de H4 y las limitaciones de H1/H3 antes de
+actualizar el informe de Fase 3 y el integrador. Los documentos existentes siguen
+pendientes de esa revisión.
 
-Este comando solo produce los cuatro informes. La opción adicional `--guia-local`
-genera material de estudio opcional en `docs/local/`. Los PDF tienen
-15 páginas (Fase 3) y 18 páginas (integrador), incluidos carátula e índice, y las
-pruebas comprueban el límite real de 15/30 páginas y la presencia de imágenes.
-Ambos formatos son autocontenidos: no enlazan imágenes de `output/`.
-
-El PDF se maqueta con ReportLab desde el mismo contenido que el Word; no es una
-conversión del DOCX. La revisión visual de los DOCX sigue pendiente: LibreOffice
-no está disponible y Word no completó la exportación en este equipo. Los PDF se
-renderizan en memoria para revisar su diseño. En otro sistema se usa Helvetica
-si falta Calibri; hay que volver a verificar paginación después de cambiar fuentes
-o editar los informes.
+Antes de entregar, comprobar carátula, legajos, índice, numeración, legibilidad e
+imágenes incrustadas. Verificar los límites de **15 páginas para Fase 3** y
+**30 páginas para el integrador** sobre los PDF finales, después de cada edición.
 
 ## Inferencia independiente
 
@@ -201,6 +223,11 @@ queda disponible para la revisión final del grupo.
 
 ## Pruebas y trazabilidad de la limpieza
 
+La batería contiene 30 pruebas: 20 de Fase 3 y diez de auditoría. La verificación
+del paquete se adaptó a la existencia de los entregables del flujo manual; ya no
+importa el empaquetador eliminado. Una prueba adicional comprueba las interfaces
+explícitas y que la sensibilidad por grupos se calcule una sola vez.
+
 ```powershell
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
@@ -210,8 +237,7 @@ anteriores a la limpieza y las salidas embebidas, observan que las búsquedas us
 solo train, verifican pliegues, recarga del modelo, categorías, CLI, errores,
 solapamiento, reconstrucción desde originales y hashes de Fases 1/2. También
 prohíben guardar figuras durante el análisis de prueba y comprueban Word/PDF.
-Son 29 pruebas: las 19 existentes y diez sobre H4, bootstrap, reconstrucción y
-validación territorial. Las pruebas de Word/PDF verifican estructura y referencias
+Las pruebas de Word/PDF verifican estructura y referencias
 históricas; no acreditan que esos informes incluyan las correcciones nuevas.
 
 Se retiraron las 12 copias de `data/raw` después de comprobar igualdad SHA-256 con
@@ -219,7 +245,7 @@ los originales conservados; el dataset procesado obsoleto no tenía referencias
 en código vigente. Se retiraron scripts de migración/verificación antiguos,
 cuatro modelos candidatos serializados, el modelo vehicular obsoleto, gráficos y
 tablas/logs auxiliares. Sus análisis permanecen en el notebook; las verificaciones
-vigentes están integradas en el runner y las pruebas. Se fusionó la documentación
+de resultados están en los módulos de análisis y las pruebas. Se fusionó la documentación
 en este README y los informes; los dos Markdown de estudio quedan en `docs/local/`.
 
 Los archivos retirados conservan un respaldo local en `tmp/`, ignorado por Git,
@@ -234,15 +260,19 @@ dejar de seguirlo.
 
 ## Paquete y revisión académica
 
-```powershell
-.\.venv\Scripts\python.exe src/empaquetar_entrega.py
-```
+El ZIP se prepara manualmente. Incluir `data/`, `notebooks/`, `src/`, los resultados
+necesarios de `output/`, los informes finales de `docs/`, `tests/`, README y los
+archivos de dependencias. Conservar los antecedentes JSON/CSV de Fase 2 que leen
+los análisis y los cuatro módulos vigentes de `src/`.
 
-El ZIP local de revisión usa una lista explícita de originales, código, notebooks,
-datos necesarios e informes. No recorre carpetas enteras de resultados ni incluye
-el entorno, respaldo, cachés, logs ni Markdown auxiliares. `src/` y `tests/` son
-parte del proyecto y del ZIP; no se ignoran. Su manifiesto SHA-256 está dentro del ZIP,
-sin archivo JSON adicional en el repositorio; se comprueban hashes y CRC.
+Excluir `.venv/`, `.git/`, `__pycache__/`, temporales, logs y copias locales.
+Si los originales superan 25 MB, aplicar la alternativa de fuente y descarga
+indicada por la consigna. Usar la nomenclatura final
+`Fase3_DataScience_Alcaraz-Ferreira-Rios.zip`, previa confirmación de los apellidos.
+
+Abrir el ZIP y comprobar que contiene el notebook ejecutado, su HTML, el modelo,
+`src/inferencia.py` y ambos PDF finales. El manifiesto interno y las comprobaciones
+automáticas de CRC/SHA-256 del antiguo empaquetador ya no se generan.
 `.gitattributes` conserva los bytes de documentos, imágenes, modelos, datos,
 notebooks y resultados al guardarlos en Git y al clonar. Así no se alteran los
 hashes de procedencia e integridad por conversión automática de saltos de línea.
