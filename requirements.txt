@@ -1,5 +1,5 @@
-# Entorno comprobado: Python 3.12.1. Cumple el mínimo 3.10 de la consigna.
-# Las versiones fijadas se verificaron con 3.12, no con 3.10.
+# Auditoría ejecutada con Python 3.13.14 (Windows); cumple el mínimo 3.10.
+# Instalar requirements-lock.txt para fijar también dependencias transitivas.
 pandas==3.0.6
 numpy==2.5.4
 matplotlib==3.11.2

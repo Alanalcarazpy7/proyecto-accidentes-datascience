@@ -19,6 +19,18 @@ MIME_RESULTADOS = 'application/vnd.accidentes.fase3+json'
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def serializar_tabla(tabla):
+    """Conserva el esquema pandas y la precisión de p-valores muy pequeños."""
+    resultado = json.loads(tabla.to_json(orient='table', double_precision=15, force_ascii=False))
+    # to_json redondea ciertos flotantes pequeños por posiciones decimales.
+    # El encoder JSON estándar conserva la representación round-trip del float.
+    for columna in tabla.columns:
+        for fila, valor in zip(resultado['data'], tabla[columna].tolist()):
+            if isinstance(valor, float) and np.isfinite(valor):
+                fila[columna] = valor
+    return resultado
+
+
 def publicar_resultados(ns):
     """Guarda las tablas en las salidas del ipynb; no crea archivos auxiliares."""
     tablas = {'metricas_test': ns['df_resultados_test'], 'validacion': ns['df_reporte_cv'],
@@ -26,7 +38,7 @@ def publicar_resultados(ns):
               'metricas_train': ns['metricas_train'], 'metricas_cv': pd.DataFrame(ns['cv_metricas']),
               'vehicular': ns['tabla_vehicular'], 'sensibilidad_ganador': ns['df_sensibilidad'],
               **ns['tablas_contexto'], **ns['tablas_extra'], **{'grilla_' + k: v[['params', 'mean_train_f1_macro', 'mean_test_f1_macro', 'std_test_f1_macro', 'rank_test_f1_macro']].assign(params=lambda d: d.params.astype(str)) for k, v in ns['grillas_cv'].items()}}
-    evidencia = {'tablas': {k: json.loads(v.to_json(orient='table', double_precision=15, force_ascii=False))
+    evidencia = {'tablas': {k: serializar_tabla(v)
                            for k, v in tablas.items()}, 'seleccion': ns['seleccion_cerrada'],
                  'metadatos': ns['metadatos'], 'versiones': ns['versiones'],
                  'solapamiento': ns['solapamiento_FN'], 'equivalencia': ns['equivalencia_frecuencias'],
@@ -130,14 +142,19 @@ def preparar_contexto(root=ROOT):
         {'grupo': 'Resta histórica (cobertura no demostrada)', 'heridos': th-mh, 'fallecidos': tf-mf}])
     vehicular['fraccion_fallecidos'] = vehicular.fallecidos / (vehicular.heridos + vehicular.fallecidos)
     # Se comprueba la procedencia del CSV anterior, sin acreditar sus etiquetas.
-    anterior = pd.read_csv(root / 'output/victimas_vehiculo_limpio.csv')
-    conteos = pd.crosstab(anterior.tipo_usuario, anterior.es_fallecido).reindex(
-        index=['Motociclista', 'Otro Vehiculo'], columns=[0, 1])
+    path_anterior = root / 'output/victimas_vehiculo_limpio.csv'
+    conteos = pd.DataFrame([[mh, mf], [th-mh, tf-mf]],
+                           index=pd.Index(['Motociclista', 'Otro Vehiculo'], name='tipo_usuario'), columns=[0, 1])
+    if path_anterior.exists():
+        anterior = pd.read_csv(path_anterior)
+        observado = pd.crosstab(anterior.tipo_usuario, anterior.es_fallecido).reindex(
+            index=conteos.index, columns=[0, 1])
+        pd.testing.assert_frame_equal(observado, conteos, check_names=False, check_dtype=False)
+        assert len(anterior) == th + tf
+        assert anterior.es_motociclista.eq(anterior.tipo_usuario.eq('Motociclista').astype(int)).all()
+        assert anterior.es_fallecido.eq(anterior.gravedad.eq('Fallecido').astype(int)).all()
     if conteos.isna().any().any() or conteos.to_numpy().tolist() != [[mh, mf], [th-mh, tf-mf]]:
         raise ValueError('El CSV vehicular no reproduce los conteos y la resta histórica.')
-    assert len(anterior) == th + tf
-    assert anterior.es_motociclista.eq(anterior.tipo_usuario.eq('Motociclista').astype(int)).all()
-    assert anterior.es_fallecido.eq(anterior.gravedad.eq('Fallecido').astype(int)).all()
     conteos.columns = ['heridos', 'fallecidos']
     conteos['total'] = conteos.sum(axis=1)
     conteos['origen'] = ['Conteos de 12.2.10; rol de víctima no acreditado',
@@ -151,7 +168,7 @@ def preparar_contexto(root=ROOT):
                          'heridos': int(demo.loc[mask, 'es_fallecido'].eq(0).sum()),
                          'fallecidos': int(demo.loc[mask, 'es_fallecido'].sum())} for nombre, mask in masks]).set_index('grupo')
     assert edad.victimas.tolist() == [4832, 308, 353]
-    assert demo.loc[ignorada, 'edad_orden'].eq(-1).all() and demo.loc[ignorada, 'es_adulto_mayor'].eq(0).all()
+    assert demo.loc[ignorada, ['edad_orden', 'es_adulto_mayor']].isna().all().all()
     assert demo.loc[~ignorada, 'edad_orden'].ge(0).all()
     hist = json.loads((root / 'output/fase2/resultados_fase2_consolidados.json').read_text(encoding='utf-8'))
     antecedentes = pd.DataFrame(hist['hipotesis']).set_index('hipótesis')
@@ -159,13 +176,13 @@ def preparar_contexto(root=ROOT):
         ['H1', 'Zona', '12.2.6', 'Tasas y contraste histórico territorial', 'Cobertura y agrupación; no vínculo individual'],
         ['H2', 'Sexo', '12.2.1', 'Asociación histórica y predictor demográfico', 'Señal limitada; no causa ni riesgo individual'],
         ['H3', 'Motocicletas', '12.2.5 / 12.2.10', 'Descripción y contraste histórico condicionado', 'Rol de víctima y subconjunto no acreditados'],
-        ['H4', 'Edad', '12.2.1', 'Categoría nominal en modelo; antecedente ordinal', 'Histórico incluyó -1; desconocidos separados']
+        ['H4', 'Edad', '12.2.1', 'Ordinal corregido y contraste de 60 años; predictor nominal', 'Inferencia condicional a frecuencias; 353 desconocidos separados']
     ], columns=['hipotesis', 'factor', 'fuente', 'evidencia', 'limite']).set_index('hipotesis')
     tablas = {'territorio': zonas, 'territorio_h1': h1, 'vehicular_mensual': mensual,
               'vehicular_procedencia': conteos, 'edad_auditoria': edad,
               'antecedentes_historicos': antecedentes, 'hipotesis_integradas': integrado}
     auditoria = {'sha256_originales': hashes, 'periodo': 2021, 'meses_verificados': 12,
-                 'csv_vehicular_reconstruido': True, 'categorias_vehiculares_acreditadas': False,
+                 'csv_vehicular_reconstruido': path_anterior.exists(), 'categorias_vehiculares_acreditadas': False,
                  'universo_vehicular_comparable_acreditado': False,
                  'fuente_pdf': 'https://www.ine.gov.py/Publicaciones/Biblioteca/documento/240/Anuario%20Estadistico%202021.pdf',
                  'paginas_fuente': [307, 311],
@@ -183,8 +200,8 @@ def preparar_contexto(root=ROOT):
         'La decisión corresponde a esa agrupación y familia de cuatro contrastes, no a todas las comparaciones entre zonas. '
         'Mostrar tres tasas revela la heterogeneidad que la dicotomía oculta; no se buscan nuevos p-valores. '
         'La cobertura institucional, el registro, la exposición y la atención pueden influir. Son proporciones entre víctimas, '
-        'no riesgo poblacional de accidente ni un efecto causal de residir en una zona. Tres agregados no justifican un '
-        'predictor individual generalizable; no se expanden ni se enlazan con los perfiles demográficos.')
+        'no riesgo poblacional de accidente ni un efecto causal de residir en una zona. Las 36 celdas mensuales permiten '
+        'evaluación binomial cronológica complementaria; no se expanden ni se enlazan con los perfiles demográficos.')
     auditoria['interpretacion_h3'] = (
         f'12.2.10 documenta {mh+mf} víctimas de siniestros protagonizados por motociclistas: {mh} heridos y {mf} fallecidos '
         f'({100*mf/(mh+mf):.2f} %). 12.2.5 registra {th+tf} víctimas: {th} heridos y {tf} fallecidos '
@@ -198,17 +215,32 @@ def preparar_contexto(root=ROOT):
         f'{antecedentes.loc["H3", "p_valor_ajustado_bonferroni"]:.4g}; se conserva como contraste condicionado. '
         'Ni RR, OR ni significación acreditan mayor riesgo individual de motociclistas si las categorías no están validadas. '
         'No se entrena un segundo predictor ni se unen estas filas expandidas con la base demográfica.')
+    from src.auditoria_fase3 import complementos_auditados
+    tablas.update(complementos_auditados(demo, root))
+    h4 = tablas['h4_ordinal'].loc['Corregido edad conocida']
+    mayor60 = tablas['h4_mayores60'].iloc[0]
     auditoria['interpretacion_edad'] = (
-        'H4: 353 víctimas de edad ignorada (292 heridas y 61 fallecidas) se conservan como categoría nominal independiente. '
-        'edad_orden = -1 significa edad desconocida, no inferior a la de los niños. es_adulto_mayor = 0 en esos registros '
-        'no acredita edad menor de 60 años. Los grupos separados son 4.832 menores de 60 con edad conocida, 308 de 60 años '
-        'o más y 353 desconocidos. El modelo usa únicamente sexo y grupo_edad. El contraste ordinal histórico de Fase 2 '
-        'eliminó nulos pero conservó -1; sus resultados no validan una comparación entre mayores y menores de 60. '
-        'No se recalcula aquí: un nuevo análisis ordinal debe excluir los desconocidos del orden y reportarlos aparte.')
+        f"H4 corregida: solo 5.140 víctimas con edad conocida; 353 desconocidos se mantienen en el dataset nacional. "
+        f"Mann-Whitney unilateral: U={h4.U:.1f}, p={h4.p:.6g}, r de Rosenthal={h4.r_rosenthal:.4f}; "
+        f"r biserial={h4.r_biserial:.4f}, IC 95% bootstrap={h4.ic95_r_biserial}. "
+        f"El antecedente conservó -1; la corrección mantiene el rechazo con Bonferroni de cuatro pruebas. "
+        f"Comparación separada de 60 o más frente a menores: RR={mayor60.RR:.4f}, "
+        f"IC 95%={mayor60.ic95_RR}, p Fisher unilateral={mayor60.p:.6g}. "
+        "Los dos indicadores de edad desconocida son NA, no cero ni -1. "
+        "Los intervalos asumen muestreo independiente condicionado a las frecuencias; "
+        "la fuente no permite verificar conglomeración por siniestro. Edad ordinal no es edad en años; "
+        "Mann-Whitney contrasta ordenamiento de distribuciones y no solo medianas.")
+    auditoria['modelo_territorial'] = (
+        '36 celdas mes por zona; GLM binomial por zona con conteos [fallecidos, heridos]. '
+        'Base: tasa global estimada solo con meses anteriores. Cortes 1-6/7-8, 1-8/9-10 y 1-10/11-12. '
+        'Sin selección por resultados ni predictor de mes; evaluación interna de 2021, sin validación externa. '
+        'Los denominadores de validación se usan para puntuar tasas, no para ajustar. '
+        'Dependencia por siniestro, cobertura institucional y variación anual no identificables. '
+        'No supera consistentemente a la base en log-loss/Brier; se conserva como experimento, sin recomendar su uso predictivo.')
     auditoria['conclusion_integral'] = (
         'H1 aporta diferencias territoriales descriptivas y un contraste histórico de efecto pequeño, condicionado por '
         'agrupación y cobertura. H2 aporta una asociación por sexo y H4 patrones por categorías de edad, incorporadas como '
-        'los únicos predictores del experimento demográfico; el antecedente ordinal de H4 conserva la limitación de -1. '
+        'los únicos predictores del experimento demográfico; H4 se recalculó excluyendo desconocidos del contraste. '
         'H3 aporta conteos de siniestros con motociclistas y un contraste anterior condicionado a categorías no acreditadas. '
         'Se responde parcialmente la pregunta original: existe señal demográfica retrospectiva limitada y evidencia '
         'territorial separada; no se acredita un riesgo individual por vehículo ni el efecto conjunto de los cuatro factores. '

@@ -50,7 +50,7 @@ El modelo omite **{s['mujeres']} de {int(sexos.loc['Mujer', 'fallecidos'])} fata
 
 Las mismas combinaciones de sexo y edad reciben la misma predicción: el árbol clasifica herido a todos los perfiles femeninos, jóvenes y de edad ignorada. En los perfiles masculinos de 30 años o más predice fallecido, generando falsas alarmas entre quienes están etiquetados herido; no puede distinguir circunstancias dentro del perfil. Las tasas globales de error y las tasas FN tienen denominadores diferentes. Una tasa global baja puede coexistir con omisión total de fallecidos.
 
-Las filas reconstruyen frecuencias, no historias clínicas identificables. No se conocen velocidad, protección, lesión inicial, tipo de choque ni atención para explicar mecanismos individuales. La ponderación global de clases no garantiza recall equilibrado entre subgrupos. Este patrón impide recomendar aplicaciones individuales y no permite inferir causalidad. La interpretación acotada fue validada por el grupo.
+Las filas reconstruyen frecuencias, no historias clínicas identificables. No se conocen velocidad, protección, lesión inicial, tipo de choque ni atención para explicar mecanismos individuales. La ponderación global de clases no garantiza recall equilibrado entre subgrupos. Este patrón impide recomendar aplicaciones individuales y no permite inferir causalidad. La interpretación acotada queda pendiente de revisión por el grupo.
 
 Esta celda se actualiza automáticamente desde las salidas verificadas al ejecutar `src/ejecutar_fase3.py`; no contiene métricas elegidas para mejorar el resultado.
 '''

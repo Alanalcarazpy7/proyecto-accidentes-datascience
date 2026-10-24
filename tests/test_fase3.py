@@ -107,8 +107,8 @@ class Fase3Test(unittest.TestCase):
         desconocida = self.df.grupo_edad.eq('Ignorado')
         self.assertEqual(int(desconocida.sum()),353)
         self.assertEqual(int(self.df.loc[desconocida,'es_fallecido'].sum()),61)
-        self.assertTrue(self.df.loc[desconocida,'edad_orden'].eq(-1).all())
-        self.assertTrue(self.df.loc[desconocida,'es_adulto_mayor'].eq(0).all())
+        self.assertTrue(self.df.loc[desconocida,'edad_orden'].isna().all())
+        self.assertTrue(self.df.loc[desconocida,'es_adulto_mayor'].isna().all())
         grupos = self.ns['tablas_contexto']['edad_auditoria']
         self.assertEqual(grupos.victimas.tolist(),[4832,308,353])
         self.assertEqual(int(grupos.victimas.sum()),5493)

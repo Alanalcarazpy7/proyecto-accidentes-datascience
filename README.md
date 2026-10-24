@@ -55,21 +55,21 @@ de Fase 3 utiliza la estructura organizada y no necesita ejecutar Fases 1/2.
 
 ## Instalación y ejecución
 
-Entorno comprobado: Python 3.12.1 en Windows. Cumple el mínimo 3.10 de la consigna;
-las versiones fijadas se verificaron con 3.12, no se promete compatibilidad con
-Python 3.10. `requirements-lock.txt` registra también dependencias transitivas.
+Auditoría comprobada con Python 3.13.14 en Windows, en un entorno virtual limpio.
+Cumple el mínimo 3.10 de la consigna; no se verificó este conjunto de versiones
+con Python 3.10. `requirements-lock.txt` fija también dependencias transitivas.
 
 Desde la raíz del repositorio, en PowerShell:
 
 ```powershell
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe src/preparar_datos.py
-.\.venv\Scripts\python.exe src/ejecutar_fase3.py --documentos --verificar
+.\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
+.\.venv\Scripts\python.exe src/regenerar_contexto.py
+.\.venv\Scripts\python.exe src/ejecutar_fase3.py --verificar
 ```
 
 En Linux/macOS sustituir el ejecutable por `.venv/bin/python`. El último comando
-ejecuta todas las celdas en un kernel nuevo, exporta HTML, regenera informes y
+ejecuta todas las celdas en un kernel nuevo, exporta HTML y
 ejecuta las pruebas. Usa un directorio temporal del sistema que se limpia al cerrar;
 no escribe logs, capturas, tablas intermedias ni PNG en el proyecto.
 
@@ -80,10 +80,17 @@ ejecutar únicamente Fase 3 y exportar HTML:
 .\.venv\Scripts\python.exe src/ejecutar_fase3.py
 ```
 
-`preparar_datos.py` reconstruye 12.2.1: si falta el CSV demográfico lo crea desde
-la tabla original; si existe, compara todas sus filas y columnas. Los CSV/JSON
-históricos de contexto ya se incluyen. No es necesario ejecutar o modificar las
-Fases 1/2 para reproducir Fase 3.
+`preparar_datos.py` reconstruye 12.2.1 y verifica sus frecuencias y orden; corrige
+los indicadores de edad desconocida a NA. `regenerar_contexto.py` añade la
+regeneración de los resúmenes territorial, mensual y de rutas desde originales.
+El CSV vehicular se conserva únicamente como antecedente de construcción no
+acreditada y no es necesario para entrenar. No se deben ejecutar Fases 1/2 sobre
+el proyecto actualizado: sus versiones históricas pueden reintroducir -1 y 0.
+Se ejecutaron en copias aisladas para comprobar su reproducibilidad histórica.
+
+La auditoría completa está en [AUDITORIA_TECNICA_FASE3.md](AUDITORIA_TECNICA_FASE3.md).
+Ese archivo es local porque la configuración existente ignora Markdown adicionales;
+no se modificó la configuración de Git. `docs/` está congelado para revisión posterior.
 
 ## Gráficos, tablas e informes sin archivos auxiliares
 
@@ -95,9 +102,8 @@ Las tablas y los metadatos de resultados se conservan en las salidas estructurad
 del notebook. Los informes leen esas salidas y las imágenes embebidas; usan
 `BytesIO` para incrustarlas en Word y PDF, sin PNG permanentes ni un nuevo ajuste.
 
-```powershell
-.\.venv\Scripts\python.exe src/generar_documentos.py --pdf
-```
+La generación de informes mediante `src/generar_documentos.py --pdf` queda
+pendiente de la revisión del grupo; no ejecutarla durante esta auditoría.
 
 Este comando solo produce los cuatro informes. La opción adicional `--guia-local`
 genera material de estudio opcional en `docs/local/`. Los PDF tienen
@@ -177,15 +183,16 @@ Las cuatro hipótesis se conectan explícitamente en el notebook y los informes:
 
 | Hipótesis | Evidencia y alcance en Fase 3 |
 |---|---|
-| H1 — Zona | Tres agregados sin expandir. Asunción: 26/167 (15,57 %); Central: 82/476 (17,23 %); Interior: 187/848 (22,05 %). El contraste histórico Interior/Metropolitana tiene p Bonferroni 0,046565 y V de Cramér 0,0653: efecto pequeño y resultado condicionado a esa agrupación. |
+| H1 — Zona | Tres tasas anuales y 36 celdas mes/zona sin expandir. Se evaluó GLM binomial por zona con tres bloques cronológicos: no supera consistentemente la tasa global de entrenamiento en log-loss/Brier. Se conserva como experimento, sin recomendar su uso predictivo. El contraste histórico Interior/Metropolitana tiene p Bonferroni 0,046565 y V de Cramér 0,0653, condicionado a esa agrupación. |
 | H2 — Sexo | Asociación histórica y uno de los dos predictores demográficos; no atribución causal ni riesgo individual. |
 | H3 — Motocicletas | 12.2.10 documenta 539 víctimas de siniestros con motociclistas, 384 heridas y 155 fallecidas. Se cotejan los doce meses y la construcción del CSV anterior; sus etiquetas y la relación de subconjunto no quedan acreditadas. RR/OR históricos se conservan condicionados, sin segundo predictor. |
-| H4 — Edad | Categoría nominal en el modelo. Se separan 4.832 menores de 60 con edad conocida, 308 de 60 o más y 353 desconocidos. El contraste ordinal histórico de Fase 2 conservó -1 y no valida una comparación de mayores/menores de 60. |
+| H4 — Edad | Mann-Whitney corregida sobre 5.140 edades conocidas: U=2.299.236; p≈1,657×10⁻²⁰; r biserial=0,1854, IC bootstrap [0,1455; 0,2266]. Comparación separada de 60 años o más: RR=2,0455, IC 95 % [1,7319; 2,4158]. Se aplicó Bonferroni conservador de cuatro pruebas; H3 no se valida por su p histórico. |
 
-`edad_orden = -1` significa edad desconocida, no inferior a la de los niños.
-`es_adulto_mayor = 0` en `Ignorado` no acredita edad menor de 60. Ninguna de esas
-dos columnas derivadas entra al predictor. Los análisis adicionales separan a los
-desconocidos; las nuevas pruebas comprueban categorías y denominadores.
+En el dataset corregido, `edad_orden` y `es_adulto_mayor` son NA para los 353
+registros `Ignorado`. Se mantienen las 5.493 filas; solo los contrastes etarios
+excluyen desconocidos. Ninguna de esas dos columnas derivadas entra al predictor.
+Los IC y valores p suponen muestreo independiente condicionado a los conteos;
+no se dispone de identificadores de siniestro para comprobar esa independencia.
 
 La pregunta original se responde parcialmente: hay señal demográfica retrospectiva
 limitada y evidencia territorial separada. No se acredita el efecto conjunto de
@@ -203,8 +210,9 @@ anteriores a la limpieza y las salidas embebidas, observan que las búsquedas us
 solo train, verifican pliegues, recarga del modelo, categorías, CLI, errores,
 solapamiento, reconstrucción desde originales y hashes de Fases 1/2. También
 prohíben guardar figuras durante el análisis de prueba y comprueban Word/PDF.
-Son 19 pruebas; incluyen el cotejo de H1/H3 con originales, los desconocidos y la
-coincidencia de las cuatro hipótesis y métricas en notebook, Word y PDF.
+Son 29 pruebas: las 19 existentes y diez sobre H4, bootstrap, reconstrucción y
+validación territorial. Las pruebas de Word/PDF verifican estructura y referencias
+históricas; no acreditan que esos informes incluyan las correcciones nuevas.
 
 Se retiraron las 12 copias de `data/raw` después de comprobar igualdad SHA-256 con
 los originales conservados; el dataset procesado obsoleto no tenía referencias
@@ -239,9 +247,10 @@ sin archivo JSON adicional en el repositorio; se comprueban hashes y CRC.
 notebooks y resultados al guardarlos en Git y al clonar. Así no se alteran los
 hashes de procedencia e integridad por conversión automática de saltos de línea.
 
-No hubo devolución docente de Fase 2. El grupo validó el alcance y la interpretación acotada de los
-resultados. Faltan legajos, confirmación administrativa de apellidos y fecha del
-campus, los Word históricos anunciados y la revisión personal del contenido.
+No se dispone de devolución docente de Fase 2. La interpretación actual y las
+decisiones quedan pendientes de revisión y defensa por el grupo. Faltan legajos,
+confirmación administrativa y revisión de los informes; los entregables originales
+de Fases 1/2 se localizaron en Descargas y se consultaron sin modificarlos.
 
 Fuente: [Anuario oficial del INE](https://www.datos.gov.py/dataset/anuario-2021-estadisticas-policiales-y-de-accidentes-de-transito).
 12.2.1 procede de Policía Nacional; 12.2.5 y 12.2.10 citan a Patrulla Caminera.
