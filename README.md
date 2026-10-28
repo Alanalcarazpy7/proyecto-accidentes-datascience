@@ -10,7 +10,7 @@ explicaciones, tablas, gráficos y conclusiones dentro del notebook ejecutado.
 ## Organización
 
 ```text
-data/              11 tablas originales únicas del anuario
+data/              11 tablas originales únicas del anuario y referencia agregada DINATRAN para H3
 notebooks/         Fases 1, 2 y 3; salidas y gráficos embebidos
 src/
   preparar_datos.py       reconstrucción demográfica y resúmenes de contexto
@@ -97,8 +97,9 @@ territorial, mensual y de rutas. Verifica las frecuencias y el orden demográfic
 los indicadores de edad desconocida son NA. `reconstruir()` y
 `regenerar_resumenes()` son funciones separadas del mismo módulo; ejecutar el
 script llama a ambas. El anterior `regenerar_contexto.py` fue fusionado en él.
-El CSV vehicular se conserva únicamente como antecedente de construcción no
-acreditada y no es necesario para entrenar. No se deben ejecutar Fases 1/2 sobre
+El CSV vehicular conserva las etiquetas históricas como antecedente y no es
+necesario para entrenar. La revisión DINATRAN precisa los grupos de H3 a partir
+de conteos agregados, sin reescribir ese CSV. No se deben ejecutar Fases 1/2 sobre
 el proyecto actualizado: sus versiones históricas pueden reintroducir -1 y 0.
 Se ejecutaron en copias aisladas para comprobar su reproducibilidad histórica.
 
@@ -106,7 +107,9 @@ El diagnóstico técnico previo a esta simplificación está en
 [AUDITORIA_TECNICA_FASE3.md](AUDITORIA_TECNICA_FASE3.md); sus referencias a scripts
 anteriores describen esa revisión histórica. La organización vigente es la de este README.
 Ese archivo es local porque la configuración existente ignora Markdown adicionales;
-no se modificó la configuración de Git. `docs/` está congelado para revisión posterior.
+no se modificó la configuración de Git. `docs/fase3/` incorpora la revisión H3;
+el integrador conserva su versión anterior y requiere consolidar esta revisión
+antes de una nueva entrega conjunta. Las Fases 1 y 2 no se reescriben.
 
 ## Recorrido de estudio, gráficos e informes manuales
 
@@ -132,9 +135,9 @@ del notebook. Los Word se editan manualmente y los PDF se exportan desde el edit
 de documentos. Ejecutar el notebook o exportar su HTML no actualiza los informes.
 
 Utilizar el notebook ejecutado como evidencia para incorporar tablas, figuras e
-interpretaciones. Revisar los resultados de H4 y las limitaciones de H1/H3 antes de
-actualizar el informe de Fase 3 y el integrador. Los documentos existentes siguen
-pendientes de esa revisión.
+interpretaciones. El informe de Fase 3 incorpora H4 corregida y la revisión H3 de
+DINATRAN/INE. El integrador histórico debe incorporar la misma precisión de H3
+cuando se prepare su próxima edición.
 
 Antes de entregar, comprobar carátula, legajos, índice, numeración, legibilidad e
 imágenes incrustadas. Verificar los límites de **15 páginas para Fase 3** y
@@ -197,8 +200,9 @@ la falta de fechas individuales y la búsqueda dentro de CV impiden presentar su
 métricas como garantía externa. La pregunta original se responde parcialmente:
 edad/sexo ofrecen señal retrospectiva limitada, mientras geografía y siniestros
 con motociclistas provienen de universos separados. No se unen artificialmente.
-La tabla 12.2.10 no acredita el vehículo de cada víctima; el complemento vehicular
-se mantiene descriptivo. Ningún resultado autoriza uso clínico, triaje, seguros,
+DINATRAN identifica los roles de motocicleta/motocarro y respalda una asociación
+vehicular agregada en el registro de Caminera; eso no crea vínculos con la tabla
+nacional ni incorpora vehículo al Modelo A. Ningún resultado autoriza uso clínico, triaje, seguros,
 vigilancia por perfil ni atribución causal.
 
 Las cuatro hipótesis se conectan explícitamente en el notebook y los informes:
@@ -207,8 +211,21 @@ Las cuatro hipótesis se conectan explícitamente en el notebook y los informes:
 |---|---|
 | H1 — Zona | Tres tasas anuales y 36 celdas mes/zona sin expandir. Se evaluó GLM binomial por zona con tres bloques cronológicos: no supera consistentemente la tasa global de entrenamiento en log-loss/Brier. Se conserva como experimento, sin recomendar su uso predictivo. El contraste histórico Interior/Metropolitana tiene p Bonferroni 0,046565 y V de Cramér 0,0653, condicionado a esa agrupación. |
 | H2 — Sexo | Asociación histórica y uno de los dos predictores demográficos; no atribución causal ni riesgo individual. |
-| H3 — Motocicletas | 12.2.10 documenta 539 víctimas de siniestros con motociclistas, 384 heridas y 155 fallecidas. Se cotejan los doce meses y la construcción del CSV anterior; sus etiquetas y la relación de subconjunto no quedan acreditadas. RR/OR históricos se conservan condicionados, sin segundo predictor. |
-| H4 — Edad | Mann-Whitney corregida sobre 5.140 edades conocidas: U=2.299.236; p≈1,657×10⁻²⁰; r biserial=0,1854, IC bootstrap [0,1455; 0,2266]. Comparación separada de 60 años o más: RR=2,0455, IC 95 % [1,7319; 2,4158]. Se aplicó Bonferroni conservador de cuatro pruebas; H3 no se valida por su p histórico. |
+| H3 — Motocicletas | DINATRAN pp.130/132/133/135/136 documenta 534 conductores/acompañantes de motocicleta + 5 pasajeros de motocarro dentro de 1.324 víctimas. Coinciden los doce meses del INE. 539 frente a 785 demás usuarios: RR=1,9802; OR=2,3758. Sin motocarro: 534 frente a los mismos 785 (N=1.319), RR=1,9472; OR=2,3206. Ambos Fisher mantienen evidencia con Bonferroni de seis. El resto incluye peatones y ciclistas; asociación registrada, sin causalidad ni predictor vehicular nacional. |
+| H4 — Edad | Mann-Whitney corregida sobre 5.140 edades conocidas: U=2.299.236; p≈1,657×10⁻²⁰; r biserial=0,1854, IC bootstrap [0,1455; 0,2266]. Comparación separada de 60 años o más: RR=2,0455, IC 95 % [1,7319; 2,4158]. Los ajustes previos de cuatro pruebas se conservan para cotejo; la familia ampliada de seis mantiene H4. |
+
+La [revisión verificable de H3](docs/fase3/Revision_H3_fuentes.html) reúne páginas,
+URL, hashes, definiciones, conteos y fórmulas. La transcripción agregada está en
+`data/referencia_h3_dinatran_2021.json`; no contiene personas reconstruidas.
+`auditar_h3()` coteja mes y rol frente al INE y calcula los contrastes directamente
+con tablas 2×2. El subgrupo está respaldado documentalmente por estructura,
+fuente y compatibilidad de las tablas; no existe enlace de IDs individuales.
+
+Se añade un Bonferroni conjunto de seis preguntas: H1, H2, H3 histórica, H4
+ordinal corregida, ≥60 y sensibilidad H3 sin motocarro. La tabla
+`multiplicidad_actual` muestra todos los p sin seleccionar resultados favorables.
+H1 queda en p=0,069847 para esta familia ampliada; su p histórico con cuatro
+(0,046565) sigue documentado como antecedente, no se sustituye silenciosamente.
 
 En el dataset corregido, `edad_orden` y `es_adulto_mayor` son NA para los 353
 registros `Ignorado`. Se mantienen las 5.493 filas; solo los contrastes etarios
@@ -217,13 +234,13 @@ Los IC y valores p suponen muestreo independiente condicionado a los conteos;
 no se dispone de identificadores de siniestro para comprobar esa independencia.
 
 La pregunta original se responde parcialmente: hay señal demográfica retrospectiva
-limitada y evidencia territorial separada. No se acredita el efecto conjunto de
-los cuatro factores ni un riesgo individual por vehículo. La integración ampliada
+limitada y asociaciones territorial y vehicular separadas. No se acredita el efecto conjunto de
+los cuatro factores ni un riesgo poblacional por exposición. La integración ampliada
 queda disponible para la revisión final del grupo.
 
 ## Pruebas y trazabilidad de la limpieza
 
-La batería contiene 30 pruebas: 20 de Fase 3 y diez de auditoría. La verificación
+La batería contiene 37 pruebas: 20 de Fase 3, diez de auditoría y siete de H3. La verificación
 del paquete se adaptó a la existencia de los entregables del flujo manual; ya no
 importa el empaquetador eliminado. Una prueba adicional comprueba las interfaces
 explícitas y que la sensibilidad por grupos se calcule una sola vez.

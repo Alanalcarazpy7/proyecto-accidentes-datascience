@@ -110,4 +110,4 @@ def regenerar_resumenes(root=ROOT):
 if __name__ == '__main__':
     print(reconstruir()[1])
     print({nombre: len(tabla) for nombre, tabla in regenerar_resumenes().items()})
-    print('El CSV vehicular se conserva solo como antecedente; no se reconstruyen categorías no acreditadas.')
+    print('El CSV vehicular conserva sus etiquetas históricas; H3 se coteja con DINATRAN mediante conteos agregados, sin crear registros individuales.')

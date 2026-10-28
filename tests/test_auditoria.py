@@ -133,7 +133,8 @@ class AuditoriaTest(unittest.TestCase):
                 shutil.copy2(ROOT/'output'/nombre,root/'output'/nombre)
             tablas,_,a=preparar_contexto(root)
             self.assertFalse(a['csv_vehicular_reconstruido'])
-            self.assertFalse(a['categorias_vehiculares_acreditadas'])
+            self.assertTrue(a['categorias_vehiculares_acreditadas'])
+            self.assertTrue(a['universo_vehicular_comparable_acreditado'])
             self.assertEqual(len(tablas['vehicular_mensual']),12)
             self.assertFalse((root/'output/victimas_vehiculo_limpio.csv').exists())
 

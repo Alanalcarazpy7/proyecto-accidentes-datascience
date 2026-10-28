@@ -130,12 +130,15 @@ def preparar_contexto(root=ROOT, analisis=None):
     th, tf = numero(anual_t['HERIDOS - TOTAL']), numero(anual_t['MUERTOS - TOTAL'])
     mh, mf = numero(anual_m['HERIDOS']), numero(anual_m['MUERTOS'])
     assert mensual[['heridos_12_2_5', 'fallecidos_12_2_5', 'heridos_12_2_10', 'fallecidos_12_2_10']].sum().tolist() == [th, tf, mh, mf]
+    from src.auditoria_fase3 import auditar_h3
+    tablas_h3, evidencia_h3 = auditar_h3(mensual, root)
     vehicular = pd.DataFrame([
-        {'grupo': '12.2.10: siniestros con motociclistas', 'heridos': mh, 'fallecidos': mf},
+        {'grupo': 'Motocicleta y motocarro (539)', 'heridos': mh, 'fallecidos': mf},
         {'grupo': '12.2.5: total de su cobertura', 'heridos': th, 'fallecidos': tf},
-        {'grupo': 'Resta histórica (cobertura no demostrada)', 'heridos': th-mh, 'fallecidos': tf-mf}])
+        {'grupo': 'Demás usuarios registrados (785)', 'heridos': th-mh, 'fallecidos': tf-mf}])
     vehicular['fraccion_fallecidos'] = vehicular.fallecidos / (vehicular.heridos + vehicular.fallecidos)
-    # Se comprueba la procedencia del CSV anterior, sin acreditar sus etiquetas.
+    # El CSV conserva las etiquetas históricas; los nombres científicos se
+    # precisan en las tablas agregadas, sin reescribir Fases 1/2 o sus datos.
     path_anterior = root / 'output/victimas_vehiculo_limpio.csv'
     conteos = pd.DataFrame([[mh, mf], [th-mh, tf-mf]],
                            index=pd.Index(['Motociclista', 'Otro Vehiculo'], name='tipo_usuario'), columns=[0, 1])
@@ -151,8 +154,9 @@ def preparar_contexto(root=ROOT, analisis=None):
         raise ValueError('El CSV vehicular no reproduce los conteos y la resta histórica.')
     conteos.columns = ['heridos', 'fallecidos']
     conteos['total'] = conteos.sum(axis=1)
-    conteos['origen'] = ['Conteos de 12.2.10; rol de víctima no acreditado',
-                         'Resta 12.2.5 menos 12.2.10; categoría no acreditada']
+    conteos.index = pd.Index(['Motocicleta y motocarro','Demás usuarios registrados'],name='grupo')
+    conteos['origen'] = ['INE 12.2.10 y DINATRAN pp.130/132/133/135: 534 moto + 5 motocarro',
+                         'INE 12.2.5 menos subgrupo documentado; incluye peatones y ciclistas']
 
     demo = pd.read_csv(root / 'output/victimas_individual_limpio.csv')
     ignorada = demo.grupo_edad.eq('Ignorado')
@@ -169,19 +173,24 @@ def preparar_contexto(root=ROOT, analisis=None):
     integrado = pd.DataFrame([
         ['H1', 'Zona', '12.2.6', 'Tasas y contraste histórico territorial', 'Cobertura y agrupación; no vínculo individual'],
         ['H2', 'Sexo', '12.2.1', 'Asociación histórica y predictor demográfico', 'Señal limitada; no causa ni riesgo individual'],
-        ['H3', 'Motocicletas', '12.2.5 / 12.2.10', 'Descripción y contraste histórico condicionado', 'Rol de víctima y subconjunto no acreditados'],
+        ['H3', 'Motocicletas', 'INE 12.2.5/12.2.10 y DINATRAN pp.130–136',
+         'Asociación entre víctimas registradas; 539/785 y sensibilidad 534/785',
+         '539 incluye 5 de motocarro; resto incluye peatones/ciclistas; sin enlace demográfico ni causalidad'],
         ['H4', 'Edad', '12.2.1', 'Ordinal corregido y contraste de 60 años; predictor nominal', 'Inferencia condicional a frecuencias; 353 desconocidos separados']
     ], columns=['hipotesis', 'factor', 'fuente', 'evidencia', 'limite']).set_index('hipotesis')
     tablas = {'territorio': zonas, 'territorio_h1': h1, 'vehicular_mensual': mensual,
               'vehicular_procedencia': conteos, 'edad_auditoria': edad,
-              'antecedentes_historicos': antecedentes, 'hipotesis_integradas': integrado}
+              'antecedentes_historicos': antecedentes, 'hipotesis_integradas': integrado, **tablas_h3}
     auditoria = {'sha256_originales': hashes, 'periodo': 2021, 'meses_verificados': 12,
-                 'csv_vehicular_reconstruido': path_anterior.exists(), 'categorias_vehiculares_acreditadas': False,
-                 'universo_vehicular_comparable_acreditado': False,
+                 'csv_vehicular_reconstruido': path_anterior.exists(), 'categorias_vehiculares_acreditadas': True,
+                 'universo_vehicular_comparable_acreditado': True,
+                 'tipo_acreditacion_h3': 'Documental agregada; no enlace de identidades individuales',
+                 'fuentes_h3': {k:v for k,v in evidencia_h3.items() if k != 'tablas'},
+                 'sha256_referencia_h3': hashlib.sha256((root/'data/referencia_h3_dinatran_2021.json').read_bytes()).hexdigest(),
                  'fuente_pdf': 'https://www.ine.gov.py/Publicaciones/Biblioteca/documento/240/Anuario%20Estadistico%202021.pdf',
                  'paginas_fuente': [307, 311],
                  'fuente_territorial_pdf': 'Patrulla Caminera, MOPC y Policía Nacional (12.2.6)',
-                 'nota': 'Las igualdades aritméticas no validan una clasificación por vehículo de la víctima.'}
+                 'nota': 'DINATRAN documenta los roles y permite precisar el grupo histórico; 539 no equivale a 539 usuarios de motocicleta pura.'}
     diferencia = h1.loc['Interior', 'tasa_fallecidos_pct'] - h1.loc['Metropolitana', 'tasa_fallecidos_pct']
     auditoria['interpretacion_h1'] = (
         f'Las fracciones de fallecidos entre víctimas registradas son Asunción {zonas.loc["Asunción", "tasa_fallecidos_pct"]:.2f} %, '
@@ -196,19 +205,31 @@ def preparar_contexto(root=ROOT, analisis=None):
         'La cobertura institucional, el registro, la exposición y la atención pueden influir. Son proporciones entre víctimas, '
         'no riesgo poblacional de accidente ni un efecto causal de residir en una zona. Las 36 celdas mensuales permiten '
         'evaluación binomial cronológica complementaria; no se expanden ni se enlazan con los perfiles demográficos.')
+    principal, precisa = tablas_h3['h3_contrastes'].iloc[0], tablas_h3['h3_contrastes'].iloc[1]
     auditoria['interpretacion_h3'] = (
-        f'12.2.10 documenta {mh+mf} víctimas de siniestros protagonizados por motociclistas: {mh} heridos y {mf} fallecidos '
-        f'({100*mf/(mh+mf):.2f} %). 12.2.5 registra {th+tf} víctimas: {th} heridos y {tf} fallecidos '
-        f'({100*tf/(th+tf):.2f} %) en Central e Interior. Se selecciona 2021 en ambas y se verifican los doce meses. '
-        f'La resta histórica da {th-mh} heridos y {tf-mf} fallecidos; es la procedencia numérica del CSV vehicular, '
-        'no una validación de sus etiquetas. Aunque ambos cuadros citan a Patrulla Caminera y las restas mensuales son '
-        'no negativas, no se acredita que cada víctima viajara en moto ni que sean subconjuntos de cobertura idéntica. '
-        'Las barras representan fuentes posiblemente superpuestas y no deben sumarse. La serie mensual describe esa '
-        'cobertura, sin demostrar estacionalidad ni causas. H3 histórico informó '
-        f'{antecedentes.loc["H3", "tamaño_del_efecto"]} y p Bonferroni '
-        f'{antecedentes.loc["H3", "p_valor_ajustado_bonferroni"]:.4g}; se conserva como contraste condicionado. '
-        'Ni RR, OR ni significación acreditan mayor riesgo individual de motociclistas si las categorías no están validadas. '
-        'No se entrena un segundo predictor ni se unen estas filas expandidas con la base demográfica.')
+        'La revisión de DINATRAN 2021 pp.130/136, con roles identificados en pp.132/133/135, '
+        'fortalece y precisa H3 de Fase 2. El grupo de 539 comprende 332 conductores heridos y 129 fallecidos, '
+        '51 acompañantes heridos y 22 fallecidos de motocicleta, más 1 pasajero herido y 4 fallecidos de motocarro. '
+        'El total general tiene 1.055 heridos y 269 fallecidos (1.324). Coinciden con INE 12.2.5/12.2.10 '
+        'en los doce meses; cada rol del subgrupo es compatible con el general por mes y desenlace. '
+        'Los títulos, roles y fuente institucional común respaldan la inclusión documental agregada, '
+        'no una identificación individual por registro. INE sitúa la cobertura general en Central e Interior; '
+        'no es el universo nacional de 5.493 víctimas. La resta da 671 heridos y 114 fallecidos: '
+        'demás usuarios registrados, incluidos peatones y ciclistas, no solo ocupantes de otros vehículos. '
+        f'La comparación histórica 155/539 frente a 114/785 arroja RR={principal.RR:.4f}, '
+        f'IC 95%={principal.ic95_RR}; OR={principal.OR:.4f}, IC 95%={principal.ic95_OR}. '
+        f'El Z unilateral histórico tiene p={principal.p_Z_unilateral:.6g}; '
+        f'Fisher unilateral da p={principal.p_Fisher_unilateral:.6g} '
+        f'(Bonferroni 6={principal.p_bonferroni_6:.6g}). '
+        'La comparación estricta excluye los 5 de motocarro, sin trasladarlos al resto: '
+        f'151/534 frente a 114/785 (N=1.319), RR={precisa.RR:.4f}, IC 95%={precisa.ic95_RR}; '
+        f'OR={precisa.OR:.4f}, IC 95%={precisa.ic95_OR}; '
+        f'p Fisher={precisa.p_Fisher_unilateral:.6g} (Bonferroni 6={precisa.p_bonferroni_6:.6g}). '
+        'Las dos comparaciones sostienen mayor fracción de fallecidos dentro de la cobertura registrada, '
+        'bajo independencia binomial no verificable por siniestro. No estiman riesgo poblacional, '
+        'ocurrencia de accidentes ni un efecto causal ajustado. El motocarro tiene solo 5 víctimas y '
+        'no se infiere un efecto separado. No se incorpora vehículo al Modelo A: faltan vínculos '
+        'con sexo/edad de la tabla nacional. No se crea Modelo B ni se expanden estos conteos.')
     from src.auditoria_fase3 import complementos_auditados
     tablas.update(complementos_auditados(demo, root) if analisis is None else analisis)
     h4 = tablas['h4_ordinal'].loc['Corregido edad conocida']
@@ -217,13 +238,29 @@ def preparar_contexto(root=ROOT, analisis=None):
         f"H4 corregida: solo 5.140 víctimas con edad conocida; 353 desconocidos se mantienen en el dataset nacional. "
         f"Mann-Whitney unilateral: U={h4.U:.1f}, p={h4.p:.6g}, r de Rosenthal={h4.r_rosenthal:.4f}; "
         f"r biserial={h4.r_biserial:.4f}, IC 95% bootstrap={h4.ic95_r_biserial}. "
-        f"El antecedente conservó -1; la corrección mantiene el rechazo con Bonferroni de cuatro pruebas. "
+        f"El antecedente conservó -1; se mantiene el ajuste previo de cuatro pruebas para cotejo y se añade el conjunto de seis. "
         f"Comparación separada de 60 o más frente a menores: RR={mayor60.RR:.4f}, "
         f"IC 95%={mayor60.ic95_RR}, p Fisher unilateral={mayor60.p:.6g}. "
         "Los dos indicadores de edad desconocida son NA, no cero ni -1. "
         "Los intervalos asumen muestreo independiente condicionado a las frecuencias; "
         "la fuente no permite verificar conglomeración por siniestro. Edad ordinal no es edad en años; "
         "Mann-Whitney contrasta ordenamiento de distribuciones y no solo medianas.")
+    # Los ajustes previos no se sobrescriben. Las seis preguntas interpretadas
+    # ahora se presentan juntas; incluye H3 sin motocarro como sensibilidad,
+    # sin elegir entre pruebas según su p. El contraste histórico con -1 no
+    # constituye una séptima pregunta científica.
+    pvalores = [antecedentes.loc['H1','p_valor_crudo'],antecedentes.loc['H2','p_valor_crudo'],
+                principal.p_Fisher_unilateral,h4.p,mayor60.p,precisa.p_Fisher_unilateral]
+    tablas['multiplicidad_actual'] = pd.DataFrame({
+        'contraste':['H1 territorial','H2 sexo','H3 histórica 539/785','H4 ordinal corregida',
+                     'H4 adicional ≥60','H3 sensibilidad 534/785'],
+        'p_crudo':pvalores,'p_bonferroni_6':[min(1.,6*p) for p in pvalores]})
+    tablas['multiplicidad_actual']['rechazo_005'] = tablas['multiplicidad_actual'].p_bonferroni_6.lt(.05)
+    auditoria['multiplicidad'] = (
+        'Se preservan los p Bonferroni de cuatro pruebas del análisis previo como antecedentes. '
+        'El ajuste conjunto conservador de seis incluye H1, H2, H3 histórica, H4 ordinal, ≥60 y H3 sin motocarro. '
+        'H3 y H4 mantienen rechazo bajo sus supuestos; H1 pasa a p ajustado 0,069847 y no supera 0,05 '
+        'en esta familia ampliada. No se elige el tamaño de familia para conservar significación.')
     auditoria['modelo_territorial'] = (
         '36 celdas mes por zona; GLM binomial por zona con conteos [fallecidos, heridos]. '
         'Base: tasa global estimada solo con meses anteriores. Cortes 1-6/7-8, 1-8/9-10 y 1-10/11-12. '
@@ -235,9 +272,10 @@ def preparar_contexto(root=ROOT, analisis=None):
         'H1 aporta diferencias territoriales descriptivas y un contraste histórico de efecto pequeño, condicionado por '
         'agrupación y cobertura. H2 aporta una asociación por sexo y H4 patrones por categorías de edad, incorporadas como '
         'los únicos predictores del experimento demográfico; H4 se recalculó excluyendo desconocidos del contraste. '
-        'H3 aporta conteos de siniestros con motociclistas y un contraste anterior condicionado a categorías no acreditadas. '
+        'H3 queda respaldada como asociación agregada por DINATRAN e INE: 539 incluye 5 víctimas de motocarro '
+        'y 534 usuarios de motocicleta; la comparación estricta excluye motocarro. '
         'Se responde parcialmente la pregunta original: existe señal demográfica retrospectiva limitada y evidencia '
-        'territorial separada; no se acredita un riesgo individual por vehículo ni el efecto conjunto de los cuatro factores. '
+        'territorial y vehicular separadas; no se estima riesgo poblacional por exposición ni el efecto conjunto de los cuatro factores. '
         'No se predice ocurrencia de siniestros, no se vinculan artificialmente registros y no se afirma causalidad.')
     return tablas, vehicular, auditoria
 

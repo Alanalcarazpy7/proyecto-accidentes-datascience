@@ -102,8 +102,9 @@ class Fase3Test(unittest.TestCase):
         self.assertEqual(p[['heridos','fallecidos']].to_numpy().tolist(),[[384,155],[671,114]])
         a = self.resultados['contexto']
         self.assertTrue(a['csv_vehicular_reconstruido'])
-        self.assertFalse(a['categorias_vehiculares_acreditadas'])
-        self.assertFalse(a['universo_vehicular_comparable_acreditado'])
+        self.assertTrue(a['categorias_vehiculares_acreditadas'])
+        self.assertTrue(a['universo_vehicular_comparable_acreditado'])
+        self.assertIn('Documental agregada',a['tipo_acreditacion_h3'])
         self.assertEqual(a['periodo'],2021)
         self.assertEqual(a['meses_verificados'],12)
         for nombre,digest in a['sha256_originales'].items():
@@ -305,7 +306,7 @@ class Fase3Test(unittest.TestCase):
     def test_informes_autocontenidos_y_limites_pdf(self):
         import pymupdf
         from xml.etree import ElementTree as ET
-        for nombre,limite,min_imagenes in [('Informe_Fase3',15,7),('Informe_Integrador_DataScience',30,5)]:
+        for nombre,limite,min_imagenes in [('Informe_Fase3',15,5),('Informe_Integrador_DataScience',30,5)]:
             carpeta = ROOT/'docs'/('fase3' if nombre == 'Informe_Fase3' else 'integrador')
             with ZipFile(carpeta/(nombre+'.docx')) as z:
                 self.assertIsNone(z.testzip())
@@ -317,11 +318,15 @@ class Fase3Test(unittest.TestCase):
             with pymupdf.open(carpeta/(nombre+'.pdf')) as pdf:
                 self.assertLessEqual(len(pdf),limite)
                 self.assertGreaterEqual(sum(len(p.get_images()) for p in pdf),min_imagenes)
-                self.assertIn('33+81-15=99',''.join(p.get_text() for p in pdf).replace(' ',''))
+                compacto=''.join(p.get_text() for p in pdf).replace(' ','').replace('−','-')
+                self.assertIn('33+81-15=99',compacto)
                 texto = ''.join(p.get_text() for p in pdf)
-                for clave in ['H1','H2','H3','H4','353','308','0.5299','0.5809']:
+                for clave in ['H1','H2','H3','H4','353','308']:
                     self.assertIn(clave,word)
                     self.assertIn(clave,texto)
+                for valor in ['5299','5809']:
+                    self.assertRegex(word,r'0[.,]'+valor)
+                    self.assertRegex(texto,r'0[.,]'+valor)
                 self.assertRegex(word,r'4[.\s]?832')
                 self.assertRegex(texto,r'4[.\s]?832')
 

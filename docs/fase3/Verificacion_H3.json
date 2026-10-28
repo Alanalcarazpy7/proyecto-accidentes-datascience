@@ -1,0 +1,66 @@
+{
+  "fecha": "2026-10-28",
+  "pruebas_unittest": 37,
+  "fallos": 0,
+  "comando": "python -m unittest discover -s tests -v",
+  "celdas_codigo_ejecutadas": 23,
+  "tablas_previas_identicas": 33,
+  "archivos_oficiales_historicos_y_modelo_sin_cambios": 24,
+  "modelo_A_sha256": "7c3614390d6e3d96e8a537b7dacf8ffbdbb405731834940c1ff88f25a6ae376f",
+  "modelo_A_identico": true,
+  "variables_modelo_A": [
+    "sexo",
+    "grupo_edad"
+  ],
+  "informe_paginas": 15,
+  "entradas_indice_comprobadas": 30,
+  "revision_visual": "15 páginas inspeccionadas",
+  "tipografia_pt": {
+    "titulo": 14,
+    "subtitulo": 12,
+    "cuerpo": 11
+  },
+  "tablas_informe": 11,
+  "figuras_informe": 5,
+  "fuentes_h3": {
+    "definiciones": {
+      "acompanantes_moto": "DINATRAN p.133 identifica acompañantes (motociclistas).",
+      "comparador": "Demás usuarios registrados: complemento que incluye peatones y ciclistas; no equivale a ocupantes de otros vehículos.",
+      "conductores_moto": "DINATRAN p.132 identifica conductores (motociclistas).",
+      "inclusion": "Respaldo documental agregado: mismo registro institucional, año, roles y 12 meses compatibles con INE. Sin enlace de identidades individuales.",
+      "pasajeros_motocarro": "DINATRAN p.135 identifica pasajeros (motocarro).",
+      "territorio": "DINATRAN cita Policía Caminera en el capítulo vial. La equivalencia de cobertura con Central e Interior se apoya en INE 12.2.5 y coincidencia de los 12 totales mensuales; no es censo nacional de víctimas."
+    },
+    "descripcion": "Transcripción por coordenadas de tablas agregadas oficiales; no es un dataset individual.",
+    "dinatran": {
+      "organismo_primario": "Policía Caminera, Departamento de Tecnología y Sistemas Informáticos / Área Estadística",
+      "paginas": [
+        130,
+        132,
+        133,
+        135,
+        136
+      ],
+      "sha256": "b55204c92a483dfe6e85207b20375d467a2bee7212337be15a5d7f0f11d74311",
+      "titulo": "Anuario Estadístico de Transporte 2021",
+      "url": "https://www.dinatran.gov.py/docum/ANUARIO%202021.pdf"
+    },
+    "fecha_revision": "2026-10-28",
+    "ine": {
+      "cuadros": [
+        "12.2.5",
+        "12.2.10"
+      ],
+      "paginas": [
+        307,
+        311
+      ],
+      "sha256": "7379e03c93cb36a500930728a962ab2c42322b9c8871e2eb768f7e5ab19e40b6",
+      "territorio_explicito_12_2_5": "Zona Central e Interior del país",
+      "titulo": "Anuario Estadístico 2021",
+      "url": "https://www.ine.gov.py/Publicaciones/Biblioteca/documento/240/Anuario%20Estadistico%202021.pdf"
+    },
+    "periodo": 2021
+  },
+  "nota": "La certificación de comprensión y aprobación por el grupo no se automatiza."
+}
