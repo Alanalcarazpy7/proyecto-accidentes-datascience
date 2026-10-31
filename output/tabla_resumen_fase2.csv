@@ -1,5 +1,0 @@
-﻿Hipótesis,Prueba Aplicada,Estadístico,p-valor Crudo,p-valor Ajustado (Bonferroni),p-valor Ajustado (FDR-BH),Tamaño del Efecto,Decisión
-H1,Chi-cuadrado de independencia,χ² = 6.3647 (gl = 1),0.0116412,0.0465647,0.0116412,OR = 1.4014; V de Cramér = 0.0653,Rechazar H0
-H2,Chi-cuadrado de independencia + Bootstrap,χ² = 51.8141 (gl = 1),6.10128e-13,2.44051e-12,1.22026e-12,OR = 2.0370; V de Cramér = 0.0971,Rechazar H0
-H3,Prueba Z de dos proporciones,Z = 6.3244,1.27124e-10,5.08498e-10,1.69499e-10,RR = 1.9802; OR = 2.3758,Rechazar H0
-H4,U de Mann-Whitney unilateral,U = 2576490.0000; Z = 8.4020,2.19567e-17,8.78268e-17,8.78268e-17,r de Rosenthal = 0.1134,Rechazar H0

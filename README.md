@@ -1,117 +1,80 @@
-# Proyecto Integrador de Ciencia de Datos ? tr?nsito en Brasil
+# Proyecto Integrador - Gravedad de víctimas en Brasil
 
-Esta rama (`data-fase-3-brasil`) re?ne la investigaci?n, las tres fases y la mejora del modelo de gravedad de v?ctimas con datos oficiales de PRF Brasil. Se conservan tambi?n los materiales anteriores de Paraguay como contexto del trabajo.
+La entrega conserva una sola opción: **LightGBM final de 31 características**, con AUC 0,845 en las 67.591 víctimas del corte enero-septiembre de 2026. El estudio principal usa 2017-2025; 2026 es validación posterior. Persisten omisiones y falsas alarmas: no es un modelo clínico validado.
 
-## Por d?nde empezar
+## Orden recomendado de lectura
 
-- [Mejor opci?n seleccionada: informe breve de la fase 3](PROYECTO_GRAVEDAD_BRASIL/MEJORA_FASE_3/output/INFORME_MEJORA_FASE_3.pdf).
-- [Notebook ejecutado de la mejora](PROYECTO_GRAVEDAD_BRASIL/MEJORA_FASE_3/output/Mejora_Fase_3.ipynb).
-- [Las tres fases y su reproducci?n](PROYECTO_GRAVEDAD_BRASIL/README.md).
-- [M?todo y resultados de la versi?n mejorada](PROYECTO_GRAVEDAD_BRASIL/MEJORA_FASE_3/README.md).
+1. [Comprensión del problema](output/reports/Comprension_del_problema.pdf) - contexto, pregunta, objetivos y alcance.
+2. [Fase 1: preparación y exploración](output/reports/Fase_1_Preparacion_y_EDA.pdf).
+3. [Fase 2: inferencia](output/reports/Fase_2_Inferencia.pdf).
+4. [Fase 3: modelo final y evaluación](output/reports/Fase_3_Modelado_y_Evaluacion.pdf).
+5. [Informe integrador](output/reports/Informe_Integrador.pdf).
 
-La versi?n elegida usa 31 caracter?sticas. En la nueva prueba de enero a septiembre de 2026, sobre 67.591 v?ctimas, obtuvo AUC 0,845 y F1 macro 0,675; la referencia obtuvo 0,799 y 0,647 respectivamente. La mejora conserva errores importantes y no constituye un modelo cl?nico validado. Los informes declaran el uso de asistencia de IA y las limitaciones del an?lisis.
+Los notebooks ejecutados están en `notebooks/` y sus exportaciones en `output/html/`. No hay otra carpeta de proyecto ni un complemento separado para elegir.
 
-## Reproducir el proyecto de Brasil
+## Archivos necesarios
+
+| Carpeta/archivo | Propósito |
+|---|---|
+| `data/raw/` | Fuentes seleccionadas de PRF y diccionarios oficiales. Se conservan localmente; no se suben a Git ni al ZIP por su volumen. |
+| `data/fuentes.json` | URL, tamaño y SHA-256 de cada fuente del corte registrado. |
+| `data/processed/victimas_limpias.parquet` | único dataset limpio: 821.689 participaciones, incluidas las 67.591 de validación posterior. La exploración e inferencia se restringen a 2017-2023. |
+| `data/metodologia/` | Protocolos y congelamientos originales: evidencia del proceso de selección anterior a la prueba posterior. |
+| `data/ejemplo_inferencia.csv` | Ejemplo de las 31 entradas preparadas, sin objetivo. |
+| `notebooks/` | Tres notebooks explicados y ejecutados. |
+| `src/` | Descarga, preparación, análisis, comparación, modelo final, inferencia y generación de entregables. |
+| `output/reports/` | Cinco PDF exigidos por las tres fases. |
+| `output/html/` | Tres exportaciones HTML de los notebooks. |
+| `output/tables/`, `output/figures/` | Diccionarios original/final, bitácora, contrastes y evidencias usadas en los informes. |
+| `output/modelado/` | Tablas y registros necesarios para demostrar comparación de familias, ajuste temporal y evaluación. No son otros proyectos para elegir. |
+| `output/modelo/modelo_final.joblib` | único modelo serializado conservado, con codificador, calibrador y umbrales. |
+| `requirements.txt`, `protocolo.json` | Dependencias y decisiones generales. |
+| `dist/` | ZIP acumulativo para entrega; se genera localmente y no se versiona. |
+
+## Reproducción
+
+Python 3.13 recomendado; semilla 42. Desde la raíz:
 
 ```powershell
-cd PROYECTO_GRAVEDAD_BRASIL
 python -m pip install -r requirements.txt
+python src/descargar_fuentes.py
+python src/reproducir.py
+python src/notebooks.py
+python src/informes.py
+python src/verificar.py
+python src/empaquetar.py
 ```
 
-Continuar con los pasos del README del proyecto y de `MEJORA_FASE_3`. Los informes PDF, notebooks ejecutados, modelos, manifiestos, tablas y datasets limpios Parquet est?n versionados. Los datos originales voluminosos, ZIP de entrega, cach?s y temporales est?n excluidos por `.gitignore`; las URLs, hashes y scripts para obtener las fuentes se conservan.
+La descarga solo se necesita cuando faltan originales. Las fuentes se validan por hash: si PRF cambió el archivo, el proceso lo señala en vez de sustituir silenciosamente el corte. Solo se consultan descargas públicas; no se envían pedidos institucionales.
 
-## Material anterior
+`reproducir.py` reconstruye preparación y análisis y conserva los resultados de entrenamiento registrados. Para reconstruir también todos los ajustes:
 
-Las carpetas de Caminera, investigaci?n de fuentes y pron?stico de Paraguay se mantienen en esta rama por decisi?n del grupo. El trabajo elegido para continuar es la clasificaci?n de v?ctimas de Brasil indicada arriba.
-
-<details>
-<summary>Documentaci?n anterior del repositorio</summary>
-
-# Proyecto Integrador - Data Science (FPUNA)
-
-**Fase 1: Análisis Descriptivo y Exploratorio de Siniestros Viales (Año 2021)**
-
-## Descripción del Proyecto
-
-Este repositorio contiene los entregables y el código fuente correspondientes a la Fase 1 del Proyecto Integrador de la asignatura Ciencia de Datos (FPUNA).
-
-El objetivo del proyecto es realizar un análisis descriptivo y exploratorio de las estadísticas oficiales de personas afectadas en accidentes de tránsito en Paraguay durante el año 2021, aplicando técnicas de procesamiento, análisis estadístico y visualización de datos.
-
-## Estructura del Repositorio
-
-El proyecto respeta la estructura de directorios exigida por la cátedra:
-
-- `/data`: contiene el archivo de datos oficial del anuario de la Policía Nacional (`12.2.1`).
-- `/notebooks`: contiene el Jupyter Notebook ejecutable (`.ipynb`) con el análisis, procesamiento y visualizaciones.
-- `/src`: contiene scripts auxiliares de código, si aplica.
-- `/output`: contiene los archivos generados durante el análisis, incluyendo el dataset procesado y limpio (`accidentes_limpio.csv`) y la exportación del notebook en formato HTML.
-- `requirements.txt`: contiene las dependencias necesarias para reproducir el entorno de ejecución.
-
-## Requisitos
-
-Para ejecutar el proyecto se requiere:
-
-- Python 3.9 o superior.
-- Jupyter Notebook o Visual Studio Code con soporte para Jupyter.
-- Las dependencias especificadas en `requirements.txt`.
-
-## Dependencias
-
-Las librerías necesarias para la ejecución completa del proyecto se encuentran declaradas en el archivo `requirements.txt`.
-
-Para instalarlas, ejecutar desde la raíz del proyecto:
-
-```bash
-python -m pip install -r requirements.txt
+```powershell
+python src/reproducir.py --reentrenar
 ```
 
-## Instrucciones de Reproducibilidad
+Ese cálculo puede tardar varios minutos y requiere varios GB de RAM. Reproducir un experimento cuyo resultado ya se conoce no crea una prueba ciega nueva. La selección histórica inicial y final está documentada; no se ajustaron variables o umbrales usando 2026.
 
-1. Clonar el repositorio:
+Los notebooks se ejecutan por separado y descargan las fuentes si faltan. `informes.py` requiere reportlab y genera PDF desde resultados calculados, sin reentrenar. Para renderizar páginas para inspección visual puede utilizarse Poppler o pypdfium2; estas herramientas de revisión no forman parte del análisis estadístico.
 
-```bash
-git clone https://github.com/Alanalcarazpy7/proyecto-accidentes-datascience.git
+## Aplicar el único modelo final
+
+```powershell
+python src/inferencia.py --entrada data/ejemplo_inferencia.csv --salida tmp/ejemplo_predicciones.csv
 ```
 
-2. Ingresar al directorio del proyecto:
+Crear la carpeta de salida si no existe. La entrada debe tener las características YA preparadas según `src/preparar.py`. El contexto vehicular requiere todos los vehículos identificados del siniestro; no se inventa desde una sola víctima aislada. El script no acepta el CSV original como si ya tuviera esas columnas transformadas.
 
-```bash
-cd proyecto-accidentes-datascience
-```
+## Qué exige conservar la cátedra
 
-3. Instalar las dependencias:
+Las comparaciones con logística, árbol, Bayes y referencias siguen en tablas y código porque la fase 3 exige al menos tres familias. Se eliminaron sus modelos serializados descartados y las versiones de proyecto separadas. Los informes respetan los límites: comprensión 3 páginas, fase 1 hasta 20, fase 2 hasta 15, fase 3 hasta 15 e integrador hasta 30.
 
-```bash
-python -m pip install -r requirements.txt
-```
+La carpeta `dist` contiene una sola entrega acumulativa `Fase3_DataScience_Alcaraz-Ferreira-Rios.zip`, sin fuentes originales voluminosas. El historial Git anterior se conserva; esta limpieza no lo reescribe.
 
-4. Abrir el notebook ubicado en:
+## Integrantes, alcance e integridad
 
-```text
-/notebooks/Fase1_Accidentes_Transito.ipynb
-```
+Alan Alcaraz, Leandro Ferreira y Jorge Rios. **Faltan los legajos:** deben completarlos los integrantes. No se inventa aprobación docente ni contribuciones individuales. Se declara asistencia de IA en programación, análisis y redacción; el grupo debe revisar, comprender y asumir las decisiones e interpretaciones antes de entregar. La exposición oral y sus diapositivas son una instancia de cierre que debe preparar y defender el grupo.
 
-5. Ejecutar todas las celdas del notebook en orden, desde el inicio hasta el final, sin modificaciones manuales previas.
+La población es la de víctimas lesionadas registradas por PRF en carreteras federales, no todos los viajes o accidentes de Brasil ni Paraguay. Faltan exposición, velocidad de impacto, seguridad y seguimiento clínico completo. No se deduce causalidad ni se aplica el modelo a decisiones médicas.
 
-6. Los archivos generados durante la ejecución se almacenarán en el directorio `/output`.
-
-## Fuente de Datos
-
-Los datos utilizados corresponden a estadísticas oficiales de siniestros viales registradas en Paraguay durante el año 2021 y utilizadas con fines académicos para el desarrollo del Proyecto Integrador.
-
-## Salidas del Proyecto
-
-La ejecución completa del notebook genera:
-
-- Dataset procesado y limpio.
-- Estadísticas descriptivas.
-- Tablas de contingencia.
-- Análisis de correlaciones.
-- Visualizaciones de los datos.
-
-## Reproducibilidad
-
-El proyecto fue estructurado para que el análisis pueda reproducirse a partir de los datos originales. Una vez instaladas las dependencias indicadas en `requirements.txt`, el notebook puede ejecutarse secuencialmente sin modificaciones manuales.
-
-
-</details>
+Fuentes oficiales: [Datos abiertos de PRF](https://www.gov.br/prf/pt-br/acesso-a-informacao/dados-abertos/dados-abertos-da-prf) y [diccionarios](https://www.gov.br/prf/pt-br/acesso-a-informacao/dados-abertos/dicionario-acidentes).

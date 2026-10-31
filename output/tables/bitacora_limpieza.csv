@@ -1,0 +1,51 @@
+﻿ano,decision,filas,fundamento
+2017,Excluir ilesos y estado desconocido del objetivo binario,133670,"Comparacion entre heridas y fallecidas, sin inventar personas"
+2017,"Edad cero ambigua, negativa o mayor a 110 a faltante",3711,Conservar victima; no imputar una edad de lactante
+2017,Anio de vehiculo no plausible a faltante,7194,No interpretar cero como antiguedad real
+2017,Union por accidente y participacion,90567,Uno a uno para contexto; cero expansion y cero faltantes de union
+2017,"Contexto a partir de todos los vehiculos, deduplicados por clave positiva",90567,Incluye ilesos y vehiculos sin persona; no usa la gravedad para contar otros vehiculos
+2018,Excluir ilesos y estado desconocido del objetivo binario,98092,"Comparacion entre heridas y fallecidas, sin inventar personas"
+2018,"Edad cero ambigua, negativa o mayor a 110 a faltante",3120,Conservar victima; no imputar una edad de lactante
+2018,Anio de vehiculo no plausible a faltante,6980,No interpretar cero como antiguedad real
+2018,Union por accidente y participacion,81969,Uno a uno para contexto; cero expansion y cero faltantes de union
+2018,"Contexto a partir de todos los vehiculos, deduplicados por clave positiva",81969,Incluye ilesos y vehiculos sin persona; no usa la gravedad para contar otros vehiculos
+2019,Excluir ilesos y estado desconocido del objetivo binario,91569,"Comparacion entre heridas y fallecidas, sin inventar personas"
+2019,"Edad cero ambigua, negativa o mayor a 110 a faltante",2934,Conservar victima; no imputar una edad de lactante
+2019,Anio de vehiculo no plausible a faltante,7390,No interpretar cero como antiguedad real
+2019,Union por accidente y participacion,84535,Uno a uno para contexto; cero expansion y cero faltantes de union
+2019,"Contexto a partir de todos los vehiculos, deduplicados por clave positiva",84535,Incluye ilesos y vehiculos sin persona; no usa la gravedad para contar otros vehiculos
+2020,Excluir ilesos y estado desconocido del objetivo binario,85435,"Comparacion entre heridas y fallecidas, sin inventar personas"
+2020,"Edad cero ambigua, negativa o mayor a 110 a faltante",2542,Conservar victima; no imputar una edad de lactante
+2020,Anio de vehiculo no plausible a faltante,7025,No interpretar cero como antiguedad real
+2020,Union por accidente y participacion,76810,Uno a uno para contexto; cero expansion y cero faltantes de union
+2020,"Contexto a partir de todos los vehiculos, deduplicados por clave positiva",76810,Incluye ilesos y vehiculos sin persona; no usa la gravedad para contar otros vehiculos
+2021,Excluir ilesos y estado desconocido del objetivo binario,89017,"Comparacion entre heridas y fallecidas, sin inventar personas"
+2021,"Edad cero ambigua, negativa o mayor a 110 a faltante",2545,Conservar victima; no imputar una edad de lactante
+2021,Anio de vehiculo no plausible a faltante,7279,No interpretar cero como antiguedad real
+2021,Union por accidente y participacion,77270,Uno a uno para contexto; cero expansion y cero faltantes de union
+2021,"Contexto a partir de todos los vehiculos, deduplicados por clave positiva",77270,Incluye ilesos y vehiculos sin persona; no usa la gravedad para contar otros vehiculos
+2022,Excluir ilesos y estado desconocido del objetivo binario,92319,"Comparacion entre heridas y fallecidas, sin inventar personas"
+2022,"Edad cero ambigua, negativa o mayor a 110 a faltante",2579,Conservar victima; no imputar una edad de lactante
+2022,Anio de vehiculo no plausible a faltante,7236,No interpretar cero como antiguedad real
+2022,Union por accidente y participacion,78506,Uno a uno para contexto; cero expansion y cero faltantes de union
+2022,"Contexto a partir de todos los vehiculos, deduplicados por clave positiva",78506,Incluye ilesos y vehiculos sin persona; no usa la gravedad para contar otros vehiculos
+2023,Excluir ilesos y estado desconocido del objetivo binario,99271,"Comparacion entre heridas y fallecidas, sin inventar personas"
+2023,"Edad cero ambigua, negativa o mayor a 110 a faltante",2646,Conservar victima; no imputar una edad de lactante
+2023,Anio de vehiculo no plausible a faltante,7577,No interpretar cero como antiguedad real
+2023,Union por accidente y participacion,84090,Uno a uno para contexto; cero expansion y cero faltantes de union
+2023,"Contexto a partir de todos los vehiculos, deduplicados por clave positiva",84090,Incluye ilesos y vehiculos sin persona; no usa la gravedad para contar otros vehiculos
+2024,Excluir ilesos y estado desconocido del objetivo binario,105690,"Comparacion entre heridas y fallecidas, sin inventar personas"
+2024,"Edad cero ambigua, negativa o mayor a 110 a faltante",2719,Conservar victima; no imputar una edad de lactante
+2024,Anio de vehiculo no plausible a faltante,7979,No interpretar cero como antiguedad real
+2024,Union por accidente y participacion,90758,Uno a uno para contexto; cero expansion y cero faltantes de union
+2024,"Contexto a partir de todos los vehiculos, deduplicados por clave positiva",90758,Incluye ilesos y vehiculos sin persona; no usa la gravedad para contar otros vehiculos
+2025,Excluir ilesos y estado desconocido del objetivo binario,105036,"Comparacion entre heridas y fallecidas, sin inventar personas"
+2025,"Edad cero ambigua, negativa o mayor a 110 a faltante",2477,Conservar victima; no imputar una edad de lactante
+2025,Anio de vehiculo no plausible a faltante,7644,No interpretar cero como antiguedad real
+2025,Union por accidente y participacion,89593,Uno a uno para contexto; cero expansion y cero faltantes de union
+2025,"Contexto a partir de todos los vehiculos, deduplicados por clave positiva",89593,Incluye ilesos y vehiculos sin persona; no usa la gravedad para contar otros vehiculos
+2026,Excluir ilesos y estado desconocido del objetivo binario,81277,"Comparacion entre heridas y fallecidas, sin inventar personas"
+2026,"Edad cero ambigua, negativa o mayor a 110 a faltante",1750,Conservar victima; no imputar una edad de lactante
+2026,Anio de vehiculo no plausible a faltante,5758,No interpretar cero como antiguedad real
+2026,Union por accidente y participacion,67591,Uno a uno para contexto; cero expansion y cero faltantes de union
+2026,"Contexto a partir de todos los vehiculos, deduplicados por clave positiva",67591,Incluye ilesos y vehiculos sin persona; no usa la gravedad para contar otros vehiculos

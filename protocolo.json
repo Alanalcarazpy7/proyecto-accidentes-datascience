@@ -1,0 +1,30 @@
+{
+  "fecha": "2026-10-31",
+  "semilla": 42,
+  "pregunta": "¿Qué características personales, vehiculares y del siniestro se asocian con el fallecimiento registrado frente a lesiones no fatales en víctimas de siniestros de PRF Brasil entre 2017 y 2025, y qu? desempeño alcanza su clasificación en el período posterior de 2026?",
+  "ganador": "Contexto_regularizado_natural",
+  "predictores": 31,
+  "entrenamiento": "2017-2023",
+  "calibracion": "2024 enero-junio",
+  "umbral": "2024 julio-diciembre",
+  "comparacion_retrospectiva": "2025 ya conocido durante la mejora",
+  "prueba_final_historica": "2026-01-01 a 2026-09-30; se abrio despues del congelamiento original de la segunda version",
+  "nota_reproduccion": "Los resultados ya fueron observados. Reproducirlos no crea una nueva prueba ciega. Se conservan los registros historicos de seleccion y congelamiento.",
+  "inferencia": {
+    "periodo": "Solo desarrollo 2017-2023",
+    "alfa": 0.05,
+    "correccion": "Holm, familia de cuatro contrastes",
+    "hipotesis": [
+      "H1: asociacion entre sexo y desenlace",
+      "H2: diferencia de edad entre fallecidos y heridos",
+      "H3: diferencia de letalidad entre usuarios de moto y otros",
+      "H4: asociacion nocturnidad/desenlace ajustada por edad, sexo, moto y ruralidad"
+    ],
+    "dependencia": "Agrupacion por accidente; unidad independiente por accidente para contrastes clasicos y errores robustos por accidente para regresion/IC poblacion de victimas. No causalidad."
+  },
+  "archivos_metodologia": [
+    "data/metodologia/protocolo_inicial.json",
+    "data/metodologia/protocolo_final.json"
+  ],
+  "legajos": "Pendientes de informar por los integrantes; no se inventan."
+}

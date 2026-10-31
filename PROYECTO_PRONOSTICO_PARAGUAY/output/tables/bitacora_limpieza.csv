@@ -1,9 +1,0 @@
-﻿operacion,cantidad_afectada,fundamento
-Seleccion,7,Siete cuadros de tipologia con mismo alcance publicado; resto no se suma.
-Extraccion,168,"Filas mensuales; se excluyen titulos, fuentes y totales anuales."
-Guiones a cero,100,Solo en componentes categoricos; las sumas por fila y ano se conservan. No se imputan meses.
-Versiones repetidas,60,Coinciden todos los conteos; se conserva la edicion mas reciente y se guardan todas las versiones.
-Normalizar fecha,108,"Primer dia representa el mes, no una fecha de accidente individual."
-Atipicos,0,No se eliminan ni winsorizan meses validos; los cambios pueden ser reales.
-Imputar objetivo,0,No hay faltantes ni meses inventados.
-Separar tiempo,108,84 desarrollo; 12 calibracion; 12 prueba.

@@ -1,0 +1,132 @@
+{
+  "protocolo_sha256": "6dfef1669336164dd4120e20c842454189456d94d3d87fafce3050e2844adfed",
+  "seleccionado": "LightGBM_hojas15_pesoraiz",
+  "criterio": "Mayor average precision (AP) de fallecidos media de tres cortes temporales; desempate por menor complejidad/orden predefinido. No seleccionar por prueba.",
+  "modelos": [
+    {
+      "nombre": "LightGBM_hojas15_pesoraiz",
+      "familia": "LightGBM",
+      "parametros": {
+        "nombre": "LightGBM_hojas15_pesoraiz",
+        "familia": "LightGBM",
+        "tipo": "lgbm",
+        "hojas": 15,
+        "peso": "raiz"
+      },
+      "umbral": 0.18655895245504792,
+      "umbrales": {
+        "F1_fallecido": 0.18655895245504792,
+        "recall80": 0.04152721383789667
+      },
+      "archivo": "models/LightGBM_hojas15_pesoraiz.joblib",
+      "segundos_ajuste": 10.518524400000388
+    },
+    {
+      "nombre": "Logistica_natural_C1",
+      "familia": "Logistica",
+      "parametros": {
+        "nombre": "Logistica_natural_C1",
+        "familia": "Logistica",
+        "tipo": "lr",
+        "C": 1.0,
+        "peso": null
+      },
+      "umbral": 0.14945915341377258,
+      "umbrales": {
+        "F1_fallecido": 0.14945915341377258,
+        "recall80": 0.04166775196790695
+      },
+      "archivo": "models/Logistica_natural_C1.joblib",
+      "segundos_ajuste": 13.854085800001485
+    },
+    {
+      "nombre": "Arbol_profundidad10",
+      "familia": "Arbol",
+      "parametros": {
+        "nombre": "Arbol_profundidad10",
+        "familia": "Arbol",
+        "tipo": "tree",
+        "profundidad": 10
+      },
+      "umbral": 0.14813239412862747,
+      "umbrales": {
+        "F1_fallecido": 0.14813239412862747,
+        "recall80": 0.04414011129634701
+      },
+      "archivo": "models/Arbol_profundidad10.joblib",
+      "segundos_ajuste": 21.855861699999878
+    },
+    {
+      "nombre": "Bayes_alpha1",
+      "familia": "Bayes",
+      "parametros": {
+        "nombre": "Bayes_alpha1",
+        "familia": "Bayes",
+        "tipo": "nb",
+        "alpha": 1.0
+      },
+      "umbral": 0.16172096991260615,
+      "umbrales": {
+        "F1_fallecido": 0.16172096991260615,
+        "recall80": 0.04692348068941059
+      },
+      "archivo": "models/Bayes_alpha1.joblib",
+      "segundos_ajuste": 5.368118400001549
+    },
+    {
+      "nombre": "LightGBM_solo_sexo_edad",
+      "familia": "LightGBM_sexo_edad",
+      "parametros": {
+        "nombre": "LightGBM_solo_sexo_edad",
+        "familia": "LightGBM_sexo_edad",
+        "tipo": "lgbm",
+        "hojas": 15,
+        "peso": "natural",
+        "reducida": true
+      },
+      "umbral": 0.08347333150030255,
+      "umbrales": {
+        "F1_fallecido": 0.08347333150030255,
+        "recall80": 0.05419861685504575
+      },
+      "archivo": "models/LightGBM_solo_sexo_edad.joblib",
+      "segundos_ajuste": 3.5189823000000615
+    },
+    {
+      "nombre": "Logistica_solo_sexo_edad",
+      "familia": "Logistica_sexo_edad",
+      "parametros": {
+        "nombre": "Logistica_solo_sexo_edad",
+        "familia": "Logistica_sexo_edad",
+        "tipo": "lr",
+        "C": 1.0,
+        "peso": null,
+        "reducida": true
+      },
+      "umbral": 0.0840659961104393,
+      "umbrales": {
+        "F1_fallecido": 0.0840659961104393,
+        "recall80": 0.05520420894026756
+      },
+      "archivo": "models/Logistica_solo_sexo_edad.joblib",
+      "segundos_ajuste": 1.2457131999999547
+    },
+    {
+      "nombre": "Dummy_siempre_herido",
+      "familia": "Dummy",
+      "parametros": {
+        "nombre": "Dummy_siempre_herido",
+        "familia": "Dummy",
+        "tipo": "dummy"
+      },
+      "umbral": 0.5,
+      "umbrales": {
+        "F1_fallecido": 0.5,
+        "recall80": 0.5
+      },
+      "archivo": "models/Dummy_siempre_herido.joblib",
+      "segundos_ajuste": 0.39222499999959837
+    }
+  ],
+  "prueba_consultada": false
+}

@@ -1,0 +1,38 @@
+﻿variable,descripcion,tipo,valores_distintos,faltantes,porcentaje_faltante,rango_o_categorias_observadas,predictor
+id,"Identificador real del accidente; clave de union, nunca predictor",int64,552746,0,0.0,8 .. 808269,False
+pesid,Identificador positivo de participacion; no identidad civil longitudinal,int64,821689,0,0.0,1 .. 1827403,False
+id_veiculo,"Identificador del vehiculo, cero desconocido/no aplicable; nunca predictor",int64,579951,32689,3.978269150493678,0 .. 1454025,False
+fecha,Fecha del siniestro; permite particion cronologica,datetime64[us],3560,0,0.0,2017-01-01 00:00:00 .. 2026-09-30 00:00:00,False
+ano,Anio de siniestro; particion y auditoria,int16,10,0,0.0,2017 .. 2026,False
+fallecido,"Objetivo binario; 1 obito, 0 lesiones leves/graves",int8,2,0,0.0,0 .. 1,False
+idade,"Edad en anios; 0 ambiguo, negativos y >110 a faltante",float32,107,27023,3.288713856459074,1.0 .. 110.0,True
+idade_veiculo,Antiguedad del vehiculo en anios al siniestro,float32,83,72062,8.769984750921578,0.0 .. 126.0,True
+hora,Hora del dia decimal 0..24,float32,1440,0,0.0,0.0 .. 23.983334,True
+hora_sin,"Seno del ciclo horario, sin unidad",float32,722,0,0.0,-1.0 .. 1.0,True
+hora_cos,"Coseno del ciclo horario, sin unidad",float32,722,0,0.0,-1.0 .. 1.0,True
+mes_sin,"Seno del ciclo mensual, sin unidad",float32,8,0,0.0,-1.0 .. 1.0,True
+mes_cos,"Coseno del ciclo mensual, sin unidad",float32,8,0,0.0,-1.0 .. 1.0,True
+latitude,Latitud decimal en grados,float32,294230,17,0.002068909283195954,-33.706074 .. 4.4762845,True
+longitude,Longitud decimal en grados,float32,283798,47,0.005719925665306461,-72.835754 .. -34.0,True
+km,Kilometro de carretera BR,float32,9840,0,0.0,0.0 .. 1470.0,True
+n_vehiculos_declarados,Cantidad de vehiculos declarada por accidente; no cantidad de victimas,float32,30,0,0.0,1.0 .. 131.0,True
+n_vehiculos_identificados,Vehiculos con ID positivo distintos en la exportacion completa,float32,31,0,0.0,0.0 .. 131.0,True
+n_otros_vehiculos,Vehiculos identificados descontando el propio cuando existe,float32,30,0,0.0,0.0 .. 130.0,True
+otros_pesados,"Otros camiones, camiones-tractor, omnibus o micro-omnibus identificados",float32,14,0,0.0,0.0 .. 43.0,True
+otras_motos,"Otras motocicletas, motonetas o ciclomotores identificados",float32,12,0,0.0,0.0 .. 36.0,True
+otros_ligeros,"Otros automoviles, camionetas o utilitarios identificados",float32,21,0,0.0,0.0 .. 39.0,True
+sexo,Sexo registrado,category,3,936,0.11391171112184781,MASCULINO; FEMININO; DESCONOCIDO,True
+tipo_envolvido,"Rol de participacion: conductor, pasajero, peaton, etc.",category,5,0,0.0,CONDUTOR; PASSAGEIRO; PEDESTRE; CAVALEIRO; TESTEMUNHA,True
+tipo_veiculo,Tipo de vehiculo asociado,category,26,32767,3.9877617930871656,MOTOCICLETA; AUTOMOVEL; CAMINHONETE; CAMINHAO-TRATOR; DESCONOCIDO; MOTONETA; CAMINHAO; ONIBUS,True
+uf,Unidad federativa del siniestro,category,27,0,0.0,MG; SC; PR; RJ; RS; BA; SP; GO,True
+br,"Identificador de carretera federal, categoria",category,131,844,0.1027152608833756,101; 116; 381; 40; 153; 364; 163; 262,True
+municipio,Municipio del siniestro,category,2139,0,0.0,BRASILIA; CURITIBA; SAO JOSE; GUARULHOS; DUQUE DE CAXIAS; BETIM; PALHOCA; SERRA,True
+tipo_acidente,"Tipo principal del evento, conocido al observar el siniestro",category,22,45,0.00547652457316576,COLISAO TRASEIRA; SAIDA DE LEITO CARROCAVEL; COLISAO TRANSVERSAL; COLISAO FRONTAL; TOMBAMENTO; COLISAO LATERAL MESMO SENTIDO; COLISAO LATERAL; ATROPELAMENTO DE PEDESTRE,True
+fase_dia,Fase del dia registrada,category,4,0,0.0,PLENO DIA; PLENA NOITE; ANOITECER; AMANHECER,True
+sentido_via,Sentido de circulacion,category,3,844,0.1027152608833756,CRESCENTE; DECRESCENTE; DESCONOCIDO,True
+condicao_metereologica,Condicion meteorologica observada,category,10,10870,1.3228849357847068,CEU CLARO; NUBLADO; CHUVA; SOL; GAROA/CHUVISCO; DESCONOCIDO; NEVOEIRO/NEBLINA; VENTO,True
+tipo_pista,Tipo de calzada,category,3,0,0.0,SIMPLES; DUPLA; MULTIPLA,True
+tracado_via,"Trazado, a veces compuesto por varios elementos separados por punto y coma",category,1295,0,0.0,RETA; CURVA; INTERSECAO DE VIAS; DECLIVE; RETA;DECLIVE; ACLIVE; CURVA;DECLIVE; RETA;ACLIVE,True
+uso_solo,SIM urbano; NAO rural,category,2,0,0.0,NAO; SIM,True
+dia_semana,"Dia de semana calculado: 0 lunes, 6 domingo",category,7,0,0.0,6; 5; 4; 0; 3; 2; 1,True
+familia_otro_vehiculo,Familia del unico otro vehiculo identificado; ninguno o multiples en los demas casos,category,6,0,0.0,NINGUNO_IDENTIFICADO; LIGERO; MULTIPLES; PESADO; MOTO; OTRO,True

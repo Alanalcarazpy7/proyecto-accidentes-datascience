@@ -1,0 +1,116 @@
+{
+  "seleccionado": "Contexto_regularizado_natural",
+  "prueba": {
+    "modelo": "Contexto_regularizado_natural",
+    "particion": "2026_prueba_nueva",
+    "regla": "F1_validacion",
+    "n": 67591,
+    "fallecidos": 4610,
+    "prevalencia": 0.06820434673255316,
+    "umbral": 0.21424475558502526,
+    "AP": 0.35229245398493636,
+    "ROC_AUC": 0.844874050608039,
+    "precision": 0.3734225621414914,
+    "recall": 0.42364425162689806,
+    "F1_fallecido": 0.39695121951219514,
+    "F1_macro": 0.6748043742564247,
+    "balanced_accuracy": 0.6858063432758583,
+    "accuracy": 0.9122072465269044,
+    "Brier": 0.05259798091637418,
+    "log_loss": 0.1905637803931339,
+    "TN": 59704,
+    "FP": 3277,
+    "FN": 2657,
+    "TP": 1953
+  },
+  "intervalos": [
+    {
+      "metrica": "delta_AP",
+      "IC95_bajo": 0.04729373587831647,
+      "IC95_alto": 0.06242484117517227
+    },
+    {
+      "metrica": "delta_ROC_AUC",
+      "IC95_bajo": 0.041234693993764594,
+      "IC95_alto": 0.04992285450025542
+    },
+    {
+      "metrica": "delta_F1_macro",
+      "IC95_bajo": 0.02160325573718259,
+      "IC95_alto": 0.032713109175904406
+    },
+    {
+      "metrica": "delta_precision",
+      "IC95_bajo": 0.05007378252915746,
+      "IC95_alto": 0.06980432254837722
+    },
+    {
+      "metrica": "delta_recall",
+      "IC95_bajo": 0.016494369929474246,
+      "IC95_alto": 0.04131003413610132
+    }
+  ],
+  "auditoria_prueba": {
+    "ano": 2026,
+    "victimas": 67591,
+    "accidentes": 46337,
+    "fallecidos": 4610,
+    "filas_fuente_personas": 148868,
+    "vehiculos_identificados_sin_duplicar": 106147,
+    "sin_union": 0,
+    "duplicados_clave": 0,
+    "filas_numero_vehiculos_informado": 67591,
+    "cantidad_max_vehiculos_declarados": 19.0,
+    "fecha_min_archivo": "2026-01-01",
+    "fecha_max_archivo": "2026-09-30",
+    "fecha_min_victimas": "2026-01-01",
+    "fecha_max_victimas": "2026-09-30",
+    "dias_con_accidentes": 273,
+    "filas_ocurrencias": 54895,
+    "filas_personas": 148868,
+    "estados_fisicos": {
+      "Ileso": 59402,
+      "Lesões Leves": 47985,
+      "Lesões Graves": 14996,
+      "NA": 13082,
+      "Não Informado": 8793,
+      "Óbito": 4610
+    },
+    "fecha_lectura_nueva_prueba_UTC": "2026-10-31T18:09:07.126890+00:00",
+    "nota": "Periodo publicado; no se presume anio completo ni seguimiento hospitalario a 30 dias"
+  },
+  "predictores": [
+    "sexo",
+    "tipo_envolvido",
+    "tipo_veiculo",
+    "uf",
+    "br",
+    "municipio",
+    "tipo_acidente",
+    "fase_dia",
+    "sentido_via",
+    "condicao_metereologica",
+    "tipo_pista",
+    "tracado_via",
+    "uso_solo",
+    "dia_semana",
+    "familia_otro_vehiculo",
+    "idade",
+    "idade_veiculo",
+    "hora",
+    "hora_sin",
+    "hora_cos",
+    "mes_sin",
+    "mes_cos",
+    "latitude",
+    "longitude",
+    "km",
+    "n_vehiculos_declarados",
+    "n_vehiculos_identificados",
+    "n_otros_vehiculos",
+    "otros_pesados",
+    "otras_motos",
+    "otros_ligeros"
+  ],
+  "nota": "Modelo final elegido en el experimento historico; 2025 es retrospectivo y 2026 fue posterior al congelamiento original."
+}

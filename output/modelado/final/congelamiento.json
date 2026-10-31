@@ -1,0 +1,108 @@
+{
+  "protocolo_sha256": "5c55d2e715ffaa5746c1d5e0f1efc4095e1e6aa84a27872bff9ae90ca8351be0",
+  "seleccionado": "Contexto_regularizado_natural",
+  "seleccion_solo_CV": true,
+  "modelos": [
+    {
+      "nombre": "Referencia_24_original",
+      "spec": {
+        "nombre": "Referencia_24_original",
+        "bloque": "base",
+        "hojas": 15,
+        "arboles": 240,
+        "tasa": 0.06,
+        "min_hoja": 120,
+        "l2": 8,
+        "peso": "raiz"
+      },
+      "features": [
+        "sexo",
+        "tipo_envolvido",
+        "tipo_veiculo",
+        "uf",
+        "br",
+        "municipio",
+        "tipo_acidente",
+        "fase_dia",
+        "sentido_via",
+        "condicao_metereologica",
+        "tipo_pista",
+        "tracado_via",
+        "uso_solo",
+        "dia_semana",
+        "idade",
+        "idade_veiculo",
+        "hora",
+        "hora_sin",
+        "hora_cos",
+        "mes_sin",
+        "mes_cos",
+        "latitude",
+        "longitude",
+        "km"
+      ],
+      "umbral": 0.18655895245504792,
+      "umbrales": {
+        "F1_fallecido": 0.18655895245504792,
+        "recall80": 0.04152721383789667
+      },
+      "archivo": "models\\Referencia_24_original.joblib",
+      "sha256": "b2c4c90682e6cb129098f5d3bd4c0a2a97501c31f11f65bc3621fcc7b8a225d0"
+    },
+    {
+      "nombre": "Contexto_regularizado_natural",
+      "spec": {
+        "nombre": "Contexto_regularizado_natural",
+        "bloque": "contexto",
+        "hojas": 15,
+        "arboles": 400,
+        "tasa": 0.04,
+        "min_hoja": 300,
+        "l2": 25,
+        "peso": "natural"
+      },
+      "features": [
+        "sexo",
+        "tipo_envolvido",
+        "tipo_veiculo",
+        "uf",
+        "br",
+        "municipio",
+        "tipo_acidente",
+        "fase_dia",
+        "sentido_via",
+        "condicao_metereologica",
+        "tipo_pista",
+        "tracado_via",
+        "uso_solo",
+        "dia_semana",
+        "familia_otro_vehiculo",
+        "idade",
+        "idade_veiculo",
+        "hora",
+        "hora_sin",
+        "hora_cos",
+        "mes_sin",
+        "mes_cos",
+        "latitude",
+        "longitude",
+        "km",
+        "n_vehiculos_declarados",
+        "n_vehiculos_identificados",
+        "n_otros_vehiculos",
+        "otros_pesados",
+        "otras_motos",
+        "otros_ligeros"
+      ],
+      "umbral": 0.21424475558502526,
+      "umbrales": {
+        "F1_fallecido": 0.21424475558502526,
+        "recall80": 0.05112967061335218
+      },
+      "archivo": "models\\Contexto_regularizado_natural.joblib",
+      "sha256": "09a64612bf0c504df692823d96fef24efadc97861eda0580d52192379e2c8d9a"
+    }
+  ],
+  "prueba2026_leida": false,
+  "fecha_congelamiento_UTC": "2026-10-31T18:09:05.305153+00:00"
+}

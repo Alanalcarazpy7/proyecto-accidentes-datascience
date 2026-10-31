@@ -1,0 +1,10 @@
+{
+  "01_busqueda_CV.png": "Se compararon ocho configuraciones en tres cortes anteriores a prueba. La variante elegida supera la referencia en los tres cortes; la grilla no se amplio mirando 2026.",
+  "02_comparacion_2026.png": "Sobre las mismas victimas de enero a septiembre de 2026, la version de 31 variables mejora AUC, AP, F1 macro, precision y recall. Los umbrales se fijaron con 2024 y se conserva prevalencia natural.",
+  "03_curvas_2026.png": "La curva precision-recall del candidato muestra mejor ordenamiento de la clase minoritaria. La prevalencia sigue influyendo en precision y AP; AUC 0,845 no equivale a detectar el 84,5% de fallecidos.",
+  "04_confusion_2026.png": "El modelo final detecta 1.953 de 4.610 fallecidos y omite 2.657; produce 3.277 falsas alarmas. Frente a la referencia son 132 detecciones mas y 717 falsas alarmas menos, sin cambiar reglas con prueba.",
+  "f3_05_generalizacion.png": "AP de entrenamiento 0,456 frente a 0,358 en validacion y 0,352 en 2026 muestra optimismo del ajuste. La estabilidad entre periodos posteriores es favorable, sin garantizar que desaparezcan sobreajuste o cambios de registro.",
+  "f3_06_calibracion.png": "La sigmoid se ajusto en 2024 H1 con prevalencia natural. El grafico evalua fiabilidad por grupos de puntuaciones; no implica certeza individual. Brier y log loss complementan, sin aislar calibracion de todos los otros componentes.",
+  "f3_07_importancia.png": "La importancia se calcula en 10.000 casos de validacion, con dos repeticiones; no se eligen variables usando prueba. Las variables correlacionadas pueden sustituirse y compartir importancia. Utilidad predictiva no demuestra causalidad.",
+  "f3_08_umbrales.png": "El umbral principal detecta 42,36% de fallecidos con precision 37,34%. La regla de mayor deteccion alcanza 80,95% con precision 17,03%. Ambas se definieron con validacion; ninguna representa una politica clinica aprobada."
+}

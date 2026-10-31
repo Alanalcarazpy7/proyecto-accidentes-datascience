@@ -1,0 +1,22 @@
+{
+  "estado": "OK",
+  "comprobaciones": [
+    "Unico dataset de 821689 participaciones, claves unicas y particiones sin accidentes compartidos",
+    "Unico modelo final de 31 entradas, hash identico al ganador registrado y sin variables prohibidas",
+    "Resultados y predicciones de 2026 conservados; inferencia trasladada coincide con el modelo elegido",
+    "Auditoria, diccionarios original/final, bitacora, cuatro contrastes y diez visualizaciones exploratorias",
+    "Exactamente tres notebooks ejecutados sin errores y tres HTML",
+    "Cinco PDF dentro de los limites de la catedra",
+    "Codigo compilable y sin dependencias de carpetas descartadas"
+  ],
+  "paginas": {
+    "Comprension_del_problema.pdf": 3,
+    "Fase_1_Preparacion_y_EDA.pdf": 20,
+    "Fase_2_Inferencia.pdf": 9,
+    "Fase_3_Modelado_y_Evaluacion.pdf": 14,
+    "Informe_Integrador.pdf": 23
+  },
+  "modelo": "output/modelo/modelo_final.joblib",
+  "datos": "data/processed/victimas_limpias.parquet",
+  "pendiente_humano": "Legajos y revision/comprension del grupo; exposicion oral de cierre"
+}
