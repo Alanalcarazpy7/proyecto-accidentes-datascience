@@ -1,0 +1,157 @@
+=== PAGINA 1 ===
+Distintas Rutas y ramales ENE FEB MAR ABR MAY JUN JUL AGO SET OCT NOV DIC Tot.  
+Gral. % 
+Ruta N° 1 "Mcal. F.S. López" 20 24 20 25 31 24 19 20 21 13 14 18 249 16% 
+Ruta N° 2 "Mcal. José F. Estigarribia 20 22 31 21 32 20 19 37 41 22 25 42 332 22% 
+Ruta N° 3 "Gral.José Elizardo Aquino" 6 2 7 11 11 13 4 9 4 6 6 13 92 6% 
+Ruta N° 4 "Gral.José Eduvigis Díaz 1 - 1 - 1 1 - 2 - 2 - - 8 1% 
+Ruta N° 5 "Gral.Bernardino Caballero" 1 1 3 1 2 4 - 1 1 1 2 1 18 1% 
+Ruta N° 6 "Dr.Juan León Mallorquín" 6 10 8 9 9 10 7 15 8 8 10 4 104 7% 
+Ruta N° 7 "Dr.J. G. Rodríguez de Francia" 13 1 7 9 13 11 15 11 12 8 11 13 124 8% 
+Ruta N° 8  "Blas Garay" 1 2 4 3 1 5 1 2 3 3 3 4 32 2% 
+Ruta N° 9 "Carlos Antonio López" 4 10 8 8 11 15 26 13 5 5 8 7 120 8% 
+Ruta N° 10 "Residenta" 1 1 7 2 6 3 1 4 1 2 1 6 35 2% 
+Ruta N° 11 "Juana de Lara" - - 1 1 - - - - - - - - 2 0% 
+Ruta N° 12 "Vice Pdte. Sánchez" - - - - - - - - - - - - 0 0% 
+Ruta N° 13 (Caaguazu-Vaquería) - - - - - - 1 1 2 1 2 1 8 1% 
+Ramal Ruta Nº 1 2 1 1 3 2 2 1 - 1 6 1 1 21 1% 
+Ramal Ruta Nº 2 - - - - - - - - - - - - 0 0% 
+Ramal Ruta Nº 3 - - - 1 - - - - - - - - 1 0% 
+Ramal P.Colorado-Concep.(Ruta Cnel.Franco) 1 - - 1 - 1 - - - 1 1 - 5 0% 
+Ramal a Pto. Falcón - - - - - - - - - - - - 0 0% 
+Ramal San Lorenzo-Ñemby - - - - - - - - - - - - 0 0% 
+Ramal San Lorenzo-Luque 2 1 1 - 2 1 1 1 - 1 - 1 11 1% 
+Ramal Saturio Rios (SL) - 1 - 1 1 - 1 - - 1 - - 5 0% 
+Ramal Areguá - Patiño - - - - - - 1 - - 1 - - 2 0% 
+Ramal Luque - Areguá 1 - 1 - 1 1 1 1 - 3 - - 9 1% 
+Ramal Luque - San Bernardino 3 - 2 1 2 - - - - - 1 1 10 1% 
+Ramal  San Bernardino - Ypacaraí - - - 1 - - - - 1 - - 1 3 0% 
+Ramal Caacupé - Tobatï - - - 1 - - - - - - - - 1 0% 
+Ramal Oviedo-Santaní - - - - - 2 - 1 3 2 - 1 9 1% 
+Ramal Paraguari - Villarrica 1 2 - 5 - 4 - 1 2 2 1 1 19 1% 
+Otros Ramales 8 8 5 4 7 3 6 10 5 4 4 16 80 5% 
+Av. Mcal. López 6 6 3 2 2 1 2 2 7 1 4 1 37 2% 
+Av. Mme. Lynch - - - - - - - - - - - - 0 0% 
+Av. Julia M. Cueto(SL) 1 - 1 1 1 - 1 - - - - 2 7 0% 
+Av. Del Agrónomo (SL) 2 - - 1 1 - - 1 - 1 1 - 7 0% 
+Av. Avelino Martínez (SL) 2 - 3 3 1 2 - - - - - - 11 1% 
+Av. Dr. Rodriguez de Francia (SL) 1 - - - - 2 1 1 - - - - 5 0% 
+Autopista   Asunción-Luque - 2 1 1 2 1 1 - 3 3 1 2 17 1% 
+Super Carretera Cdad. Este -  La Paloma 2 - 4 2 4 9 9 9 6 4 4 4 57 4% 
+Acceso Sur 6 4 11 6 8 6 7 10 5 5 3 6 77 5% 
+Total Mensual 111 98 130 124 151 141 125 152 131 106 103 146 1518 100% 
+DIRECCIÓN NACIONAL DE PATRULLA CAMINERA 
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS 
+ÁREA ESTAD´DISTICA 
+RESUMEN ESTADÍSTICO DE SINIESTROS DE TRÁNSITO OCURRIDO EN LAS DISTINTAS RUTAS Y RAMALES DEL PAÍS DISTRIBUIDOS POR MESES  AÑO 2018 
+R  U  T  A  S 
+R  A  M  A  L  E  S 
+ A V E N I D A S  -  S U P E R  C A R R E T E R A S  - A U T O P I S T A S 
+
+
+=== PAGINA 2 ===
+ÁREA ESTADÍSTICA 
+DIRECCIÓN NACIONAL DE PATRULLA CAMINERA 
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS 
+Jefe Área Estadística 
+Prof. Edgar Romero Morínigo 
+ SINIESTROS DE TRÁNSITO OCURRIDOS EN LAS DISTINTAS  RUTAS DEL PAÍS - AÑO 2018 
+16 % 
+22 % 
+6 % 
+1 % 1 % 
+7 % 
+8 % 
+2 % 8 % 2 % 
+0 % 
+0 % 
+1 % 
+Ruta N° 1 "Mcal. F.S. López" 
+Ruta N° 2 "Mcal. José F. Estigarribia 
+Ruta N° 3 "Gral.José Elizardo Aquino" 
+Ruta N° 4 "Gral.José Eduvigis Díaz 
+Ruta N° 5 "Gral.Bernardino Caballero" 
+Ruta N° 6 "Dr.Juan León Mallorquín" 
+Ruta N° 7 "Dr.J. G. Rodríguez de Francia" 
+Ruta N° 8  "Blas Garay" 
+Ruta N° 9 "Carlos Antonio López" 
+Ruta N° 10 "Residenta" 
+Ruta N° 11 "Juana de Lara" 
+Ruta N° 12 "Vice Pdte. Sánchez" 
+Ruta N° 13 (Caaguazu-Vaquería) 
+RUTAS DEL PAÍS 
+
+
+=== PAGINA 3 ===
+DIRECCIÓN NACIONAL DE PATRULLA CAMINERA 
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS 
+ÁREA ESTADÍSTICA 
+Prof. Edgar Romero Morínigo 
+Jefe Área Estadística 
+ SINIESTROS DE TRÁNSITO OCURRIDOS  EN LOS DISTINTOS  RAMALES DEL PAÍS - AÑO 2018 
+21 0 1 5 0 0 
+11 
+5 
+2 
+9 
+10 
+3 1 
+9 
+19 
+80 
+Ramal Ruta Nº 1 
+Ramal Ruta Nº 2 
+Ramal Ruta Nº 3 
+Ramal P.Colorado-Concep.(Ruta Cnel.Franco) 
+Ramal a Pto. Falcón 
+Ramal San Lorenzo-Ñemby 
+Ramal San Lorenzo-Luque 
+Ramal Saturio Rios (SL) 
+Ramal Areguá - Patiño 
+Ramal Luque - Areguá 
+Ramal Luque - San Bernardino 
+Ramal  San Bernardino - Ypacaraí 
+Ramal Caacupé - Tobatï 
+Ramal Oviedo-Santaní 
+Ramal Paraguari - Villarrica 
+Otros Ramales 
+RAMALES 
+
+
+=== PAGINA 4 ===
+ SINIESTROS DE TRÁNSITO OCURRIDOS EN AVENIDAS - SUPER CARRETERAS Y AUTOPISTAS - AÑO 2018 
+Prof. Edgar Romero Morínigo 
+Jefe Área Estadística 
+DIRECCIÓN NACIONAL DE PATRULLA CAMINERA 
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS 
+ÁREA ESTADÍSTICA 
+37 
+0 
+7 
+7 
+11 
+5 
+17 
+57 
+77 Av. Mcal. López 
+Av. Mme. Lynch 
+Av. Julia M. Cueto(SL) 
+Av. Del Agrónomo (SL) 
+Av. Avelino Martínez (SL) 
+Av. Dr. Rodriguez de Francia (SL) 
+Autopista   Asunción-Luque 
+Super Carretera Cdad. Este -  La Paloma 
+Acceso Sur 
+AVENIDAS - AUTOPISTAS - 
+SUPER CARRETERAS 
+
+=== PAGINA 5 ===
+
+
+=== PAGINA 6 ===
+- 
+
+=== PAGINA 7 ===
+
+
+=== PAGINA 8 ===

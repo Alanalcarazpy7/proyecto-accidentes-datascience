@@ -1,0 +1,9 @@
+{
+  "f3_01_AP_modelos.png": "El modelo seleccionado alcanza AP=0.302, frente a 0.104 de LightGBM con solo sexo y edad y 0.067 de un puntaje constante. Se comparan las mismas víctimas de 2025; AP no es porcentaje de aciertos ni precisión en un único umbral.",
+  "f3_02_curvas.png": "El aumento de recall exige aceptar más falsas alarmas. La curva PR se concentra en la clase minoritaria y su referencia depende de la prevalencia; AUC-ROC resume ordenamiento de ambas clases. Ninguna curva garantiza utilidad clínica.",
+  "f3_03_confusion.png": "Se detectan 2,452 de 6,043 fallecimientos (40.6%); quedan 3,591 sin detectar. Hay 5,264 falsas alarmas entre heridos; 31.8% de las predicciones de fallecimiento son correctas.",
+  "f3_04_generalizacion.png": "Entrenamiento mide ajuste sobre casos vistos; validación de 2024 también se utiliza para elegir el umbral. La prueba de 2025 es posterior y no se usa para modificar el modelo. Las diferencias pueden reflejar sobreajuste y cambios de población/registro, no solo tamaño de muestra.",
+  "f3_05_calibracion.png": "La calibración usa datos distintos de los empleados para elegir el umbral. El Brier de prueba es 0.0544; valores menores son mejores. Cercanía a la diagonal describe grupos de predicciones, no certeza sobre una persona.",
+  "f3_06_importancia.png": "La caída al permutar mide utilidad predictiva condicionada al modelo, no causalidad. Las variables correlacionadas pueden sustituirse y mostrar baja importancia individual. Se calcula en validación y no se elimina ninguna variable según el resultado de prueba.",
+  "f3_07_umbrales.png": "Bajar el umbral incrementa la detección y las falsas alarmas. El punto llamado recall 80% se eligió en validación; su recall en 2025 puede ser distinto. No es una meta clínica aprobada ni una selección realizada usando la prueba."
+}

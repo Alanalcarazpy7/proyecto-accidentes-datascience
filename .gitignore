@@ -1,0 +1,72 @@
+# Python: entornos, caches y compilados
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Jupyter: conservar notebooks ejecutados, excluir checkpoints
+.ipynb_checkpoints/
+.jupyter/
+.ipython/
+
+# Credenciales y configuracion privada
+.env
+.env.*
+!.env.example
+!.env.template
+*.pem
+*.key
+.aws/
+.codex/
+.agents/
+
+# Temporales, revision visual y registros de ejecucion
+tmp/
+temp/
+qa/
+*.log
+*.tmp
+*.temp
+*.bak
+~$*
+cv_checkpoint.json
+paquete_final.json
+
+# Archivos del sistema y configuracion local del editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+
+# Fuentes pesadas: conservar manifiestos, URLs, hashes y descargadores
+**/data/raw/
+**/data/raw_2026/
+**/fuentes_brasil/
+**/fuentes_paraguay/
+
+# Duplicados/cache del dataset limpio: conservar la version Parquet
+**/data/processed/*.joblib
+**/data/processed/victimas_limpias.csv.gz
+
+# Paquetes de entrega: se generan localmente, no se versionan
+dist/
+build/
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+
+
+
+# NO ignorar: src/, notebooks/, requirements.txt, README.md, protocolos,
+# manifiestos, dataset limpio Parquet, informes PDF, exportaciones HTML,
+# tablas de resultados ni models/*.joblib (modelo exigido por la catedra).

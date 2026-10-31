@@ -1,0 +1,29 @@
+{
+  "ano": 2026,
+  "victimas": 67591,
+  "accidentes": 46337,
+  "fallecidos": 4610,
+  "filas_fuente_personas": 148868,
+  "vehiculos_identificados_sin_duplicar": 106147,
+  "sin_union": 0,
+  "duplicados_clave": 0,
+  "filas_numero_vehiculos_informado": 67591,
+  "cantidad_max_vehiculos_declarados": 19.0,
+  "fecha_min_archivo": "2026-01-01",
+  "fecha_max_archivo": "2026-09-30",
+  "fecha_min_victimas": "2026-01-01",
+  "fecha_max_victimas": "2026-09-30",
+  "dias_con_accidentes": 273,
+  "filas_ocurrencias": 54895,
+  "filas_personas": 148868,
+  "estados_fisicos": {
+    "Ileso": 59402,
+    "Lesões Leves": 47985,
+    "Lesões Graves": 14996,
+    "NA": 13082,
+    "Não Informado": 8793,
+    "Óbito": 4610
+  },
+  "fecha_lectura_nueva_prueba_UTC": "2026-10-31T18:09:07.126890+00:00",
+  "nota": "Periodo publicado; no se presume anio completo ni seguimiento hospitalario a 30 dias"
+}

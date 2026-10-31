@@ -1,0 +1,181 @@
+=== PAGINA 1 ===
+Tipos de Vehículos Ene Feb Mar Abr May Jun Jul Ago Set Oct Nov Dic Tot. %
+Automóvil 53 60 60 37 66 97 373 38%
+Ambulancia 0 0 1 0 0 0 1 0%
+Omnibus 13 6 2 4 8 4 37 4%
+Camión de Carga 7 7 11 7 3 13 48 5%
+Camioneta Furgón 4 4 0 1 3 5 17 2%
+Camioneta 32 47 35 11 36 56 217 22%
+Camión Cisterna 0 3 2 1 2 4 12 1%
+Transganado 2 1 0 0 1 2 6 1%
+Camión Rollero 0 0 0 0 0 0 0 0%
+Camión Furgón 2 3 4 2 4 2 17 2%
+Camión Volquete 4 0 2 1 1 4 12 1%
+Semirremolque 4 16 8 3 14 7 52 5%
+Coche Taxi 0 0 0 0 0 0 0 0%
+Jeep 0 0 0 0 0 0 0 0%
+Tractor 0 0 0 0 3 0 3 0%
+Maquinaria Agricola 0 0 0 0 0 0 0 0%
+Motocicleta 24 27 26 7 26 43 153 16%
+Bicicleta 0 0 0 0 2 1 3 0%
+Camión Tracto 2 0 1 0 2 3 8 1%
+Carrito 0 0 0 0 0 0 0 0%
+Camión Guinche 1 1 1 0 0 2 5 1%
+Camión con Acoplado 0 0 0 0 1 0 1 0%
+Taxi Carga 0 0 0 0 0 0 0 0%
+Transporte Escolar 0 0 0 0 0 1 1 0%
+Microbus 1 1 0 1 2 1 6 1%
+Carro de Bombero 0 0 0 0 0 0 0 0%
+Maquinaria Agricola 0 0 0 0 0 0 0 0%
+Moto con trailer 0 0 0 0 0 0 0 0%
+Montacarga 0 1 0 0 2 0 3 0%
+Tracto Carga 0 0 0 0 1 0 1 0%
+Total 149 177 153 75 177 245 0 0 0 0 0 0 976 100%
+OBS: LOS DATOS REGISTRADOS SON PARCIALES QUE SERÁN ACTUALIZADOS UNA VEZ VERIFICADOS LAS PLANILLAS RESPECTIVAS  Insp. Pral. Carlos Ferreira
+Jefe interino Área Estadística
+ÁREA ESTADÍSTICA
+ DIRECCIÓN NACIONAL DE PATRULLA  CAMINERA
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS
+RESUMEN ESTADÍSTICO DE SINIESTROS DE TRÁNSITO POR TIPO DE VEHÍCULOS - AÑO 2023
+
+
+=== PAGINA 2 ===
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS
+ÁREA ESTADÍSTICA
+  Insp. Pral. Carlos Ferreira
+Jefe interino Área Estadística
+MOTOCICLETAS INVOLUCRADAS EN SINIESTROS DE DE TRÁNSITO - 2023
+ DIRECCIÓN NACIONAL DE PATRULLA  CAMINERA
+0
+5
+10
+15
+20
+25
+30
+35
+40
+45
+Ene Feb Mar Abr May Jun Jul Ago Set Oct Nov Dic
+24
+27 26
+7
+26
+43
+0 0 0 0 0 0
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Set
+Oct
+Nov
+Dic
+TOTAL MOTOCICLETAS: 153.-
+MESES
+
+
+=== PAGINA 3 ===
+Tipos de 
+Vehículos Ene Feb Mar Abr May Jun Jul Ago Set Oct Nov Dic Tot. %
+Automóvil 53 60 60 37 66 97 373 39%
+Camioneta 32 47 35 11 36 56 217 24%
+Semirremolque 4 16 8 3 14 7 52 6%
+Motocicleta 24 27 26 7 26 43 153 15%
+  Insp. Pral. Carlos Ferreira
+Jefe interino Área Estadística
+ DIRECCIÓN NACIONAL DE PATRULLA  CAMINERA
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS
+ÁREA ESTADÍSTICA
+VEHÍCULOS INVOLUCRADOS EN SINIESTROS DE TRÁNSITO SEGÚN MAYOR RANGO DE FRECUENCIA
+AÑO 2023
+Total de vehículos: 1213
+373
+217
+52
+153
+0
+50
+100
+150
+200
+250
+300
+350
+400
+Automóvil Camioneta Semirremolque Motocicleta
+Automóvil
+Camioneta
+Semirremolque
+Motocicleta
+Tipo de Vehículo
+
+
+=== PAGINA 4 ===
+ÁREA ESTADÍSTICA
+  Insp. Pral. Carlos Ferreira
+Jefe interino Área Estadística
+ DIRECCIÓN NACIONAL DE PATRULLA  CAMINERA
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS
+RESUMEN ESTADÍSTICO DE SINIESTROS DE TRÁNSITO POR TIPO DE VEHÍCULOS AÑO 2023
+38%
+0%4%
+5%
+2%
+22%
+1%
+1%
+0% 2%
+1%
+5%
+0%
+0%
+0%
+0%
+16%
+0%
+1% 0% 1% 0%
+0%
+0%
+1%
+0%
+0% 0%
+0% 0%
+Automóvil
+Ambulancia
+Omnibus
+Camión de Carga
+Camioneta Furgón
+Camioneta
+Camión Cisterna
+Transganado
+Camión Rollero
+Camión Furgón
+Camión Volquete
+Semirremolque
+Coche Taxi
+Jeep
+Tractor
+Maquinaria Agricola
+Motocicleta
+Bicicleta
+Camión Tracto
+Carrito
+Camión Guinche
+Camión con Acoplado
+Taxi Carga
+Transporte Escolar
+Microbus
+Carro de Bombero
+Maquinaria Agricola
+Moto con trailer
+Montacarga
+Tracto Carga
+
+
+=== PAGINA 5 ===
+ 

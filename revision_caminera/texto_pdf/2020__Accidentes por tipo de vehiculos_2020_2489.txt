@@ -1,0 +1,176 @@
+=== PAGINA 1 ===
+Tipos de Vehículos Ene Feb Mar Abr May Jun Jul Ago Set Oct Nov Dic Tot. %
+Automóvil 104 74 59 15 40 56 79 67 54 91 91 97 827 34%
+Ambulancia 1 1 0 0 1 0 1 2 0 1 0 0 7 0%
+Omnibus 11 15 8 0 0 4 9 6 7 3 6 5 74 3%
+Camión de Carga 9 7 13 4 6 3 12 10 14 7 8 13 106 4%
+Camioneta Furgón 3 3 4 1 1 3 6 3 2 0 4 7 37 2%
+Camioneta 85 57 40 11 33 37 52 50 36 57 75 57 590 24%
+Camión Cisterna 1 1 1 0 2 1 3 3 1 3 3 0 19 1%
+Transganado 1 0 1 0 1 3 1 4 3 2 2 3 21 1%
+Camión Rollero 0 0 0 0 0 0 0 0 0 0 0 0 0 0%
+Camión Furgón 8 4 2 2 7 5 8 2 7 4 6 6 61 3%
+Camión Volquete 3 6 5 0 3 4 11 3 4 2 6 2 49 2%
+Semirremolque 16 33 20 16 16 17 16 20 27 24 19 15 239 10%
+Coche Taxi 0 0 0 0 0 0 0 0 0 0 0 0 0 0%
+Jeep 0 0 0 0 0 0 0 0 0 0 0 0 0 0%
+Tractor 0 0 0 0 0 0 0 2 0 2 1 1 6 0%
+Maquinaria Agricola 0 0 0 0 0 0 0 0 0 0 0 0 0 0%
+Motocicleta 35 30 26 7 19 22 30 30 30 42 42 34 347 14%
+Bicicleta 0 0 0 0 0 1 0 0 2 0 0 0 3 0%
+Camión Tracto 4 6 2 2 3 1 2 2 1 2 4 3 32 1%
+Carrito 0 0 0 0 0 0 0 1 0 0 0 1 2 0%
+Camión Guinche 0 1 0 0 1 1 1 0 1 0 2 0 7 0%
+Camión con Acoplado 0 0 0 0 1 2 1 1 0 0 0 0 5 0%
+Taxi Carga 0 0 0 0 0 0 0 0 0 0 0 0 0 0%
+Transporte Escolar 0 0 0 0 0 0 0 0 0 0 0 0 0 0%
+Microbus 1 0 0 0 0 1 0 2 0 0 0 0 4 0%
+Carro de Bombero 0 0 0 0 0 0 0 0 0 0 0 0 0 0%
+Camión Hormigonero 0 0 0 0 0 0 0 0 0 0 0 0 0 0%
+Montacarga 0 1 0 0 0 0 0 0 0 0 0 0 1 0%
+Tracto Carga 0 0 0 0 0 0 0 0 0 0 0 0 0 0%
+Total 282 239 181 58 134 161 232 208 189 240 269 244 2437 100%
+Obs :(Periodo de cuarentena Covid-19 Marzo/Diciembre)
+         
+Prof. Edgar Romero Morínigo
+Jefe Área Estadística
+ÁREA ESTADÍSTICA
+ DIRECCIÓN NACIONAL DE PATRULLA  CAMINERA
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS
+RESUMEN ESTADÍSTICO DE SINIESTROS DE TRÁNSITO POR TIPO DE VEHÍCULOS - AÑO 2020
+
+
+=== PAGINA 2 ===
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS
+ÁREA ESTADÍSTICA
+Prof. Edgar Romero Morínigo
+Jefe Área Estadística
+MOTOCICLETAS INVOLUCRADAS EN SINIESTROS DE DE TRÁNSITO
+AÑO 2020
+ DIRECCIÓN NACIONAL DE PATRULLA  CAMINERA
+35 
+ 33% 
+30 
+ 28% 
+26 
+ 24% 
+7 
+ 7% 
+8 
+ 8% 
+22, 6% 
+30, 9% 30, 9% 
+30, 9% 
+42, 12% 
+42, 12% 
+34, 10% 
+Ene 
+Feb 
+Mar 
+Abr 
+May 
+Jun 
+Jul 
+Ago 
+Set 
+Oct 
+Nov 
+Dic 
+TOTAL MOTOCICLETAS: 347.- 
+MESES 
+
+
+=== PAGINA 3 ===
+Tipos de 
+Vehículos Ene Feb Mar Abr May Jun Jul Ago Set Oct Nov Dic Tot. %
+Automóvil 104 74 59 15 40 56 79 67 54 91 91 97 827 33%
+Camioneta 85 57 40 11 33 37 52 50 36 57 75 57 590 26%
+Semirremolque 16 33 20 16 16 17 16 20 27 24 19 15 239 11%
+Motocicleta 35 30 26 7 19 22 30 30 30 42 42 34 347 13%
+Prof. Edgar Romero Morínigo
+Jefe Área Estadística
+ DIRECCIÓN NACIONAL DE PATRULLA  CAMINERA
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS
+ÁREA ESTADÍSTICA
+VEHÍCULOS INVOLUCRADOS EN SINIESTROS DE TRÁNSITO SEGÚN MAYOR RANGO DE FRECUENCIA
+AÑO 2020
+Total de vehículos: 1213 
+827 
+590 
+239 
+347 
+0 
+100 
+200 
+300 
+400 
+500 
+600 
+700 
+800 
+900 
+Automóvil Camioneta Semirremolque Motocicleta 
+Automóvil 
+Camioneta 
+Semirremolque 
+Motocicleta 
+  Tipo de Vehículo 
+
+
+=== PAGINA 4 ===
+ÁREA ESTADÍSTICA
+Prof. Edgar Romero Morínigo
+Jefe Área Estadística
+ DIRECCIÓN NACIONAL DE PATRULLA  CAMINERA
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS
+RESUMEN ESTADÍSTICO DE SINIESTROS DE TRÁNSITO POR TIPO DE VEHÍCULOS AÑO 2020
+34% 
+0% 3% 
+4% 
+2% 
+24% 
+1% 
+1% 
+0% 3% 
+2% 
+10% 
+0% 
+0% 
+0% 0% 
+14% 
+0% 
+1% 
+0% 0% 0% 0% 
+0% 0% 
+0% 0% 
+0% 
+0% 
+Automóvil 
+Ambulancia 
+Omnibus 
+Camión de Carga 
+Camioneta Furgón 
+Camioneta 
+Camión Cisterna 
+Transganado 
+Camión Rollero 
+Camión Furgón 
+Camión Volquete 
+Semirremolque 
+Coche Taxi 
+Jeep 
+Tractor 
+Maquinaria Agricola 
+Motocicleta 
+Bicicleta 
+Camión Tracto 
+Carrito 
+Camión Guinche 
+Camión con Acoplado 
+Taxi Carga 
+Transporte Escolar 
+Microbus 
+Carro de Bombero 
+Camión Hormigonero 
+Montacarga 
+Tracto Carga 

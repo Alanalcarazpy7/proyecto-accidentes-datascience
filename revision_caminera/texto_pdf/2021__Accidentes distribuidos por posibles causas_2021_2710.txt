@@ -1,0 +1,161 @@
+=== PAGINA 1 ===
+Causas Ene Feb Mar Abr May Jun Jul Ago Sep Oct Nov Dic Tot. %
+Adelant.indebido 6 11 17 11 14 17 18 19 8 7 7 9 144 7%
+Animales sueltos en la ruta 2 2 0 2 3 2 0 3 2 2 0 1 19 1%
+Casuales 6 3 4 3 3 3 7 6 10 9 6 7 67 3%
+Conductor en estado de ebriedad 9 8 9 3 9 10 10 13 12 16 8 15 122 6%
+Desperfectos de rutas 1 1 1 1 0 1 2 0 0 2 1 1 11 1%
+Desperfectos mecánicos 10 5 8 5 7 2 7 6 7 9 8 9 83 4%
+Desprend.o caída de carga/pas 1 2 4 3 0 0 1 1 1 3 0 0 16 1%
+Dormir en el volante 0 4 1 0 1 0 0 2 2 1 2 2 15 1%
+Encandilamiento 0 1 0 2 0 0 0 0 1 0 1 0 5 0%
+Estacionarse sobre ruta 1 1 1 4 2 2 3 2 1 2 2 1 22 1%
+Estacionarse sin luz s/ruta 1 0 0 0 0 0 0 0 0 0 0 1 2 0%
+Estacionarse sin señalización 0 0 0 0 1 0 0 1 1 1 0 0 4 0%
+Cruzar semáforo en rojo 1 0 4 1 1 2 0 2 3 3 4 1 22 1%
+Circular sin luz 0 2 3 1 0 1 4 5 2 1 1 3 23 1%
+Exceso carga 0 0 0 0 0 0 0 0 0 0 0 0 0 0%
+Exceso velocidad 8 12 8 13 16 13 12 17 15 16 16 12 158 8%
+Imprudencia del peatón 4 2 4 2 4 5 7 3 6 6 8 5 56 3%
+Neblina 0 0 0 0 0 0 0 0 0 0 1 0 1 0%
+No Conserva distancia 37 30 25 26 23 33 44 53 48 32 39 60 450 23%
+No Conservar su lado 20 20 16 22 20 11 26 28 32 33 34 22 284 15%
+No hacer señal p/maniobrar 10 9 6 8 11 16 13 11 20 26 20 18 168 9%
+Rutas mojadas 6 3 2 4 4 7 1 1 1 6 3 0 38 2%
+Rev.cubierta p/objeto cortante 1 1 2 0 0 0 0 0 0 2 1 0 7 0%
+Rev.cubierta por mal estado 2 0 0 1 2 1 2 2 1 0 2 2 15 1%
+Otras causas 3 0 4 4 2 0 1 6 3 4 1 2 30 2%
+Reductores 0 0 0 0 0 0 0 0 0 0 0 0 0 0%
+Giro Indebido 11 12 5 22 22 14 15 7 22 20 14 16 180 9%
+Total 140 129 124 138 145 140 173 188 198 201 179 187 1942 100%
+Obs : En rojo Causas críticas.    
+DIRECCIÓN NACIONAL DE PATRULLA  CAMINERA
+RESUMEN ESTADÍSTICO DE SINIESTROS DE TRÁNSITO SEGÚN POSIBLES CAUSAS  AÑO 2021
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS - ÁREA ESTADÍSTICA
+Prof. Edgar Romero Morínigo
+Jefe Área Estadística
+
+
+=== PAGINA 2 ===
+Causas Ene Feb Mar Abr May Jun Jul Ago Sep Oct Nov Dic Total %
+Adelant.indebido 6 11 17 11 14 17 18 19 8 7 7 9 144 7%
+Conductor en estado de ebriedad 9 8 9 3 9 10 10 13 12 16 8 15 122 6%
+Exceso velocidad 8 12 8 13 16 13 12 17 15 16 16 12 158 8%
+Giro Indebido 11 12 5 22 22 14 15 7 22 20 14 16 180 9%
+No Conserva distancia 37 30 25 26 23 33 44 53 48 32 39 60 450 23%
+No Conservar su lado 20 20 16 22 20 11 26 28 32 33 34 22 284 15%
+No hacer señal p/maniobrar 10 9 6 8 11 16 13 11 20 26 20 18 168 9%
+Obs : En rojo Causas críticas.    
+CAUSAS DE LOS SINIESTROS DE TRÁNSITO POR RANGO DE MAYOR FRECUENCIA 
+PERIODO 2021
+DIRECCIÓN NACIONAL DE PATRULLA  CAMINERA
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS
+ÁREA ESTADÍSTICA
+0%
+5%
+10%
+15%
+20%
+25%
+7%
+6% 8% 9%
+23%
+15%
+9%
+Adelant.indebido
+Conductor en estado de ebriedad
+Exceso velocidad
+Giro Indebido
+No Conserva distancia
+No Conservar su lado
+No hacer señal p/maniobrar
+REFERENCIAS
+
+
+=== PAGINA 3 ===
+DIRECCIÓN NACIONAL DE PATRULLA  CAMINERA
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS
+RESUMEN ESTADÍSTICO DE ACCIDENTES POR POSIBLES CAUSAS AÑO 2021
+ÁREA ESTADÍSTICA
+7% 1%
+3%
+6%
+1%
+4% 1%
+1%
+0% 1%
+0% 0%
+1%
+1%0%
+8%
+3%
+0%
+23%
+15%
+9%
+2%
+0% 1% 2%
+0% 9%
+Adelant.indebido
+Animales sueltos en la ruta
+Casuales
+Conductor en estado de ebriedad
+Desperfectos de rutas
+Desperfectos mecánicos
+Desprend.o caída de carga/pas
+Dormir en el volante
+Encandilamiento
+Estacionarse sobre ruta
+Estacionarse sin luz s/ruta
+Estacionarse sin señalización
+Cruzar semáforo en rojo
+Circular sin luz
+Exceso carga
+Exceso velocidad
+Imprudencia del peatón
+Neblina
+No Conserva distancia
+No Conservar su lado
+No hacer señal p/maniobrar
+Rutas mojadas
+Rev.cubierta p/objeto cortante
+Rev.cubierta por mal estado
+Otras causas
+Reductores
+Giro Indebido
+POSIBLES CAUSAS
+
+=== PAGINA 4 ===
+RESUMEN ESTADÍSTICO DE ACCIDENTES POR POSIBLES CAUSAS AÑO 2021
+DIRECCIÓN NACIONAL DE PATRULLA  CAMINERA
+DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS
+ÁREA ESTADÍSTICA
+9
+8
+9
+3
+9
+10 10
+13
+12
+16
+8
+15
+0
+2
+4
+6
+8
+10
+12
+14
+16
+18
+Ene Feb Mar Abr May Jun Jul Ago Sep Oct Nov Dic
+CAUSA : CONDUCTOR EBRIO Y SU TENDENCIA 2021
+
+
+=== PAGINA 5 ===
+
+
+=== PAGINA 6 ===

@@ -1,0 +1,68 @@
+{
+  "seleccionado": "LightGBM_hojas15_pesoraiz",
+  "criterio": "Mayor average precision (AP) de fallecidos media de tres cortes temporales; desempate por menor complejidad/orden predefinido. No seleccionar por prueba.",
+  "prueba": {
+    "modelo": "LightGBM_hojas15_pesoraiz",
+    "familia": "LightGBM",
+    "particion": "prueba_2025",
+    "regla": "F1_validacion",
+    "n": 89593,
+    "fallecidos": 6043,
+    "prevalencia": 0.06744946591809628,
+    "umbral": 0.18655895245504792,
+    "AP": 0.30231412795530294,
+    "ROC_AUC": 0.8063461777468932,
+    "precision": 0.3177812337998963,
+    "recall": 0.40575872910805894,
+    "F1_fallecido": 0.35642125154444365,
+    "F1_macro": 0.651446554610924,
+    "balanced_accuracy": 0.6713772699998702,
+    "accuracy": 0.9011641534494882,
+    "Brier": 0.05436626722550393,
+    "log_loss": 0.2016262269542749,
+    "TN": 78286,
+    "FP": 5264,
+    "FN": 3591,
+    "TP": 2452
+  },
+  "intervalos": [
+    {
+      "metrica": "AP",
+      "IC95_bajo": 0.28932057190545446,
+      "IC95_alto": 0.3162063643447061
+    },
+    {
+      "metrica": "mejora_AP_sobre_sexo_edad",
+      "IC95_bajo": 0.18699619954493965,
+      "IC95_alto": 0.21054262539324184
+    },
+    {
+      "metrica": "recall",
+      "IC95_bajo": 0.39313943656177675,
+      "IC95_alto": 0.41815336125073355
+    },
+    {
+      "metrica": "precision",
+      "IC95_bajo": 0.30760080473708407,
+      "IC95_alto": 0.32915817390132324
+    },
+    {
+      "metrica": "F1_macro",
+      "IC95_bajo": 0.64618105935064,
+      "IC95_alto": 0.6574390951915687
+    }
+  ],
+  "prueba_sha256": "deecbe90acc2e7110646aa25a94a552b1b3ae030b445b848adaef2acfafbfb68",
+  "alcance": "Investigacion academica retrospectiva de lesionados registrados, no riesgo de sufrir un accidente, no triaje medico, no causalidad, no extrapolacion automatica a Paraguay. Desenlace registrado por PRF sin suponer seguimiento hospitalario a 30 dias.",
+  "modelo_anterior": {
+    "F1_macro": 0.5299,
+    "ROC_AUC": 0.5809,
+    "precision": 0.2324,
+    "recall": 0.4541,
+    "accuracy": 0.6351,
+    "n": 1099,
+    "positivos": 196,
+    "nota": "Informe anterior Paraguay; poblacion, prevalencia y division diferentes, no mejora causal ni equivalente"
+  },
+  "advertencia": "Umbral elegido para F1 de fallecidos en 2024 H2. Scores calibrados en 2024 H1. CV elige por AP; prueba no se uso para elegir."
+}

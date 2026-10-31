@@ -1,0 +1,92 @@
+=== PAGINA 1 ===
+Meses Lunes Martes Miércoles Jueves Viernes Sábado Domingo Tot.
+Enero 15 21 15 18 14 29 28 140
+Febrero 19 15 15 15 20 20 25 129
+Marzo 15 22 17 22 24 16 8 124
+Abril 18 16 20 20 28 17 19 138
+Mayo 26 25 17 14 13 31 19 145
+Junio 16 19 13 20 22 29 21 140
+Julio 18 25 12 24 33 29 32 173
+Agosto 26 30 22 20 20 33 37 188
+Septiembre 22 14 29 39 29 38 27 198
+Octubre 29 21 24 27 38 31 31 201
+Noviembre 27 30 19 20 33 20 30 179
+Diciembre 19 19 35 27 26 31 30 187
+Total 250 257 238 266 300 324 307 1942
+% 13% 13% 12% 14% 15% 17% 16% 100%
+ FUENTE: ELABORADO POR  EL ÁREA DE ESTADÍSTICAS EN BASE A DATOS DEL SISTEMA DE REGISTROS DE ACCIDENTES DE TRÁNSITO DE LA PATRULLA CAMINERA.-
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA
+ÁREA ESTADÍSTICA
+RESUMEN ESTADÍSTICO DE SINIESTROS DE TRÁNSITO POR DÍAS - AÑO 2021
+DEPARTAMENTO DE TEGNOLOGÍA Y SISTEMAS INFORMÁTICOS
+Jefe Área Estadística
+Prof. Edgar Romero Morínigo
+Obs: En rojo días  críticos
+
+
+=== PAGINA 2 ===
+SINIESTROS DE TRÁNSITO DISTRIBUIDOS POR DÍAS - AÑO 2021
+DEPARTAMENTO DE TEGNOLOGÍA Y SISTEMAS INFORMÁTICOS
+ÁREA ESTADÍSTICA
+Prof. Edgar Romero Morínigo
+Jefe Área Estadística
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA
+S…
+0
+50
+100
+150
+200
+250
+300
+350
+LUNES MARTES MIÉRC JUEVES
+VIERNES
+SABADO
+DOMINGO
+250 257
+238 266 300 324
+307
+Obs: En rojo días  críticos
+
+
+=== PAGINA 3 ===
+Prof. Edgar Romero Morínigo
+Jefe Área Estadística
+SINIESTROS DE TRÁNSITO DISTRIBUIDOS POR DÍAS - AÑO 2021
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA
+ÁREA ESTADÍSTICA
+DEPARTAMENTO DE TEGNOLOGÍA Y SISTEMAS INFORMÁTICOS
+13%
+13%
+12%
+14%
+15%
+17%
+16%
+Lunes
+Martes
+Miércoles
+Jueves
+Viernes
+Sábado
+Domingo
+Días
+Obs: En rojo días  críticos
+
+
+=== PAGINA 4 ===
+  
+
+=== PAGINA 5 ===
+  
+                                                                                                                                                                                                                                      
+
+=== PAGINA 6 ===
+
+
+=== PAGINA 7 ===
+
+
+=== PAGINA 8 ===
+                                                                                                                                                                                                                                      

@@ -1,0 +1,262 @@
+{
+  "fingerprint": "a5c2574b18d3fa086a04e99fe847605ecd322f4ea160578d06eb5fe550e4de73-021ce46a60a0a385e557bbd6785ef48d07e90d22b9af7a257b4115d702d5fd8e",
+  "seleccion": {
+    "familia": "SVR",
+    "parametros": {
+      "C": 1.0,
+      "epsilon": 15.0,
+      "gamma": "scale"
+    },
+    "id": "M13"
+  },
+  "mejor_aprendido": {
+    "familia": "SVR",
+    "parametros": {
+      "C": 1.0,
+      "epsilon": 15.0,
+      "gamma": "scale"
+    },
+    "id": "M13"
+  },
+  "configuraciones": 22,
+  "cortes": 4,
+  "predicciones_CV_por_config": 48,
+  "distribucion": {
+    "desarrollo": 84,
+    "calibracion": 12,
+    "prueba": 12
+  },
+  "ranking_CV": [
+    {
+      "id": "M13",
+      "familia": "SVR",
+      "MAE_CV": 24.078190633876588,
+      "RMSE_CV": 33.380461596942325,
+      "MAE_CV_desvio_entre_anos": 9.64826242980969,
+      "parametros": "{\"C\": 1.0, \"epsilon\": 15.0, \"gamma\": \"scale\"}"
+    },
+    {
+      "id": "M05",
+      "familia": "Ridge",
+      "MAE_CV": 26.23564657983521,
+      "RMSE_CV": 35.15202848138174,
+      "MAE_CV_desvio_entre_anos": 11.340234403365104,
+      "parametros": "{\"alpha\": 100.0}"
+    },
+    {
+      "id": "M06",
+      "familia": "Random Forest",
+      "MAE_CV": 30.438620566471297,
+      "RMSE_CV": 40.77110327937588,
+      "MAE_CV_desvio_entre_anos": 15.269146930804908,
+      "parametros": "{\"max_depth\": 3, \"min_samples_leaf\": 2, \"n_estimators\": 250}"
+    },
+    {
+      "id": "M20",
+      "familia": "ETS",
+      "MAE_CV": 30.996357554031896,
+      "RMSE_CV": 42.00587956069912,
+      "MAE_CV_desvio_entre_anos": 17.797085064514917,
+      "parametros": "{\"trend\": \"add\", \"seasonal\": null, \"damped_trend\": true}"
+    },
+    {
+      "id": "M01",
+      "familia": "Referencia media12",
+      "MAE_CV": 31.46527777777778,
+      "RMSE_CV": 42.31907978546898,
+      "MAE_CV_desvio_entre_anos": 18.231230482819733,
+      "parametros": "{}"
+    },
+    {
+      "id": "M00",
+      "familia": "Referencia estacional",
+      "MAE_CV": 37.229166666666664,
+      "RMSE_CV": 49.07498514178753,
+      "MAE_CV_desvio_entre_anos": 17.4942285456492,
+      "parametros": "{}"
+    }
+  ],
+  "comparacion": [
+    {
+      "id": "M13",
+      "familia": "SVR",
+      "MAE_CV": 24.078190633876588,
+      "RMSE_CV": 33.380461596942325,
+      "parametros": "{\"C\": 1.0, \"epsilon\": 15.0, \"gamma\": \"scale\"}",
+      "MAE_train": 23.05542685723946,
+      "RMSE_train": 30.78218775625713,
+      "MAE_test": 10.874336395032364,
+      "RMSE_test": 15.31848732590664,
+      "MAPE": 7.129524897505239,
+      "R2": -0.47666266526987644,
+      "MASE": 0.2799400113952555,
+      "seleccionado_por_CV": true
+    },
+    {
+      "id": "M05",
+      "familia": "Ridge",
+      "MAE_CV": 26.23564657983521,
+      "RMSE_CV": 35.15202848138174,
+      "parametros": "{\"alpha\": 100.0}",
+      "MAE_train": 18.360925536747178,
+      "RMSE_train": 24.21034378465862,
+      "MAE_test": 10.66841365002304,
+      "RMSE_test": 13.707069439342161,
+      "MAPE": 7.233413991156399,
+      "R2": -0.18233013051402747,
+      "MASE": 0.2746389048734096,
+      "seleccionado_por_CV": false
+    },
+    {
+      "id": "M06",
+      "familia": "Random Forest",
+      "MAE_CV": 30.438620566471297,
+      "RMSE_CV": 40.77110327937588,
+      "parametros": "{\"max_depth\": 3, \"min_samples_leaf\": 2, \"n_estimators\": 250}",
+      "MAE_train": 12.59494113759597,
+      "RMSE_train": 16.30941813129439,
+      "MAE_test": 32.610977895280584,
+      "RMSE_test": 34.90457669856833,
+      "MAPE": 23.77454146201885,
+      "R2": -6.666802618926646,
+      "MASE": 0.8395103105128927,
+      "seleccionado_por_CV": false
+    },
+    {
+      "id": "M20",
+      "familia": "ETS",
+      "MAE_CV": 30.996357554031896,
+      "RMSE_CV": 42.00587956069912,
+      "parametros": "{\"trend\": \"add\", \"seasonal\": null, \"damped_trend\": true}",
+      "MAE_train": 20.189660733272067,
+      "RMSE_train": 25.3074814649597,
+      "MAE_test": 31.304399636970242,
+      "RMSE_test": 33.695482341758144,
+      "MAPE": 22.86588481944492,
+      "R2": -6.144846233234184,
+      "MASE": 0.8058748297595771,
+      "seleccionado_por_CV": false
+    },
+    {
+      "id": "M01",
+      "familia": "Referencia media12",
+      "MAE_CV": 31.46527777777778,
+      "RMSE_CV": 42.31907978546898,
+      "parametros": "{}",
+      "MAE_train": 26.46031746031746,
+      "RMSE_train": 32.81929540367451,
+      "MAE_test": 28.583333333333343,
+      "RMSE_test": 31.239664957657066,
+      "MAPE": 19.48543999515101,
+      "R2": -5.141327623126339,
+      "MASE": 0.735825927060987,
+      "seleccionado_por_CV": false
+    },
+    {
+      "id": "M00",
+      "familia": "Referencia estacional",
+      "MAE_CV": 37.229166666666664,
+      "RMSE_CV": 49.07498514178753,
+      "parametros": "{}",
+      "MAE_train": 38.845238095238095,
+      "RMSE_train": 49.56080920973557,
+      "MAE_test": 36.583333333333336,
+      "RMSE_test": 43.15186361367645,
+      "MAPE": 25.65182379928182,
+      "R2": -10.717869160512171,
+      "MASE": 0.9417713760343243,
+      "seleccionado_por_CV": false
+    }
+  ],
+  "metricas_prueba_seleccionado": {
+    "id": "M13",
+    "familia": "SVR",
+    "MAE": 10.874336395032364,
+    "RMSE": 15.31848732590664,
+    "MAPE": 7.129524897505239,
+    "R2": -0.47666266526987644,
+    "sesgo": -8.886667432658873,
+    "total_real": 1709.0,
+    "total_predicho": 1602.3599908080937,
+    "error_total": -106.6400091919063,
+    "MASE": 0.2799400113952555
+  },
+  "mejora_MAE_vs_estacional_pct": 70.27516247371562,
+  "mejora_MAE_vs_media12_pct": 61.955674419711855,
+  "calibracion": {
+    "ano": 2023,
+    "n": 12,
+    "radio_banda": 61.273135657744575,
+    "orden_residuo": 12,
+    "MAE": 34.189150761645344,
+    "cobertura_observada_2024": 1.0,
+    "advertencia": "Banda orientativa: errores temporalmente dependientes y no intercambiables garantizados."
+  },
+  "proyeccion": {
+    "origen": "2024-12",
+    "ano": 2025,
+    "total": 1625.0898774980024,
+    "minimo": 133.81566464877574,
+    "maximo": 136.66222248109773,
+    "advertencia": "No es un pronostico actualizado de 2027 ni esta validado con datos de 2025."
+  },
+  "errores_mayores": [
+    {
+      "id": "M13",
+      "familia": "SVR",
+      "horizonte": 6,
+      "fecha": "2024-06-01",
+      "real": 174.0,
+      "prediccion": 134.36555811577242,
+      "error": -39.634441884227584,
+      "error_absoluto": 39.634441884227584
+    },
+    {
+      "id": "M13",
+      "familia": "SVR",
+      "horizonte": 12,
+      "fecha": "2024-12-01",
+      "real": 154.0,
+      "prediccion": 133.03510121351712,
+      "error": -20.964898786482877,
+      "error_absoluto": 20.964898786482877
+    },
+    {
+      "id": "M13",
+      "familia": "SVR",
+      "horizonte": 9,
+      "fecha": "2024-09-01",
+      "real": 150.0,
+      "prediccion": 132.587385275669,
+      "error": -17.412614724331007,
+      "error_absoluto": 17.412614724331007
+    },
+    {
+      "id": "M13",
+      "familia": "SVR",
+      "horizonte": 11,
+      "fecha": "2024-11-01",
+      "real": 146.0,
+      "prediccion": 132.01776076564352,
+      "error": -13.982239234356484,
+      "error_absoluto": 13.982239234356484
+    },
+    {
+      "id": "M13",
+      "familia": "SVR",
+      "horizonte": 1,
+      "fecha": "2024-01-01",
+      "real": 148.0,
+      "prediccion": 134.7281645046889,
+      "error": -13.271835495311109,
+      "error_absoluto": 13.271835495311109
+    }
+  ],
+  "advertencias_ajustes": [],
+  "limites": [
+    "Solo un ano de prueba y cuatro cortes para elegir hiperparametros.",
+    "El ajuste en entrenamiento utiliza historias reales a un paso; CV y prueba son doce pasos recursivos.",
+    "El mejor modelo por validacion no tiene por que ser el mejor en 2024. No se cambia tras observar prueba.",
+    "Las variables derivadas aportan representaciones de la historia, no nuevas observaciones independientes."
+  ]
+}

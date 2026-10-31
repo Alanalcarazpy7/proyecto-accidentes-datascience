@@ -1,0 +1,5 @@
+﻿contraste,supuesto,resultado,decision
+H1,Una victima por accidente; frecuencias esperadas >=5,min esperado 6226.2; sin IDs duplicados,Chi cuadrado; no requiere normalidad
+H2,"Distribucion de edades, normalidad, dispersion e independencia por accidente","Shapiro submuestras: p fallecidos=1.71e-23, heridos=9.41e-30; Levene p=0","Mann-Whitney compara distribuciones/rangos, no solo medianas; no exige varianzas iguales"
+H3,Muestras de accidentes disjuntos; exitos y fracasos >=5,moto muertos/vivos=8857/157587; otros=11189/185687,Prueba z dos proporciones; bootstrap de Bernoulli empiricas como contraste de IC
+H4,Convergencia; dependencia intraccidente; forma funcional y confusores,convergio=True; accidentes=334129; rango X=9/9,"Sandwich por accidente; edad cuadratica; no garantiza ausencia de confusion, independencia temporal o seleccion ignorable"

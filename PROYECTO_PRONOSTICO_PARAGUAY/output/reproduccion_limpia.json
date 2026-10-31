@@ -1,0 +1,20 @@
+{
+  "desde_originales_sin_resultados_previos": true,
+  "misma_seleccion": {
+    "familia": "SVR",
+    "parametros": {
+      "C": 1.0,
+      "epsilon": 15.0,
+      "gamma": "scale"
+    },
+    "id": "M13"
+  },
+  "diferencias_metricas": {
+    "MAE": 0.0,
+    "RMSE": 0.0,
+    "MAPE": 0.0,
+    "R2": 0.0,
+    "total_predicho": 0.0
+  },
+  "nota": "Mismo experimento fijo reproducido; no se retocaron parametros por prueba."
+}

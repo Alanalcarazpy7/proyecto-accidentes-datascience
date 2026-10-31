@@ -1,0 +1,8 @@
+﻿prueba,variable,estadistico,p,interpretacion
+Shapiro-Wilk,Conteos mensuales,0.9742242497851022,0.08984771930596236,Diagnostico; n pequeno no prueba normalidad. No activa busquedas de pruebas por significancia.
+Shapiro-Wilk,Diferencias de semestres por ano,0.9504623298454408,0.7339065136118696,Diagnostico; n pequeno no prueba normalidad. No activa busquedas de pruebas por significancia.
+Shapiro-Wilk,Residuos OLS,0.9715892402133197,0.10254211839967942,Diagnostico; n pequeno no prueba normalidad. No activa busquedas de pruebas por significancia.
+Levene (mediana),Promedios de semestres,0.7484883222449341,0.4039195622668418,Diagnostico descriptivo; igualdad de varianzas NO es requisito de Wilcoxon apareado.
+Ljung-Box(1),Residuos OLS,0.07098353998349212,0.7899100935894059,Diagnostico de dependencia residual; no es una quinta hipotesis primaria.
+Ljung-Box(6),Residuos OLS,4.673120256626622,0.586367528670418,Diagnostico de dependencia residual; no es una quinta hipotesis primaria.
+Ljung-Box(12),Residuos OLS,9.088170722055015,0.6953815977990041,Diagnostico de dependencia residual; no es una quinta hipotesis primaria.

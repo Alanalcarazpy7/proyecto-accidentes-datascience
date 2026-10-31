@@ -1,0 +1,82 @@
+=== PAGINA 1 ===
+Meses Lunes Martes Miércoles Jueves Viernes Sábado Domingo Tot.
+Enero 17 14 7 6 12 6 17 79
+Febrero 16 23 20 19 12 30 24 144
+Marzo 10 8 12 17 16 28 17 108
+Abril 7 5 8 4 3 7 4 38
+Mayo 23 11 15 13 12 9 6 89
+Junio 12 18 18 21 16 21 14 120
+Julio 0 0 0 0 0 0 0 0
+Agosto 0 0 0 0 0 0 0 0
+Septiembre 0 0 0 0 0 0 0 0
+Octubre 0 0 0 0 0 0 0 0
+Noviembre 0 0 0 0 0 0 0 0
+Diciembre 0 0 0 0 0 0 0 0
+Total 85 79 80 80 71 101 82 578
+% 15% 14% 14% 14% 12% 17% 14% 100%
+ FUENTE: ELABORADO POR  EL ÁREA DE ESTADÍSTICAS EN BASE A DATOS DEL SISTEMA DE REGISTROS DE ACCIDENTES DE TRÁNSITO DE LA PATRULLA CAMINERA.-
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA
+ÁREA ESTADÍSTICA
+RESUMEN ESTADÍSTICO DE SINIESTROS DE TRÁNSITO POR DÍAS - AÑO 2023
+DEPARTAMENTO DE TEGNOLOGÍA Y SISTEMAS INFORMÁTICOS
+Jefe interino Área Estadística
+insp. Pral. Carlos Ferreira
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA
+Obs: En rojo días  críticos
+
+
+=== PAGINA 2 ===
+DEPARTAMENTO DE TEGNOLOGÍA Y SISTEMAS INFORMÁTICOS
+ÁREA ESTADÍSTICA
+Insp. Pral. Carlos Ferreira
+Jefe interino Área Estadística
+SINIESTROS DE TRÁNSITO DISTRIBUIDOS POR DÍAS - AÑO 2023
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA
+DEPARTAMENTO DE TEGNOLOGÍA Y SISTEMAS INFORMÁTICOS
+0
+20
+40
+60
+80
+100
+120
+LUNES MARTES MIÉRC JUEVES
+VIERNES
+SABADO
+DOMINGO
+[38]
+79 80 [32]
+71
+[86]
+82
+Obs: En rojo días  críticos
+
+
+=== PAGINA 3 ===
+Insp. Pral. Carlos Ferreira
+Jefe interino Área Estadística
+SINIESTROS DE TRÁNSITO DISTRIBUIDOS POR DÍAS - AÑO 2022
+ÁREA ESTADÍSTICA
+15%
+14%
+14%
+14%
+12%
+[18%]
+14%
+Lunes
+Martes
+Miércoles
+Jueves
+Viernes
+Sábado
+Domingo
+Días
+Obs: En rojo días  críticos
+
+=== PAGINA 4 ===
+  
+
+=== PAGINA 5 ===
+  
+                                                                                                                                                                                                                                      

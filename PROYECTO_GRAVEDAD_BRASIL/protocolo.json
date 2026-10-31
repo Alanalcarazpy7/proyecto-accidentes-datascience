@@ -1,0 +1,22 @@
+{
+  "fecha": "2026-10-31",
+  "pregunta": "¿Qué características personales, vehiculares y del siniestro se asocian con el fallecimiento registrado frente a lesiones no fatales en víctimas de siniestros atendidos por PRF en carreteras federales de Brasil entre 2017 y 2025?",
+  "unidad": "Participación de una víctima herida o fallecida en un accidente; clave (id,pesid), ambos positivos. No identidad civil longitudinal.",
+  "objetivo": "fallecido: 1 para Óbito, 0 para Lesões Leves o Lesões Graves; se excluyen ilesos y estado desconocido",
+  "desarrollo": [2017, 2023],
+  "cv": [{"entrenar_hasta": 2020, "validar": 2021}, {"entrenar_hasta": 2021, "validar": 2022}, {"entrenar_hasta": 2022, "validar": 2023}],
+  "calibracion": "2024-01-01 a 2024-06-30, prevalencia natural, sigmoid de puntuaciones",
+  "umbral": "2024-07-01 a 2024-12-31; maximizar F1 de fallecidos, desempatar por mayor umbral; punto secundario recall>=0.80 en validacion",
+  "prueba": "2025 completo, evaluar una vez despues de congelar modelos, calibracion y umbrales; no retocar segun prueba",
+  "seleccion": "Mayor average precision (AP) de fallecidos media de tres cortes temporales; desempate por menor complejidad/orden predefinido. No seleccionar por prueba.",
+  "comparacion_principal": "Mejor modelo multivariable frente a Dummy, modelos de sexo/edad en el mismo Brasil y LightGBM con solo sexo/edad. Paraguay anterior es referencia descriptiva, no comparacion causal ni equivalente de poblaciones.",
+  "semilla": 42,
+  "pesos": "Comparar entrenamiento natural y pesos balanced para logistica; LightGBM scale_pos_weight 1 o raiz(heridos/fallecidos), calculada solo en cada entrenamiento. No SMOTE ni remuestreo de validacion/prueba.",
+  "variables_prohibidas": ["estado_fisico", "mortos", "feridos_leves", "feridos_graves", "ilesos", "classificacao_acidente", "pessoas", "feridos", "ignorados", "id", "pesid", "id_veiculo", "causa_acidente"],
+  "causa_exclusion": "La causa es una atribucion posterior a investigar; se excluye del modelo principal para limitar informacion retrospectiva.",
+  "metricas": ["AP_fallecido", "ROC_AUC", "precision_fallecido", "recall_fallecido", "F1_fallecido", "F1_macro", "balanced_accuracy", "accuracy", "Brier", "log_loss", "matriz_confusion"],
+  "inferencia": {"periodo": "Solo desarrollo 2017-2023", "alfa": 0.05, "correccion": "Holm, familia de cuatro contrastes", "hipotesis": ["H1: asociacion entre sexo y desenlace", "H2: diferencia de edad entre fallecidos y heridos", "H3: diferencia de letalidad entre usuarios de moto y otros", "H4: asociacion nocturnidad/desenlace ajustada por edad, sexo, moto y ruralidad"], "dependencia": "Agrupacion por accidente; unidad independiente por accidente para contrastes clasicos y errores robustos por accidente para regresion/IC poblacion de victimas. No causalidad."},
+  "bootstrap": "400 remuestras de accidentes completos de prueba, semilla 42, IC percentiles 95%; comparaciones pareadas",
+  "alcance": "Investigacion academica retrospectiva de lesionados registrados, no riesgo de sufrir un accidente, no triaje medico, no causalidad, no extrapolacion automatica a Paraguay. Desenlace registrado por PRF sin suponer seguimiento hospitalario a 30 dias.",
+  "estado": "Fijado antes de ejecutar busqueda y evaluacion de Brasil; perfilado previo del conjunto completo ya existente fue solo auditoria de datos. No prerregistro externo."
+}

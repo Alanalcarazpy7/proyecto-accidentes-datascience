@@ -1,0 +1,92 @@
+=== PAGINA 1 ===
+Meses Lunes Martes Miércoles Jueves Viernes Sábado Domingo Tot.
+Enero 13 18 23 15 20 16 28 133
+Febrero 14 24 12 14 22 19 18 123
+Marzo 19 17 13 4 13 13 9 88
+Abril 6 7 4 4 4 2 4 31
+Mayo 8 12 11 9 14 9 10 73
+Junio 12 21 13 13 13 9 9 90
+Julio 13 13 23 19 25 15 11 119
+Agosto 13 15 16 23 19 18 10 114
+Septiembre 13 16 16 18 20 11 11 105
+Octubre 18 15 16 17 18 29 16 129
+Noviembre 19 20 15 27 21 20 20 142
+Diciembre 16 22 21 22 19 12 10 122
+Total 164 200 183 185 208 173 156 1269
+% 13% 16% 14% 15% 16% 14% 12% 100%
+ FUENTE: ELABORADO POR  EL ÁREA DE ESTADÍSTICAS EN BASE A DATOS DEL SISTEMA DE REGISTROS DE ACCIDENTES DE TRÁNSITO DE LA PATRULLA CAMINERA.-
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA
+ÁREA ESTADÍSTICA
+RESUMEN ESTADÍSTICO DE SINIESTROS DE TRÁNSITO POR DÍAS - AÑO 2020
+DEPARTAMENTO DE TEGNOLOGÍA Y SISTEMAS INFORMÁTICOS
+Jefe Área Estadística
+Prof. Edgar Romero Morínigo
+Obs: En rojo días  críticos 
+
+
+=== PAGINA 2 ===
+SINIESTROS DE TRÁNSITO DISTRIBUIDOS POR DÍAS - AÑO 2020
+DEPARTAMENTO DE TEGNOLOGÍA Y SISTEMAS INFORMÁTICOS
+ÁREA ESTADÍSTICA
+Prof. Edgar Romero Morínigo
+Jefe Área Estadística
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA
+0 
+50 
+100 
+150 
+200 
+250 
+LUNES MARTES MIÉRC JUEVES VIERNES SABADO 
+DOMINGO 
+164 
+200 
+183 185 
+208 
+173 
+156 
+Obs: En rojo días  críticos 
+
+
+=== PAGINA 3 ===
+Prof. Edgar Romero Morínigo
+Jefe Área Estadística
+SINIESTROS DE TRÁNSITO DISTRIBUIDOS POR DÍAS - AÑO 2020
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA
+ÁREA ESTADÍSTICA
+DEPARTAMENTO DE TEGNOLOGÍA Y SISTEMAS INFORMÁTICOS
+13% 
+16% 
+14% 
+15% 
+16% 
+14% 
+12% 
+Lunes 
+Martes 
+Miércoles 
+Jueves 
+Viernes 
+Sábado 
+Domingo 
+Días  
+Obs: En rojo días  críticos 
+
+
+=== PAGINA 4 ===
+  
+
+
+=== PAGINA 5 ===
+  
+                                                                                                                                                                                                                                      
+
+
+=== PAGINA 6 ===
+
+
+=== PAGINA 7 ===
+
+
+=== PAGINA 8 ===
+                                                                                                                                                                                                                                      

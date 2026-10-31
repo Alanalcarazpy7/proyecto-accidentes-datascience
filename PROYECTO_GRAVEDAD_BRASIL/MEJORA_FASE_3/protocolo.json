@@ -1,0 +1,18 @@
+{
+  "fecha": "2026-10-31",
+  "objetivo": "Ronda acotada de mejora de clasificacion herida/fallecida, conservando el experimento original",
+  "semilla": 42,
+  "presupuesto": "8 configuraciones LightGBM x 3 cortes = 24 ajustes CV; dos ajustes finales; sin ampliaciones segun resultados de prueba",
+  "entrenamiento_final": "2017-2023, mismo periodo para referencia y candidato, aislando cambios de variables/ajustes",
+  "CV": [{"train_hasta":2020,"validar":2021},{"train_hasta":2021,"validar":2022},{"train_hasta":2022,"validar":2023}],
+  "seleccion": "Mayor AP media; el candidato debe superar referencia en media y en al menos 2 de 3 cortes. Si ninguno cumple se conserva referencia. ROC AUC y F1 se reportan, no eligen retrospectivamente.",
+  "calibracion": "2024 enero-junio; sigmoid con prevalencia natural, igual para ambos modelos",
+  "umbral": "2024 julio-diciembre; maximizar F1 de fallecidos, desempate por mayor umbral; regla secundaria recall>=0.80",
+  "comparacion_2025": "Retrospectiva: resultados originales ya conocidos; no se usa para seleccionar ni se presenta como nueva prueba ciega",
+  "nueva_prueba": "Archivo publico 2026, periodo efectivo a auditar una vez congelados modelos y umbrales. Archivo se puede descargar opacamente antes, pero no leer datos ni etiquetas antes del congelamiento. No equivale a 2026 completo.",
+  "comparacion_justa": "Ambos modelos sobre las mismas personas, fechas, particiones y desenlace. La referencia usa configuracion original y sus 24 variables; ambos se reajustan con las mismas filas.",
+  "novedades": ["Numero de vehiculos del accidente", "Composicion desde todos los vehiculos identificados: incluye ilesos y filas sin persona; deduplica (id,id_veiculo>0)", "Cantidad y familia de otros vehiculos, descontando propio", "Marca aproximada normalizada como categoria", "Indicadores de trazado descompuesto", "Regularizacion y complejidad acotadas"],
+  "prohibiciones": "No usar desenlace, indicadores de muertos/heridos, gravedad agregada, IDs ni atribucion posterior de causa como predictores. No construir composicion solo desde victimas seleccionadas ni filtrar entrenamiento con resultados de 2025/2026.",
+  "incertidumbre": "300 bootstrap pareados de accidentes completos de 2026: diferencia AP, ROC AUC, F1 macro y precision/recall. No garantiza representatividad, estabilidad o causalidad.",
+  "alcance": "Clasificacion retrospectiva de victimas lesionadas registradas por PRF; no prediccion de sufrir un accidente ni uso clinico validado. Contexto vehicular es del siniestro observado, no una caracteristica conocida antes del evento."
+}

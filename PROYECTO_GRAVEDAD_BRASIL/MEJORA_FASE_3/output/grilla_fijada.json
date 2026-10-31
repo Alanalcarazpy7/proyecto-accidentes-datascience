@@ -1,0 +1,82 @@
+[
+  {
+    "nombre": "Referencia_24_original",
+    "bloque": "base",
+    "hojas": 15,
+    "arboles": 240,
+    "tasa": 0.06,
+    "min_hoja": 120,
+    "l2": 8,
+    "peso": "raiz"
+  },
+  {
+    "nombre": "Contexto_mismo_ajuste",
+    "bloque": "contexto",
+    "hojas": 15,
+    "arboles": 240,
+    "tasa": 0.06,
+    "min_hoja": 120,
+    "l2": 8,
+    "peso": "raiz"
+  },
+  {
+    "nombre": "Enriquecido_mismo_ajuste",
+    "bloque": "enriquecido",
+    "hojas": 15,
+    "arboles": 240,
+    "tasa": 0.06,
+    "min_hoja": 120,
+    "l2": 8,
+    "peso": "raiz"
+  },
+  {
+    "nombre": "Contexto_regularizado",
+    "bloque": "contexto",
+    "hojas": 15,
+    "arboles": 400,
+    "tasa": 0.04,
+    "min_hoja": 300,
+    "l2": 25,
+    "peso": "raiz"
+  },
+  {
+    "nombre": "Contexto_regularizado_natural",
+    "bloque": "contexto",
+    "hojas": 15,
+    "arboles": 400,
+    "tasa": 0.04,
+    "min_hoja": 300,
+    "l2": 25,
+    "peso": "natural"
+  },
+  {
+    "nombre": "Enriquecido_regularizado",
+    "bloque": "enriquecido",
+    "hojas": 15,
+    "arboles": 400,
+    "tasa": 0.04,
+    "min_hoja": 300,
+    "l2": 25,
+    "peso": "raiz"
+  },
+  {
+    "nombre": "Enriquecido_31_hojas",
+    "bloque": "enriquecido",
+    "hojas": 31,
+    "arboles": 400,
+    "tasa": 0.04,
+    "min_hoja": 300,
+    "l2": 25,
+    "peso": "raiz"
+  },
+  {
+    "nombre": "Enriquecido_7_hojas",
+    "bloque": "enriquecido",
+    "hojas": 7,
+    "arboles": 450,
+    "tasa": 0.05,
+    "min_hoja": 500,
+    "l2": 40,
+    "peso": "raiz"
+  }
+]

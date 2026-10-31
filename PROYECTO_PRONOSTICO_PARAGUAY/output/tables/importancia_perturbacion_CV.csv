@@ -1,0 +1,11 @@
+﻿variable,aumento_MAE_medio,desvio,metodo
+rezago_1,0.019124238377395297,0.1408954788240397,"Perturbacion marginal de entradas en recursion; validacion, no prueba"
+rezago_2,-0.008135550031377826,0.1253508465101346,"Perturbacion marginal de entradas en recursion; validacion, no prueba"
+rezago_3,0.011938246817258058,0.1491400147323796,"Perturbacion marginal de entradas en recursion; validacion, no prueba"
+rezago_6,-0.006488814132706455,0.09446497883239109,"Perturbacion marginal de entradas en recursion; validacion, no prueba"
+rezago_12,-0.058539055638874335,0.30089025112026957,"Perturbacion marginal de entradas en recursion; validacion, no prueba"
+media_previa_3,-0.0226422175568743,0.14489721923329443,"Perturbacion marginal de entradas en recursion; validacion, no prueba"
+media_previa_12,0.07669852690685061,0.2906032078820648,"Perturbacion marginal de entradas en recursion; validacion, no prueba"
+sin_mes,-0.025265395803125035,0.09952828738809487,"Perturbacion marginal de entradas en recursion; validacion, no prueba"
+cos_mes,0.03437593690282492,0.2257027860601824,"Perturbacion marginal de entradas en recursion; validacion, no prueba"
+dias_mes,0.056861269898648016,0.14716919906752846,"Perturbacion marginal de entradas en recursion; validacion, no prueba"

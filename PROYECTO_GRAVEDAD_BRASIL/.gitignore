@@ -1,0 +1,70 @@
+# Python y entornos locales
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Jupyter: mantener los notebooks ejecutados
+.ipynb_checkpoints/
+.jupyter/
+.ipython/
+
+# Credenciales y configuracion local
+.env
+.env.*
+!.env.example
+!.env.template
+*.pem
+*.key
+.aws/
+.codex/
+.agents/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporales y revision visual
+tmp/
+temp/
+qa/
+*.log
+*.tmp
+*.temp
+*.bak
+~$*
+cv_checkpoint.json
+paquete_final.json
+
+# Datos originales pesados, recuperables con los scripts y manifiestos
+**/data/raw/
+**/data/raw_2026/
+
+# Mantener el dataset limpio Parquet, excluir sus copias/cache
+**/data/processed/*.joblib
+**/data/processed/victimas_limpias.csv.gz
+
+# Comprimidos de entrega
+dist/
+build/
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+
+# Contexto y exploraciones descartadas
+/contexto/
+/analisis_mejoras/
+
+# Se conservan codigo, notebooks ejecutados, requirements, README,
+# protocolos, manifiestos, Parquet limpio, informes PDF, HTML y tablas.
+# Se conserva models/*.joblib: es el modelo entrenado exigido por la catedra.

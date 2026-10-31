@@ -1,0 +1,9 @@
+{
+  "LightGBM_hojas15_pesoraiz": "float64",
+  "Logistica_natural_C1": "float32",
+  "Arbol_profundidad10": "float64",
+  "Bayes_alpha1": "float64",
+  "LightGBM_solo_sexo_edad": "float64",
+  "Logistica_solo_sexo_edad": "float32",
+  "Dummy_siempre_herido": "float64"
+}

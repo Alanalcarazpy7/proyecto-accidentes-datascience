@@ -1,3 +1,32 @@
+# Proyecto Integrador de Ciencia de Datos ? tr?nsito en Brasil
+
+Esta rama (`data-fase-3-brasil`) re?ne la investigaci?n, las tres fases y la mejora del modelo de gravedad de v?ctimas con datos oficiales de PRF Brasil. Se conservan tambi?n los materiales anteriores de Paraguay como contexto del trabajo.
+
+## Por d?nde empezar
+
+- [Mejor opci?n seleccionada: informe breve de la fase 3](PROYECTO_GRAVEDAD_BRASIL/MEJORA_FASE_3/output/INFORME_MEJORA_FASE_3.pdf).
+- [Notebook ejecutado de la mejora](PROYECTO_GRAVEDAD_BRASIL/MEJORA_FASE_3/output/Mejora_Fase_3.ipynb).
+- [Las tres fases y su reproducci?n](PROYECTO_GRAVEDAD_BRASIL/README.md).
+- [M?todo y resultados de la versi?n mejorada](PROYECTO_GRAVEDAD_BRASIL/MEJORA_FASE_3/README.md).
+
+La versi?n elegida usa 31 caracter?sticas. En la nueva prueba de enero a septiembre de 2026, sobre 67.591 v?ctimas, obtuvo AUC 0,845 y F1 macro 0,675; la referencia obtuvo 0,799 y 0,647 respectivamente. La mejora conserva errores importantes y no constituye un modelo cl?nico validado. Los informes declaran el uso de asistencia de IA y las limitaciones del an?lisis.
+
+## Reproducir el proyecto de Brasil
+
+```powershell
+cd PROYECTO_GRAVEDAD_BRASIL
+python -m pip install -r requirements.txt
+```
+
+Continuar con los pasos del README del proyecto y de `MEJORA_FASE_3`. Los informes PDF, notebooks ejecutados, modelos, manifiestos, tablas y datasets limpios Parquet est?n versionados. Los datos originales voluminosos, ZIP de entrega, cach?s y temporales est?n excluidos por `.gitignore`; las URLs, hashes y scripts para obtener las fuentes se conservan.
+
+## Material anterior
+
+Las carpetas de Caminera, investigaci?n de fuentes y pron?stico de Paraguay se mantienen en esta rama por decisi?n del grupo. El trabajo elegido para continuar es la clasificaci?n de v?ctimas de Brasil indicada arriba.
+
+<details>
+<summary>Documentaci?n anterior del repositorio</summary>
+
 # Proyecto Integrador - Data Science (FPUNA)
 
 **Fase 1: Análisis Descriptivo y Exploratorio de Siniestros Viales (Año 2021)**
@@ -83,3 +112,6 @@ La ejecución completa del notebook genera:
 ## Reproducibilidad
 
 El proyecto fue estructurado para que el análisis pueda reproducirse a partir de los datos originales. Una vez instaladas las dependencias indicadas en `requirements.txt`, el notebook puede ejecutarse secuencialmente sin modificaciones manuales.
+
+
+</details>

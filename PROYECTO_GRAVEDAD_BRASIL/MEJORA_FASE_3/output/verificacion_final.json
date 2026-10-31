@@ -1,0 +1,23 @@
+{
+  "estado": "OK",
+  "checks": [
+    "Protocolo intacto; congelamiento anterior a lectura de nueva prueba",
+    "Modelo, protocolo y resultados del primer experimento sin cambios",
+    "Presupuesto respetado: ocho configuraciones, 24 ajustes; seleccion solo por CV",
+    "Uniones sin expansion; nueva prueba con claves disjuntas y cobertura reconciliada",
+    "Ambos pipelines reabiertos y aplicados en proceso independiente; sin predictores prohibidos",
+    "Metricas de tres umbrales reconciliadas con predicciones guardadas, sin reentrenar",
+    "La referencia reproduce exactamente las metricas originales de 2025",
+    "300 bootstrap pareados por accidente; intervalos de las cinco mejoras por encima de cero",
+    "Notebook ejecutado sin errores, HTML guardado e informe breve dentro de cinco paginas"
+  ],
+  "paginas_pdf": 4,
+  "modelos": "Contexto_regularizado_natural",
+  "periodo_2026": [
+    "2026-01-01",
+    "2026-09-30"
+  ],
+  "n_prueba": 67591,
+  "nota": "Verificacion aritmetica y de integridad, sin cambiar seleccion/umbrales; QA visual se informa aparte.",
+  "QA_visual": "Las cuatro paginas fueron renderizadas y revisadas visualmente; tablas, graficos y texto sin cortes ni solapamientos observados."
+}

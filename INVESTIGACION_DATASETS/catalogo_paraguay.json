@@ -1,0 +1,27 @@
+[
+  {
+    "consulta": "accidentes",
+    "url": "https://www.datos.gov.py/api/3/action/package_search?q=accidentes&rows=100",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "consulta": "siniestros",
+    "url": "https://www.datos.gov.py/api/3/action/package_search?q=siniestros&rows=100",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "consulta": "transito",
+    "url": "https://www.datos.gov.py/api/3/action/package_search?q=transito&rows=100",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "consulta": "911",
+    "url": "https://www.datos.gov.py/api/3/action/package_search?q=911&rows=100",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "consulta": "defunciones",
+    "url": "https://www.datos.gov.py/api/3/action/package_search?q=defunciones&rows=100",
+    "error": "HTTP Error 404: Not Found"
+  }
+]

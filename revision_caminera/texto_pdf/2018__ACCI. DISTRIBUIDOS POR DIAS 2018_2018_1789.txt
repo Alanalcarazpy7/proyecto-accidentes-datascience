@@ -1,0 +1,209 @@
+=== PAGINA 1 ===
+Meses Lunes Martes Miércoles Jueves Viernes Sábado Domingo Tot. 
+Enero 23 12 20 14 10 14 18 111 
+Febrero 15 14 11 17 11 16 14 98 
+Marzo 15 10 20 31 16 21 17 130 
+Abril 16 11 10 15 23 20 29 124 
+Mayo 16 26 25 23 31 15 15 151 
+Junio 17 23 24 16 23 22 16 141 
+Julio 17 15 15 20 17 12 29 125 
+Agosto 22 18 20 23 28 16 25 152 
+Septiembre 17 10 14 27 20 19 24 131 
+Octubre 17 8 20 18 19 15 9 106 
+Noviembre 15 15 14 11 16 14 18 103 
+Diciembre 12 19 17 22 23 27 26 146 
+Total 202 181 210 237 237 211 240 1518 
+% 13.3% 11.9% 13.8% 15.6% 15.6% 13.9% 15.8% 100% 
+ FUENTE:  ELABORADO POR  EL ÁREA DE ESTADÍSTICAS EN BASE A DATOS DEL SISTEMA DE REGISTROS DE ACCIDENTES DE TRÁNSITO DE LA PATRULLA CAMINERA.- 
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA 
+ÁREA ESTADÍSTICA 
+RESUMEN ESTADÍSTICO DE SINIESTROS DE TRÁNSITO POR DÍAS - AÑO 2018 
+DEPARTAMENTO DE TEGNOLOGÍA Y SISTEMAS INFORMÁTICOS 
+Jefe Área Estadística 
+Prof. Edgar Romero Morínigo 
+Obs : En rojo días  críticos 
+
+
+=== PAGINA 2 ===
+SINIESTROS DE TRÁNSITO DISTRIBUIDOS POR DÍAS - AÑO 2018 
+DEPARTAMENTO DE TEGNOLOGÍA Y SISTEMAS INFORMÁTICOS 
+ÁREA ESTADÍSTICA 
+Prof. Edgar Romero Morínigo 
+Jefe Área Estadística 
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA 
+0 
+50 
+100 
+150 
+200 
+250 
+LUNES MARTES MIÉRC JUEVES VIERNES SABADO 
+DOMINGO 
+202 
+181 
+210 
+237 237 
+211 
+240 
+Obs : En rojo días  críticos 
+
+
+=== PAGINA 3 ===
+Prof. Edgar Romero Morínigo 
+Jefe Área Estadística 
+SINIESTROS DE TRÁNSITO DISTRIBUIDOS POR DÍAS - AÑO 2018 
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA 
+ÁREA ESTADÍSTICA 
+DEPARTAMENTO DE TEGNOLOGÍA Y SISTEMAS INFORMÁTICOS 
+13.3% 
+11.9% 
+13.8% 
+15.6% 
+15.6% 
+13.9% 
+15.8% 
+Lunes 
+Martes 
+Miércoles 
+Jueves 
+Viernes 
+Sábado 
+Domingo 
+Días 
+Obs : En rojo días  críticos 
+
+
+=== PAGINA 4 ===
+  
+
+=== PAGINA 5 ===
+  
+                                                                                                                                                                                                                                      
+
+=== PAGINA 6 ===
+
+
+=== PAGINA 7 ===
+
+
+=== PAGINA 8 ===
+                                                                                                                                                                                                                                      
+
+=== PAGINA 9 ===
+DIAS/         
+AÑOS 2010 2011 2012 2013 2014 2015 2016 2017 2018 
+2018/                         
+                  
+   2017 
+2018/                         
+                  
+   2010 
+LUNES 141 138 143 170 164 228 270 273 202 -26% 43% 
+MARTES 129 114 145 152 172 234 292 277 181 -35% 40% 
+MIÉRCOLES 144 114 156 169 185 229 247 244 210 -14% 46% 
+JUEVES 128 126 150 165 195 238 312 266 237 -11% 85% 
+VIERNES 171 122 169 212 205 261 338 306 237 -23% 39% 
+SÁBADO 163 121 164 177 158 224 322 270 211 -22% 29% 
+DOMINGO 109 85 94 159 166 177 304 297 240 -19% 120% 
+Total 985 820 1021 1204 1245 1591 2085 1933 1518 -7% 96% 
+RESUMEN COMPARATIVO DE ACCIDENTES POR DÍAS, PERIODO 2010/2018 
+Prof. Edgar Romero Morínigo 
+Jefe Área Estadística 
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA 
+DEPARTAMENTO DE TEGNOLOGÍA Y SISTEMAS INFORMÁTICOS 
+ÁREA ESTADÍSTICA 
+Obs : En rojo días  críticos 
+
+
+=== PAGINA 10 ===
+Prof. Edgar Romero Morínigo 
+Jefe Área Estadística 
+ÁREA ESTADÍSTICA 
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA 
+DEPARTAMENTO DE TEGNOLOGÍA Y SISTEMAS INFORMÁTICOS 
+RESUMEN COMPARATIVO DE ACCIDENTES POR DÍAS, PERIODO 2010/2018 
+Obs : En rojo días  críticos 
+141
+129
+144
+128
+171
+163
+109
+138
+114
+114
+126
+122
+121
+85
+143
+145
+156
+150
+169
+164
+94
+170
+152
+169
+165
+212
+177
+159
+164
+172
+185
+195
+205
+158
+166
+228
+234
+229
+238
+261
+224
+177
+270
+292
+247
+312
+338
+322
+304
+273
+277
+244
+266
+306
+270
+297
+202
+181
+210
+237
+237
+211
+240
+0 
+50 
+100 
+150 
+200 
+250 
+300 
+350 
+400 
+LUNES MARTES MIÉRCOLES JUEVES VIERNES SÁBADO DOMINGO 
+2010 
+2011 
+2012 
+2013 
+2014 
+2015 
+2016 
+2017 
+2018 
+
+=== PAGINA 11 ===

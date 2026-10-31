@@ -1,0 +1,133 @@
+=== PAGINA 1 ===
+%
+%
+%
+Choque
+Roce
+Vuelco
+Arrollam.
+Incendio
+Casual
+Atropell.
+Total                   
+Mens.
+Porcentual
+Mujer
+Varón
+Total
+Porcentual
+Mujer
+Varón
+Total
+Porcentual
+Total 
+Gral.
+65 5 8 0 1 4 6 89 9% 9 32 41 7% 1 4 5 5% 46
+69 8 6 0 0 0 2 85 8% 5 22 27 5% 0 9 9 10% 36
+76 9 6 1 1 2 6 101 10% 8 35 43 7% 3 9 12 13% 55
+87 11 5 0 0 5 10 118 12% 25 53 78 13% 2 5 7 8% 85
+77 9 3 0 0 3 8 100 10% 7 38 45 8% 1 7 8 9% 53
+60 7 0 3 1 7 4 82 8% 7 36 43 7% 1 5 6 6% 49
+53 7 6 0 1 4 7 78 8% 13 40 53 9% 1 8 9 10% 62
+74 10 4 0 2 6 4 100 10% 18 41 59 10% 0 4 4 4% 63
+Setiembre 67 7 6 0 0 5 8 93 9% 14 36 50 8% 1 4 5 5% 55
+Octubre 42 4 2 0 0 1 1 50 5% 9 23 32 5% 1 4 5 5% 37
+Noviembre 36 4 2 0 0 4 2 48 5% 23 63 86 14% 0 16 16 17% 102
+Diciembre 57 6 4 1 0 4 1 73 7% 13 29 42 7% 2 5 7 8% 490 0
+763 87 52 5 6 45 59 1017 100% 151 448 599 100% 13 80 93 100% 692
+75% 9% 5% 0% 1% 4% 6% 100% - 22% 65% 87% - 2% 12% 13% - 100%
+ FUENTE: ELABORADO POR  EL ÁREA DE ESTADÍSTICAS EN BASE A DATOS DEL SISTEMA DE REGISTROS DE ACCIDENTES DE TRÁNSITO DE LA PATRULLA CAMINERA.-
+  Insp. Pral. Carlos Ferreira
+                                     Jefe interino Área Estadística
+Mayo
+Junio
+Julio
+Agosto
+Total
+%
+Meses
+Enero
+Febrero
+Marzo
+Abril 
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA
+  DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS 
+ÁREA ESTADÍSTICA
+TIPOLOGÍA DE LOS SINIESTROS DE TRÁNSITO  Y VÍCTIMAS SEGÚN SEXO - AÑO 2022 - ZONA CENTRAL
+TIPOS DE SINIESTROS HERIDOS MUERTOS
+
+
+=== PAGINA 2 ===
+  Insp. Pral. Carlos Ferreira
+                                     Jefe interino Área Estadística
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA
+  DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS 
+ÁREA ESTADÍSTICA
+TIPOLOGÍA DE LOS SINIESTROS DE TRÁNSITO 2022 - ZONA CENTRAL
+75%
+9%
+5%
+0%
+1%
+4%
+6%
+Choque
+Roce
+Vuelco
+Arrollam.
+Incendio
+Casual
+Atropell.
+Referencias
+Tot.Acc: 1018.-
+
+
+=== PAGINA 3 ===
+    Insp. Pral. Carlos Ferreira
+                                     Jefe interino Área Estadística
+ÁREA ESTADÍSTICA
+DIRECCIÓN NACIONAL DE  PATRULLA CAMINERA
+  DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS 
+[123]
+[22%]
+[369]
+[65%]
+[11]
+[2%] [63]
+[11%]
+VICTIMAS EN SINIESTROS DE TRÁNSITO SEGÚN SEXO 2022  - ZONA CENTRAL
+Mujer herida
+Varón herido
+Mujer muerta
+Varón muerto
+Referencias
+Tot.Víct.: 692.-
+
+
+=== PAGINA 4 ===
+  Insp. Pral. Carlos Ferreira
+                                     Jefe interino Área Estadística 
+   DIRECCIÓN NACIONAL DE PATRULLA CAMINERA
+  DEPARTAMENTO DE TECNOLOGÍA Y SISTEMAS INFORMÁTICOS 
+ÁREA ESTADÍSTICA
+ SINIESTROS DE TRÁNSITO DISTRIBUIDOS POR MESES  AÑO 2022 - ZONA CENTRAL
+89 85
+101
+118
+100
+82 78
+100
+93
+50 48
+73
+0
+20
+40
+60
+80
+100
+120
+140
+Tot.Acc: 1018.
+
+=== PAGINA 5 ===

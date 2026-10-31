@@ -1,0 +1,181 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+DICIONÁRIO DE 
+VARIÁVEIS – ACIDENTES 
+DADOS  DESAGREGADOS  POR OCORRÊNCIA 
+REGISTROS A PARTIR DE JANEIRO DE 2017 
+Brasília – DF 
+Setembro 2017  
+ 
+
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+INTRODUÇÃO 
+ 
+ 
+ 
+A Polícia Rodoviária Federal – PRF – atende cerca de 70.000 km de rodovias federais e está 
+distribuída em todo o território nacional, combatendo a criminalidade, prestando auxílio ao cidadão, 
+fiscalizando, autuando e atendendo  acidentes.  
+Entre os anos de 2007 e 2016 o registro de acidentes era realizado por meio do sistema BR-Brasil. 
+Neste sistema o policial responsável pela ocorrência insere dados referentes aos envolvidos, ao 
+local, aos veículos e à dinâmica do acidente. 
+Em janeiro de 2017 o sistema BR-Brasil foi descontinuado e a PRF passou a utilizar um novo 
+sistema para registro das ocorrências de acidentes de trânsito. Esta versão do dicionário de dados 
+busca fornecer uma descrição sucinta das variáveis presentes nos conjuntos de dados registrados a 
+partir de janeiro de 2017. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+DICIONÁRIO DE VARIÁVEIS 
+(DADOS DO BAT – A PARTIR DE 2017) 
+ 
+ 
+ 
+ID VARIÁVEL  NOME DA VARIÁVEL  DESCRIÇÃO  
+1 id Variável com valores numéricos, 
+representando o identificador do acidente. 
+2 data_inversa Data da ocorrência no formato 
+dd/mm/aaaa. 
+3 dia_semana Dia da semana da ocorrência. Ex.: 
+Segunda, Terça, etc.  
+4 horário Horário da ocorrência no formato 
+hh:mm:ss. 
+5 uf Unidade da Federação. Ex.: MG, PE, DF, 
+etc. 
+6 br Variável com valores numéricos, 
+representando o identificador da BR do 
+acidente. 
+7 km Identificação do quilômetro onde ocorreu 
+o acidente, com valor mínimo de 0,1 km e 
+com a casa decimal separada por ponto. 
+8 municipio Nome do município de ocorrência do 
+acidente 
+9 causa_acidente Identificação da causa principal do 
+acidente. Neste conjunto de dados são 
+excluídos os acidentes com a variável 
+causa principal igual a “Não”. 
+10 tipo_acidente Identificação do tipo de acidente. Ex.: 
+Colisão frontal, Saída de pista, etc. Neste 
+conjunto de dados são excluídos os tipos 
+de acidentes com ordem maior ou igual a 
+dois. A ordem do acidente demonstra a 
+sequência cronológica dos tipos presentes 
+na mesma ocorrência. 
+11 classificação_acidente Classificação quanto à gravidade do 
+acidente: Sem Vítimas, Com Vítimas 
+Feridas, Com Vítimas Fatais e Ignorado. 
+12 fase_dia Fase do dia no momento do acidente. Ex. 
+Amanhecer, Pleno dia, etc.  
+13 sentido_via Sentido da via considerando o ponto de 
+colisão: Crescente e decrescente. 
+14 condição_meteorologica Condição meteorológica no momento do 
+
+ 
+ 
+ 
+ 
+acidente: Céu claro, chuva, vento, etc. 
+15 tipo_pista Tipo da pista considerando a quantidade 
+de faixas: Dupla, simples ou múltipla. 
+16 tracado_via Descrição do traçado da via. 
+17 uso_solo Descrição sobre as características do local 
+do acidente: Urbano=Sim;Rural=Não.  
+18 pessoas Total de pessoas envolvidas na ocorrência. 
+19 mortos Total de pessoas mortas envolvidas na 
+ocorrência. 
+20 feridos_leves Total de pessoas com ferimentos leves 
+envolvidas na ocorrência. 
+21 feridos_graves Total de pessoas com ferimentos graves 
+envolvidas na ocorrência. 
+22 ilesos Total de pessoas ilesas envolvidas na 
+ocorrência. 
+23 ignorados Total de pessoas envolvidas na ocorrência 
+e que não se soube o estado físico. 
+24 feridos Total de pessoas feridas envolvidas na 
+ocorrência (é a soma dos feridos leves 
+com os graves). 
+25 veiculos Total de veículos envolvidos na 
+ocorrência. 
+26 latitude Latitude do local do acidente em formato 
+geodésico decimal. 
+27 longitude Longitude do local do acidente em 
+formato geodésico decimal. 
+28 regional Superintendência regional da PRF cujo 
+acidente ocorreu dentro dos limites de sua 
+circunscrição. Atenção nem sempre a UF 
+da regional coincide com a UF do 
+acidente. Ex: A circunscrição da SPRF-
+DF grande parte está localizada na UF 
+“GO”. 
+29 delegacia delegacia da PRF cujo acidente ocorreu 
+dentro dos limites de sua circunscrição. 
+30 uop UOP= unidade operacional. Unidade 
+operacional da PRF cujo acidente ocorreu 
+dentro dos limites de sua circunscrição. 
+ 
+ 

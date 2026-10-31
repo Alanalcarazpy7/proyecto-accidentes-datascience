@@ -1,0 +1,91 @@
+[
+  {
+    "nombre": "Logistica_natural_C1",
+    "familia": "Logistica",
+    "tipo": "lr",
+    "C": 1.0,
+    "peso": null
+  },
+  {
+    "nombre": "Logistica_balanceada_C1",
+    "familia": "Logistica",
+    "tipo": "lr",
+    "C": 1.0,
+    "peso": "balanced"
+  },
+  {
+    "nombre": "Logistica_balanceada_C01",
+    "familia": "Logistica",
+    "tipo": "lr",
+    "C": 0.1,
+    "peso": "balanced"
+  },
+  {
+    "nombre": "Bayes_alpha1",
+    "familia": "Bayes",
+    "tipo": "nb",
+    "alpha": 1.0
+  },
+  {
+    "nombre": "Bayes_alpha10",
+    "familia": "Bayes",
+    "tipo": "nb",
+    "alpha": 10.0
+  },
+  {
+    "nombre": "Arbol_profundidad6",
+    "familia": "Arbol",
+    "tipo": "tree",
+    "profundidad": 6
+  },
+  {
+    "nombre": "Arbol_profundidad10",
+    "familia": "Arbol",
+    "tipo": "tree",
+    "profundidad": 10
+  },
+  {
+    "nombre": "LightGBM_hojas15_pesonatural",
+    "familia": "LightGBM",
+    "tipo": "lgbm",
+    "hojas": 15,
+    "peso": "natural"
+  },
+  {
+    "nombre": "LightGBM_hojas15_pesoraiz",
+    "familia": "LightGBM",
+    "tipo": "lgbm",
+    "hojas": 15,
+    "peso": "raiz"
+  },
+  {
+    "nombre": "LightGBM_hojas31_pesonatural",
+    "familia": "LightGBM",
+    "tipo": "lgbm",
+    "hojas": 31,
+    "peso": "natural"
+  },
+  {
+    "nombre": "LightGBM_hojas31_pesoraiz",
+    "familia": "LightGBM",
+    "tipo": "lgbm",
+    "hojas": 31,
+    "peso": "raiz"
+  },
+  {
+    "nombre": "Logistica_solo_sexo_edad",
+    "familia": "Logistica_sexo_edad",
+    "tipo": "lr",
+    "C": 1.0,
+    "peso": null,
+    "reducida": true
+  },
+  {
+    "nombre": "LightGBM_solo_sexo_edad",
+    "familia": "LightGBM_sexo_edad",
+    "tipo": "lgbm",
+    "hojas": 15,
+    "peso": "natural",
+    "reducida": true
+  }
+]

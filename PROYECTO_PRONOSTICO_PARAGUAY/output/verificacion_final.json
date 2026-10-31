@@ -1,0 +1,19 @@
+{
+  "serie_completa_unica": true,
+  "originales_y_versiones_validados": true,
+  "seleccion_por_validacion": true,
+  "origenes_CV_solo_pasado": true,
+  "modelo_prueba_no_entrenado_con_2024": true,
+  "prediccion_2024_reproducida_desde_modelo": true,
+  "metricas_verificadas_por_calculo_independiente": true,
+  "proyeccion_reproducida": true,
+  "componentes_contemporaneos_excluidos": true,
+  "ultimo_objetivo_no_filtrado_en_sus_predictores": true,
+  "tres_notebooks_ejecutados_sin_errores_y_HTML": true,
+  "PDF_dentro_limites": {
+    "Fase_1_Preparacion_y_EDA.pdf": 16,
+    "Fase_2_Inferencia.pdf": 10,
+    "Fase_3_Modelado_y_Evaluacion.pdf": 15,
+    "Informe_Integrador.pdf": 21
+  }
+}

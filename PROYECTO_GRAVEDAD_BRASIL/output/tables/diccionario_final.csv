@@ -1,0 +1,31 @@
+﻿variable,descripcion,tipo,valores_distintos,faltantes,porcentaje_faltante,predictor
+id,"Identificador real del accidente; clave de union, nunca predictor",int64,506409,0,0.0,False
+pesid,Identificador positivo de participacion; no identidad civil longitudinal,int64,754098,0,0.0,False
+id_veiculo,"Identificador del vehiculo, cero desconocido/no aplicable; nunca predictor",int64,531082,0,0.0,False
+fecha,Fecha del siniestro; permite particion cronologica,datetime64[us],3287,0,0.0,False
+ano,Anio de siniestro; particion y auditoria,int16,9,0,0.0,False
+fallecido,"Objetivo binario; 1 obito, 0 lesiones leves/graves",int8,2,0,0.0,False
+idade,"Edad en anios; 0 ambiguo, negativos y >110 a faltante",float32,107,25273,3.3514211680709933,True
+idade_veiculo,Antiguedad del vehiculo en anios al siniestro,float32,82,66304,8.792491161626208,True
+hora,Hora del dia decimal 0..24,float32,1439,0,0.0,True
+hora_sin,"Seno del ciclo horario, sin unidad",float32,722,0,0.0,True
+hora_cos,"Coseno del ciclo horario, sin unidad",float32,722,0,0.0,True
+mes_sin,"Seno del ciclo mensual, sin unidad",float32,8,0,0.0,True
+mes_cos,"Coseno del ciclo mensual, sin unidad",float32,8,0,0.0,True
+latitude,Latitud decimal en grados,float32,251302,17,0.0022543489042538235,True
+longitude,Longitud decimal en grados,float32,243997,47,0.006232611676466455,True
+km,Kilometro de carretera BR,float32,9801,0,0.0,True
+sexo,Sexo registrado,category,3,872,0.11563483791231378,True
+tipo_envolvido,"Rol de participacion: conductor, pasajero, peaton, etc.",category,5,0,0.0,True
+tipo_veiculo,Tipo de vehiculo asociado,category,26,30359,4.025869316720108,True
+uf,Unidad federativa del siniestro,category,27,0,0.0,True
+br,"Identificador de carretera federal, categoria",category,131,800,0.10608700725900347,True
+municipio,Municipio del siniestro,category,2110,0,0.0,True
+tipo_acidente,"Tipo principal del evento, conocido al observar el siniestro",category,22,45,0.005967394158318946,True
+fase_dia,Fase del dia registrada,category,4,0,0.0,True
+sentido_via,Sentido de circulacion,category,3,800,0.10608700725900347,True
+condicao_metereologica,Condicion meteorologica observada,category,10,10096,1.3388180316086238,True
+tipo_pista,Tipo de calzada,category,3,0,0.0,True
+tracado_via,"Trazado, a veces compuesto por varios elementos separados por punto y coma",category,1211,0,0.0,True
+uso_solo,SIM urbano; NAO rural,category,2,0,0.0,True
+dia_semana,"Dia de semana calculado: 0 lunes, 6 domingo",category,7,0,0.0,True

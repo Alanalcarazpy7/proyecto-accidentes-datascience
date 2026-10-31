@@ -1,0 +1,90 @@
+[
+  {
+    "archivo": "INE_2017_causas_2015_2017.xlsx",
+    "url": "https://www.ine.gov.py/assets/documento/4e329Cuadro-12.2.3.xlsx",
+    "url_final": "https://www.ine.gov.py/assets/documento/4e329Cuadro-12.2.3.xlsx",
+    "bytes": 340820,
+    "sha256": "692ed294f943190291a343e6db93cdd6ebd6f8455dd3bcb8c8ff566c97d7affc",
+    "estado": "OK"
+  },
+  {
+    "archivo": "INE_2017_tipologia_2016_2017.xlsx",
+    "url": "https://www.ine.gov.py/assets/documento/7cbe1Cuadro-12.2.2.xlsx",
+    "url_final": "https://www.ine.gov.py/assets/documento/7cbe1Cuadro-12.2.2.xlsx",
+    "bytes": 327836,
+    "sha256": "f68e62d0edfd545774c5deb887c5f846c385069f185c54a1e15cae4376e3347a",
+    "estado": "OK"
+  },
+  {
+    "archivo": "INE_2018_tipologia_2017_2018.xlsx",
+    "url": "https://www.ine.gov.py/assets/documento/46630Cuadro_12.2.2.xlsx",
+    "url_final": "https://www.ine.gov.py/assets/documento/46630Cuadro_12.2.2.xlsx",
+    "bytes": 327858,
+    "sha256": "2921a183002c7f29655055e85d85ad93d864d3bf9752c57f68a188350df84329",
+    "estado": "OK"
+  },
+  {
+    "archivo": "INE_2019_tipologia_2018_2019.xlsx",
+    "url": "https://www.ine.gov.py/assets/documento/0207012.2.2_AEP_2019.xlsx",
+    "url_final": "https://www.ine.gov.py/assets/documento/0207012.2.2_AEP_2019.xlsx",
+    "bytes": 331628,
+    "sha256": "bb7a3bd3ad654dff955c92f7a48200a123c9a0ced7b254f0d5bf56a60d76e6bd",
+    "estado": "OK"
+  },
+  {
+    "archivo": "INE_2021_tipologia_2020_2021.xlsx",
+    "url": "https://www.ine.gov.py/assets/documento/0/12.2.2_AEP2021.xlsx",
+    "url_final": "https://www.ine.gov.py/assets/documento/0/12.2.2_AEP2021.xlsx",
+    "bytes": 328862,
+    "sha256": "5cd684ca2a180c98a79c520c1cce9022fae03a8f321e9797c3f71de9fde983c0",
+    "estado": "OK"
+  },
+  {
+    "archivo": "INE_2022_tipologia_2021_2022.xlsx",
+    "url": "https://www.ine.gov.py/assets/documento/61/12.2.2_AE2022.xlsx",
+    "url_final": "https://www.ine.gov.py/assets/documento/61/12.2.2_AE2022.xlsx",
+    "bytes": 42209,
+    "sha256": "fcba971c4d3fcb82daf65757d7e0afac550f110494fe26f53ec8d13176a7503e",
+    "estado": "OK"
+  },
+  {
+    "archivo": "INE_2023_tipologia_2022_2023.xlsx",
+    "url": "https://www.ine.gov.py/assets/documento/0/12.2.2_AE2023.xlsx",
+    "url_final": "https://www.ine.gov.py/assets/documento/0/12.2.2_AE2023.xlsx",
+    "bytes": 44148,
+    "sha256": "ba9fe680d150b5dcec46f5cb58005087047408c71fff3cf105844488624103b9",
+    "estado": "OK"
+  },
+  {
+    "archivo": "INE_2024_tipologia_2023_2024.xlsx",
+    "url": "https://www.ine.gov.py/assets/documento/0/12.2.2_AE2024.xlsx",
+    "url_final": "https://www.ine.gov.py/assets/documento/0/12.2.2_AE2024.xlsx",
+    "bytes": 48935,
+    "sha256": "7037ad467995fee1af10e4cdf3ab49085ad68608227f242239960309f19353a0",
+    "estado": "OK"
+  },
+  {
+    "archivo": "INE_2024_horas.xlsx",
+    "url": "https://www.ine.gov.py/assets/documento/0/12.2.4_AE2024.xlsx",
+    "url_final": "https://www.ine.gov.py/assets/documento/0/12.2.4_AE2024.xlsx",
+    "bytes": 55793,
+    "sha256": "187dee5d6cbfeefe644a3cc1a24260561d59fcb7d55bf3a34703fb43a49b8687",
+    "estado": "OK"
+  },
+  {
+    "archivo": "INE_2024_motociclistas_2019_2024.xlsx",
+    "url": "https://www.ine.gov.py/assets/documento/0/12.2.11_AE2024.xlsx",
+    "url_final": "https://www.ine.gov.py/assets/documento/0/12.2.11_AE2024.xlsx",
+    "bytes": 45369,
+    "sha256": "23732476ddddc7bbb6c7befd8aef645fc44b6d05b254fa7b89cf25453b89fda0",
+    "estado": "OK"
+  },
+  {
+    "archivo": "PRF_datatran2025.zip",
+    "url": "https://drive.google.com/uc?export=download&id=1-G3MdmHBt6CprDwcW99xxC4BZ2DU5ryR",
+    "url_final": "https://drive.usercontent.google.com/download?id=1-G3MdmHBt6CprDwcW99xxC4BZ2DU5ryR&export=download",
+    "bytes": 3727148,
+    "sha256": "52c8a631ac9d428bf845e2fa996b8c61f66b219f7014a61d292f9d95d186bb0f",
+    "estado": "OK"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "archivos": 7,
+  "filas_extraidas": 168,
+  "filas_finales": 108,
+  "duplicados_coincidentes": 60,
+  "guiones_convertidos": 100,
+  "meses_faltantes": 0,
+  "objetivos_imputados": 0,
+  "sumas_inconsistentes": 0,
+  "totales_anuales_validados": 14,
+  "distribucion_particiones": {
+    "Desarrollo": 84,
+    "Calibracion": 12,
+    "Prueba": 12
+  },
+  "fuente": "INE; Patrulla Caminera, zona Central e Interior",
+  "limite": "Coherencia verificada; estabilidad institucional de cobertura no demostrada"
+}

@@ -1,0 +1,97 @@
+{
+  "n_desarrollo": 573747,
+  "n_muestra_una_victima_por_accidente": 383598,
+  "estimando_clasico": "Caracteristicas de una victima aleatoria por accidente con al menos una victima herida/fallecida; accidentes ponderados por igual. No misma ponderacion que todas las victimas.",
+  "contrastes": [
+    {
+      "id": "H1",
+      "H0": "Sexo y desenlace son independientes en una victima aleatoria por accidente",
+      "H1": "Existe asociacion entre sexo y desenlace",
+      "prueba": "Chi cuadrado independencia",
+      "n": 383153,
+      "estadistico": 2041.3458843217022,
+      "gl": 1.0,
+      "p": 0.0,
+      "efecto": "V de Cramer",
+      "valor_efecto": 0.07299148234541922,
+      "IC95_bajo": 0.07051381296804808,
+      "IC95_alto": 0.07544051956734471,
+      "alcance": "Una victima aleatoria por accidente; sexo conocido; IC bootstrap multinomial",
+      "p_Holm": 0.0,
+      "decision": "Rechazar H0"
+    },
+    {
+      "id": "H2",
+      "H0": "Distribuciones de edad iguales entre fallecidos y heridos",
+      "H1": "Las distribuciones de edad difieren",
+      "prueba": "Mann-Whitney bilateral, correccion de empates",
+      "n": 370413,
+      "estadistico": 4825352704.0,
+      "gl": null,
+      "p": 0.0,
+      "efecto": "Correlacion biserial de rangos",
+      "valor_efecto": 0.16060996055603027,
+      "IC95_bajo": 0.15290016040568324,
+      "IC95_alto": 0.16794053512835344,
+      "alcance": "Una victima por accidente con edad 1..110; IC bootstrap estratificado por desenlace",
+      "p_Holm": 0.0,
+      "decision": "Rechazar H0"
+    },
+    {
+      "id": "H3",
+      "H0": "Proporcion de fallecimiento igual en usuarios de moto y otros vehiculos",
+      "H1": "Las proporciones difieren",
+      "prueba": "Z bilateral de dos proporciones",
+      "n": 363320,
+      "estadistico": -4.761080394047576,
+      "gl": null,
+      "p": 1.9255931614424497e-06,
+      "efecto": "Diferencia de riesgos moto menos otros",
+      "valor_efecto": -0.003619634507009681,
+      "IC95_bajo": -0.005093599761689422,
+      "IC95_alto": -0.0021236062179372374,
+      "alcance": "Una victima por accidente; conductores/pasajeros con vehiculo conocido",
+      "p_Holm": 1.9255931614424497e-06,
+      "decision": "Rechazar H0"
+    },
+    {
+      "id": "H4",
+      "H0": "Coeficiente de noche igual a cero condicionado a los controles",
+      "H1": "Coeficiente de noche distinto de cero",
+      "prueba": "Wald z de GLM binomial; SE agrupados por accidente",
+      "n": 494806,
+      "estadistico": 43.4199616137496,
+      "gl": null,
+      "p": 0.0,
+      "efecto": "Odds ratio ajustado noche frente a pleno dia",
+      "valor_efecto": 1.849499032393845,
+      "IC95_bajo": 1.798868290936104,
+      "IC95_alto": 1.9015548209178317,
+      "alcance": "Todas las victimas de desarrollo con covariables completas; dependencia dentro de accidente ajustada",
+      "p_Holm": 0.0,
+      "decision": "Rechazar H0"
+    }
+  ],
+  "bootstrap": {
+    "efecto": -0.003619634507009681,
+    "IC95_bootstrap": [
+      -0.005093599761689422,
+      -0.0021236062179372374
+    ],
+    "IC95_clasico": [
+      -0.005105826141055428,
+      -0.002133442872963934
+    ],
+    "razon_riesgos": 0.9363107370451302,
+    "proporcion_moto": 0.05321309269183629,
+    "proporcion_otros": 0.056832727198845974,
+    "replicas": 5000
+  },
+  "GLM": {
+    "n": 494806,
+    "accidentes": 334129,
+    "convergio": true,
+    "nota": "No es el modelo predictivo final; complete case puede introducir seleccion; observaciones externas al mismo accidente pueden seguir dependientes"
+  },
+  "limites": "Registros administrativos, sin muestreo probabilistico ni exposicion vial; p e IC describen incertidumbre bajo supuestos, no corrigen subregistro o sesgo de seleccion. Holm sobre cuatro contrastes; IC95 marginales, no simultaneos. No causalidad. No se seleccionan predictores solo por significancia."
+}
