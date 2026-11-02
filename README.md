@@ -8,7 +8,7 @@ El estudio usa 2017-2025 y una evaluación posterior de enero-septiembre de 2026
 
 ## Qué leer
 
-Para una lectura rápida de la Fase 3, usar el [resumen visual de cuatro páginas](output/resumen_fase3/Resumen_Fase_3_Continuidad_Paraguay_Brasil.pdf). La [comparación completa con el proyecto de Paraguay](output/resumen_fase3/COMPARACION_PROYECTOS.md) explica qué se mantuvo y qué cambió en cada fase.
+Para una lectura rápida de la Fase 3, usar el [resumen visual de seis páginas](output/resumen_fase3/Resumen_Fase_3_Continuidad_Paraguay_Brasil.pdf), que también incluye los principales resultados de las Fases 1 y 2. La [comparación completa con el proyecto de Paraguay](output/resumen_fase3/COMPARACION_PROYECTOS.md) explica qué se mantuvo y qué cambió en cada fase.
 
 1. [Fase 1: datos, limpieza y gráficos](output/reports/Fase_1_Preparacion_y_EDA.pdf).
 2. [Fase 2: hipótesis y pruebas estadísticas](output/reports/Fase_2_Inferencia.pdf).

@@ -155,6 +155,8 @@
     "output/tables/particiones.csv": "ba01a66fd9f7a7cafcea31d924b9c157e8dc01c680099d07f060cbf5f918d0d7",
     "output/tables/contrastes_fase2.csv": "5583703edebf6a927a5b4f0c23c3dc1105b96aac6863dee8256fe068625f475a",
     "output/tables/importancia_modelo_final.csv": "f1ddae03d5bea4ee67a1eb367bc4942e20c7687b657f1ae3bb95c61944044443",
-    "output/modelo/modelo_final.joblib": "09a64612bf0c504df692823d96fef24efadc97861eda0580d52192379e2c8d9a"
+    "output/modelo/modelo_final.joblib": "09a64612bf0c504df692823d96fef24efadc97861eda0580d52192379e2c8d9a",
+    "output/tables/auditoria_preparacion_por_anio.csv": "3b0b378da672096acffa4a551fd75afab500c3f3339623c58c407ad8f0fc3a67",
+    "output/tables/descriptivos_por_desenlace.csv": "65137bd6ea0dde8216ecf7a3e048303faf0f428e6c76cb7f31c01ebbdf0a7a0b"
   }
 }

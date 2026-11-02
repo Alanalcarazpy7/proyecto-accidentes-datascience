@@ -1,4 +1,4 @@
-"""Crea un resumen visual de cuatro paginas a partir de resultados guardados.
+"""Crea un resumen visual de seis paginas a partir de resultados guardados.
 
 No entrena modelos ni cambia la entrega principal. Requiere evidencia.json
 en output/resumen_fase3, cotejada con el repositorio anterior.
@@ -77,6 +77,39 @@ def charts(final,ref):
     ax.invert_yaxis();ax.set_xlim(0,max(values)*1.23)
     for i,v in enumerate(values):ax.text(v+.003,i,dec(v),va='center',fontsize=9)
     fig.savefig(FIG/'importancia_brasil.png',dpi=190,bbox_inches='tight');plt.close(fig)
+    annual=[r for r in read_csv(ROOT/'output/tables/auditoria_preparacion_por_anio.csv') if int(r['ano'])<=2023]
+    fig,ax=plt.subplots(figsize=(7.2,2.15))
+    values=[int(r['victimas']) for r in annual]
+    bars=ax.bar([r['ano'] for r in annual],values,color=TEAL,width=.62)
+    for b,v in zip(bars,values):ax.text(b.get_x()+b.get_width()/2,v+1300,num(v),ha='center',fontsize=9)
+    ax.set(ylabel='Víctimas incluidas',ylim=(0,max(values)*1.18))
+    ax.ticklabel_format(axis='y',style='plain');ax.set_axisbelow(True);ax.yaxis.grid(alpha=.15)
+    fig.savefig(FIG/'fase1_victimas_anuales.png',dpi=190,bbox_inches='tight');plt.close(fig)
+    ages=read_csv(ROOT/'output/tables/descriptivos_por_desenlace.csv')
+    fig,ax=plt.subplots(figsize=(7.2,1.65))
+    for i,label in enumerate(['Herida','Fallecida']):
+        row=next(r for r in ages if r['desenlace']==label)
+        v=float(row['idade_mean'])
+        ax.barh(i,v,color=TEAL if i==0 else ORANGE,height=.5)
+        ax.text(v+.5,i,dec(v,1)+' años',va='center',fontsize=10)
+    ax.set(yticks=[0,1],yticklabels=['Heridos','Fallecidos'],xlim=(0,49),xlabel='Edad promedio con edad válida')
+    ax.invert_yaxis()
+    fig.savefig(FIG/'fase1_edades.png',dpi=190,bbox_inches='tight');plt.close(fig)
+    contrasts=read_csv(ROOT/'output/tables/contrastes_fase2.csv')
+    for key,name,xlabel,reference,multiplier in [
+        ('H3','fase2_motos.png','Diferencia en puntos porcentuales: moto menos otros',0,100),
+        ('H4','fase2_noche.png','Relación de odds: noche frente a pleno día',1,1)]:
+        row=next(r for r in contrasts if r['id']==key)
+        effect=float(row['valor_efecto'])*multiplier
+        low=float(row['IC95_bajo'])*multiplier;high=float(row['IC95_alto'])*multiplier
+        fig,ax=plt.subplots(figsize=(7.2,1.4))
+        ax.errorbar(effect,0,xerr=[[effect-low],[high-effect]],fmt='o',color=TEAL,capsize=6,markersize=8)
+        ax.axvline(reference,color=GRAY,linestyle='--',linewidth=1)
+        ax.text(effect,.22,dec(effect,3 if key=='H3' else 2)+'  [IC 95 %: '+dec(low,3 if key=='H3' else 2)+'; '+dec(high,3 if key=='H3' else 2)+']',ha='center',fontsize=10)
+        ax.set(yticks=[],ylim=(-.3,.52),xlabel=xlabel)
+        ax.set_xlim((-.65,.17) if key=='H3' else (.85,2.05))
+        ax.spines['left'].set_visible(False)
+        fig.savefig(FIG/name,dpi=190,bbox_inches='tight');plt.close(fig)
 
 
 def paragraph(c,text,x,top,w,size=10,leading=None,color=NAVY,maxh=None):
@@ -97,7 +130,7 @@ def page(c,index,title):
     paragraph(c,title,LEFT,789,WIDTH,23,leading=28,maxh=58)
     c.setStrokeColor(colors.HexColor('#D6E0E5'));c.line(LEFT,39,PAGE_W-LEFT,39)
     paragraph(c,'Alan Alcaraz · Leandro Ferreira · Jorge Rios | 02/11/2026',LEFT,29,WIDTH-55,7.2,color=GRAY)
-    paragraph(c,f'{index} / 4',PAGE_W-80,29,40,7.5,color=GRAY)
+    paragraph(c,f'{index} / 6',PAGE_W-80,29,40,7.5,color=GRAY)
 
 
 def picture(c,name,top,height):
@@ -159,7 +192,37 @@ def main(sin_graficos=False):
     paragraph(c,'Los conteos anteriores eran reales. La limitación era su nivel de detalle: expandir cantidades no crea nuevas observaciones individuales.',LEFT,132,WIDTH,9,color=GRAY,maxh=45)
     c.showPage()
 
-    page(c,2,'Cómo preparamos y evaluamos')
+    page(c,2,'Fase 1 | Qué datos analizamos')
+    paragraph(c,'Exploramos los años 2017-2023 para entender los datos antes de evaluar el modelo en períodos posteriores. Cada fila representa la participación de una víctima lesionada en un accidente registrado por PRF.',LEFT,747,WIDTH,10.5,maxh=48)
+    paragraph(c,'<b>573.747 víctimas para desarrollar el análisis</b>',LEFT,682,WIDTH,12)
+    picture(c,'fase1_victimas_anuales.png',659,180)
+    paragraph(c,'Son víctimas heridas o fallecidas, no cantidades de accidentes. El gráfico muestra el volumen disponible por año; por sí solo no mide el riesgo de circular ni explica sus cambios.',LEFT,469,WIDTH,9.5,maxh=40)
+    paragraph(c,'<b>La edad aportó información para estudiar la gravedad</b>',LEFT,412,WIDTH,11)
+    picture(c,'fase1_edades.png',389,126)
+    paragraph(c,'Promedios: 36,6 años en heridos y 40,9 en fallecidos. Se calcularon con 517.235 y 36.435 edades válidas, respectivamente. Esta diferencia describe los datos; no demuestra que la edad cause el desenlace.',LEFT,253,WIDTH,9.5,maxh=43)
+    rect(c,LEFT,191,WIDTH,117)
+    paragraph(c,'<b>Controles que hicieron posible la Fase 3</b><br/>• Verificamos las claves del accidente y de la participación: cero duplicados y cero víctimas sin unión en el conjunto seleccionado.<br/>• Las edades imposibles se dejaron como faltantes; no inventamos edades.<br/>• Excluimos ilesos y estados desconocidos del objetivo herido/fallecido.<br/>• No usamos el resultado ni los totales de víctimas como predictores.',LEFT+13,179,WIDTH-26,9.5,maxh=99)
+    c.showPage()
+
+    page(c,3,'Fase 2 | Qué encontramos')
+    paragraph(c,'Comprobamos cuatro hipótesis usando los datos de desarrollo. Para sexo, edad y motos tomamos una víctima al azar por accidente; para horario ajustamos la dependencia de víctimas del mismo accidente.',LEFT,747,WIDTH,10.5,maxh=48)
+    bottom=table(c,['Pregunta y prueba','Resultado e interpretación'],[
+        ['Sexo y gravedad<br/>Chi cuadrado; n = 383.153','Se encontró asociación, pero pequeña: V de Cramer = 0,073. Una diferencia estadística no implica una gran capacidad predictiva.'],
+        ['Edad y gravedad<br/>Mann-Whitney; n = 370.413','Las distribuciones de edad difieren. El tamaño del efecto fue 0,161; la edad ayuda, pero no explica sola la gravedad.'],
+    ],682,[WIDTH*.37,WIDTH*.63])
+    paragraph(c,'<b>Motos frente a otros vehículos</b>',LEFT,bottom-19,WIDTH,11)
+    picture(c,'fase2_motos.png',bottom-39,105)
+    top=bottom-153
+    paragraph(c,'Entre conductores y pasajeros con vehículo conocido (n = 363.320), la diferencia fue de -0,362 puntos porcentuales. No confirma que las motos tengan mayor proporción de fallecidos en esta muestra. Tampoco demuestra que viajar en moto sea más seguro: no medimos viajes ni kilómetros recorridos.',LEFT,top,WIDTH,9.5,maxh=65)
+    top-=82
+    paragraph(c,'<b>Noche frente a pleno día, considerando otros factores</b>',LEFT,top,WIDTH,11)
+    picture(c,'fase2_noche.png',top-22,105)
+    top-=138
+    paragraph(c,'En 494.806 víctimas con datos completos, la noche se asoció con mayores odds de fallecimiento: OR = 1,85. No significa 85 % más de probabilidad. La línea representa el intervalo de confianza; la referencia 1 indica ausencia de asociación.',LEFT,top,WIDTH,9.5,maxh=55)
+    paragraph(c,'Las cuatro pruebas conservaron evidencia estadística al corregir las comparaciones con Holm (5 %). Son asociaciones observacionales: no prueban causas ni garantizan que una variable mejore por sí sola las predicciones.',LEFT,111,WIDTH,9,color=GRAY,maxh=50)
+    c.showPage()
+
+    page(c,4,'Cómo preparamos y evaluamos')
     paragraph(c,'Unimos las tablas con el identificador real del accidente. Revisamos duplicados, edades imposibles y faltantes. No inventamos personas ni mezclamos víctimas entre períodos.',LEFT,748,WIDTH,10.5,maxh=48)
     cards=[('PERSONA','Edad, sexo y rol: conductor, pasajero o peatón.'),('VEHÍCULO Y ACCIDENTE','Tipo y antigüedad, otros vehículos, choque, clima y vía.'),('TIEMPO Y UBICACIÓN','Horario, día, mes, ruta, municipio y coordenadas.')]
     for i,(title,body) in enumerate(cards):
@@ -189,7 +252,7 @@ def main(sin_graficos=False):
     paragraph(c,'Consideramos pesos para los fallecidos; el ganador conservó la proporción natural. No elegimos solo por aciertos totales ni usamos muertos/heridos como entradas. La causa del accidente no integra el modelo final.',LEFT,91,WIDTH,9,maxh=45)
     c.showPage()
 
-    page(c,3,'Qué logró el modelo final')
+    page(c,5,'Qué logró el modelo final')
     paragraph(c,'LightGBM de 31 variables | Mismas 67.591 víctimas de enero-septiembre de 2026.',LEFT,748,WIDTH,10.5,maxh=30)
     scores=[('AUC',dec(final['ROC_AUC']),'Ordenar los casos por riesgo'),('F1 MACRO',dec(final['F1_macro']),'Evaluar ambos grupos por igual'),('DETECCIÓN',dec(final['recall']*100,1)+' %','Fallecidos que logra identificar')]
     for i,(label,value,meaning) in enumerate(scores):
@@ -208,7 +271,7 @@ def main(sin_graficos=False):
     paragraph(c,'AUC 0,845 no significa 84,5 % de aciertos. Las métricas del proyecto anterior (AUC 0,581 y F1 macro 0,530) proceden de otra población y otra prueba: no son una comparación controlada entre países.',LEFT,85,WIDTH,9,maxh=41)
     c.showPage()
 
-    page(c,4,'Qué aprendimos y qué cambió')
+    page(c,6,'Qué aprendimos y qué cambió')
     paragraph(c,'<b>Qué información ayudó más al modelo</b>',LEFT,747,WIDTH,11)
     picture(c,'importancia_brasil.png',724,143)
     paragraph(c,'Medimos cuánto empeora el modelo al mezclar cada variable en 10.000 casos de validación. Una caída mayor indica más utilidad predictiva; no demuestra una causa.',LEFT,571,WIDTH,9.5,maxh=40)
@@ -224,8 +287,7 @@ def main(sin_graficos=False):
     top=bottom-18
     rect(c,LEFT,top,WIDTH,87)
     paragraph(c,'<b>Conclusión y límites</b><br/>Continuamos el estudio de gravedad con mejores registros y una evaluación temporal. El rendimiento es útil para el trabajo académico, pero todavía omite muchos fallecidos. Faltan velocidad de impacto, casco/cinturón y seguimiento clínico; no está validado para atención médica ni para Paraguay.',LEFT+13,top-12,WIDTH-26,10,maxh=73)
-    paragraph(c,'Fuentes: notebook Fase3_Accidentes_AUDITADA y resultados históricos de Paraguay; particiones.csv, metricas_evaluacion.csv, contrastes_fase2.csv e importancia_modelo_final.csv de Brasil. Los gráficos reproducen esas cifras, sin entrenar otro modelo.',LEFT,152,WIDTH,8.2,color=GRAY,maxh=48)
-    paragraph(c,'La comparación completa de las tres fases y la precisión de grupos/versiones están en COMPARACION_PROYECTOS.md, junto a este PDF. Se declara apoyo de IA en análisis, redacción y diseño; el grupo debe revisar y comprender el material.',LEFT,94,WIDTH,8.2,color=GRAY,maxh=39)
+    paragraph(c,'Fuentes: INE de Paraguay y registros oficiales de la Policía Rodoviária Federal de Brasil (2017 a septiembre de 2026). Elaboración del grupo a partir de los datos, pruebas y evaluaciones del proyecto.',LEFT,136,WIDTH,8.5,color=GRAY,maxh=43)
     c.save()
     print(target)
 
