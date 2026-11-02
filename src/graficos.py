@@ -70,6 +70,8 @@ def main():
     table(errors.sort_values('confianza_erronea',ascending=False).head(20),'errores_mayor_confianza_modelo_final.csv')
     selected_row=next(x for x in r['metricas'] if x['modelo']==chosen and x['particion']=='2026_prueba_nueva' and x['regla']=='F1_validacion')
     save_json(dict(seleccionado=chosen,prueba=selected_row,intervalos=r['intervalos_delta'],auditoria_prueba=r['auditoria_prueba'],predictores=b['features'],nota='Modelo final elegido en el experimento historico; 2025 es retrospectivo y 2026 fue posterior al congelamiento original.'),OUT/'fase3_resultados.json')
+    from textos import F3_TEXTOS
+    texts.update(F3_TEXTOS)
     save_json(texts,OUT/'interpretaciones_fase3.json')
     return texts
 

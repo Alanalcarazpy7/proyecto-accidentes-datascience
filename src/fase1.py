@@ -117,6 +117,8 @@ def main():
     ax.set(xlabel='Fallecidos / victimas del grupo (%)',title='Contexto del accidente: familia de otros vehiculos identificados')
     save('f1_10_contexto.png')
     texts['f1_10_contexto.png']='El contexto de otros vehiculos permite caracterizar el mismo siniestro con claves reales. Las proporciones estan condicionadas a victimas lesionadas registradas; no son riesgo por viaje ni prueba causal. La categoria multiples no identifica parejas de colision.'
+    from textos import F1_TEXTOS
+    texts.update(F1_TEXTOS)
     save_json(dict(n_desarrollo=len(dev), fallecidos=int(dev.fallecido.sum()), interpretaciones=texts,
                    hipotesis=['H1 sexo y desenlace', 'H2 edad y desenlace', 'H3 usuarios de moto y letalidad', 'H4 nocturnidad ajustada'],
                    limitacion='Análisis condicionado a víctimas lesionadas registradas por PRF; sin exposición vial ni seguimiento de mortalidad posterior'), OUT / 'fase1_resultados.json')

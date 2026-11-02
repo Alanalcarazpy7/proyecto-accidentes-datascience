@@ -10,6 +10,10 @@ def main():
         for f in ROOT.rglob('*'):
             rel=f.relative_to(ROOT)
             if not f.is_file() or any(c in {'.git','dist','tmp','qa','__pycache__','.ipynb_checkpoints','raw'} for c in rel.parts):continue
+            # Solo la entrega: una carpeta de prueba futura no entra por accidente.
+            if len(rel.parts)==1:
+                if rel.name not in {'README.md','requirements.txt','protocolo.json','.gitignore','.gitattributes'}:continue
+            elif rel.parts[0] not in {'data','src','notebooks','output'}:continue
             z.write(f,rel)
     with zipfile.ZipFile(target) as z:
         assert z.testzip() is None

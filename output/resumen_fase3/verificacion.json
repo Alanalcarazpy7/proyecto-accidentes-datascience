@@ -1,0 +1,11 @@
+{
+  "estado": "OK",
+  "paginas": 4,
+  "graficos": 3,
+  "revision_visual": "Cuatro paginas renderizadas e inspeccionadas; pagina de resultados revisada tras ajuste final",
+  "modelo_anterior_y_actual_sin_modificar": true,
+  "comparacion_detallada": "COMPARACION_PROYECTOS.md",
+  "metricas_anteriores_reproducidas_desde_modelo": true,
+  "github": "Sin subida ni commit",
+  "pdf_sha256": "1a67e4a04ea1dd6521d2980855aaa291b7f0cf769f5b36b55b9841d19665874f"
+}

@@ -8,6 +8,11 @@ import numpy as np
 import pandas as pd
 from common import ROOT,RAW,DATA,OUT,save_json,table,log
 PERSON_FIELDS = ['id', 'pesid', 'id_veiculo', 'estado_fisico', 'idade', 'sexo', 'tipo_envolvido', 'tipo_veiculo', 'ano_fabricacao_veiculo']
+# causa_acidente se excluye por el criterio temporal del protocolo original:
+# es una atribucion investigada que podria no estar disponible al predecir.
+# No contiene necesariamente el desenlace ni es fuga por definicion. Si la
+# tarea dispone del parte completo, se puede evaluar como otro predictor;
+# el modelo principal conserva sus 31 entradas y el criterio temporal registrado.
 EVENT_FIELDS = ['id', 'data_inversa', 'horario', 'uf', 'br', 'km', 'municipio', 'tipo_acidente', 'fase_dia', 'sentido_via', 'condicao_metereologica', 'tipo_pista', 'tracado_via', 'uso_solo', 'latitude', 'longitude']
 CAT = ['sexo', 'tipo_envolvido', 'tipo_veiculo', 'uf', 'br', 'municipio', 'tipo_acidente', 'fase_dia', 'sentido_via', 'condicao_metereologica', 'tipo_pista', 'tracado_via', 'uso_solo', 'dia_semana']
 NUM = ['idade', 'idade_veiculo', 'hora', 'hora_sin', 'hora_cos', 'mes_sin', 'mes_cos', 'latitude', 'longitude', 'km']
