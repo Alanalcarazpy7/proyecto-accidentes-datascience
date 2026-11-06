@@ -46,7 +46,7 @@ desktop.ini
 .idea/
 .vscode/
 
-# Fuentes pesadas: conservar manifiestos, URLs, hashes y descargadores
+# Fuentes pesadas: conservar manifiestos, URLs, hashes y descarga en Fase 1
 **/data/raw/
 **/data/raw_2026/
 **/fuentes_brasil/

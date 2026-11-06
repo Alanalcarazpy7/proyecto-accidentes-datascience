@@ -7796,17 +7796,28 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31be3257">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dc07e70f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Fase-2-%E2%80%94-Inferencia-estad%C3%ADstica">Fase 2 — Inferencia estadística<a class="anchor-link" href="#Fase-2-%E2%80%94-Inferencia-estad%C3%ADstica">¶</a></h1><p>Usamos herramientas de IA como apoyo. El grupo debe revisar y comprender los resultados. Cada fila representa a una persona en un accidente registrado; no representa todos sus viajes ni permite seguir su identidad a lo largo de los años.</p>
+<h1 id="Fase-2-%E2%80%94-Inferencia-estad%C3%ADstica">Fase 2 — Inferencia estadística<a class="anchor-link" href="#Fase-2-%E2%80%94-Inferencia-estad%C3%ADstica">¶</a></h1><p>Cada fila representa a una persona en un accidente registrado; no representa todos sus viajes ni permite seguir su identidad a lo largo de los años.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=89375c2f">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=aaae6db5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Código: Preparar el entorno.</strong> Ubica las carpetas, fija la semilla 42 y define ayudas para leer datos y guardar resultados.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7953c510">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7815,15 +7826,26 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span><span class="n">Image</span>
 <span class="n">ROOT</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">(),</span><span class="o">*</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">parents</span><span class="p">]</span> <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="s1">'protocolo.json'</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">())</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">ROOT</span><span class="o">/</span><span class="s1">'src'</span><span class="p">))</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">common</span><span class="w"> </span><span class="kn">import</span> <span class="n">OUT</span><span class="p">,</span><span class="n">RAW</span><span class="p">,</span><span class="n">load_data</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">RAW</span><span class="o">/</span><span class="s1">'pessoas_2017.zip'</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="p">(</span><span class="n">RAW</span><span class="o">/</span><span class="s1">'pessoas_2026.zip'</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">descargar_fuentes</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span> <span class="k">as</span> <span class="n">descargar</span>
-    <span class="n">descargar</span><span class="p">()</span>
+<span class="n">RAW</span><span class="o">=</span><span class="n">ROOT</span><span class="o">/</span><span class="s1">'data/raw'</span>
+<span class="n">DATA</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'PROYECTO_DATA_DIR'</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">ROOT</span><span class="o">/</span><span class="s1">'data/processed'</span><span class="p">)))</span>
+<span class="n">OUT</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'PROYECTO_OUTPUT_DIR'</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">ROOT</span><span class="o">/</span><span class="s1">'output'</span><span class="p">)))</span>
+<span class="n">PROTOCOL</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">((</span><span class="n">ROOT</span><span class="o">/</span><span class="s1">'protocolo.json'</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">'utf8'</span><span class="p">))</span>
+<span class="n">SEED</span><span class="o">=</span><span class="mi">42</span>
+<span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="p">[</span><span class="n">DATA</span><span class="p">,</span><span class="n">OUT</span><span class="o">/</span><span class="s1">'tables'</span><span class="p">,</span><span class="n">OUT</span><span class="o">/</span><span class="s1">'figures'</span><span class="p">,</span><span class="n">OUT</span><span class="o">/</span><span class="s1">'modelo'</span><span class="p">,</span><span class="n">OUT</span><span class="o">/</span><span class="s1">'modelado/inicial'</span><span class="p">,</span><span class="n">OUT</span><span class="o">/</span><span class="s1">'modelado/final'</span><span class="p">]:</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_json</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span><span class="n">allow_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span><span class="n">encoding</span><span class="o">=</span><span class="s1">'utf8'</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">table</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUT</span><span class="o">/</span><span class="s1">'tables'</span><span class="o">/</span><span class="n">name</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">'utf-8-sig'</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">DATA</span><span class="o">/</span><span class="s1">'victimas_limpias.parquet'</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">,</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">'display.max_columns'</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">'display.max_colwidth'</span><span class="p">,</span><span class="mi">90</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">tabla</span><span class="p">(</span><span class="n">name</span><span class="p">):</span><span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">OUT</span><span class="o">/</span><span class="s1">'tables'</span><span class="o">/</span><span class="n">name</span><span class="p">)</span>
@@ -7833,7 +7855,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=457d7f2d">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7a727205">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7843,7 +7865,18 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=04f823d7">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b1937ecd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Código: Cargar bibliotecas.</strong> Carga las herramientas de Python necesarias para los cálculos y gráficos de esta sección.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4c074143">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7851,11 +7884,330 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">((</span><span class="n">ROOT</span><span class="o">/</span><span class="s1">'protocolo.json'</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">'utf8'</span><span class="p">))[</span><span class="s1">'inferencia'</span><span class="p">])</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">fase2</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span> <span class="k">as</span> <span class="n">inferir</span>
-<span class="n">f2</span><span class="o">=</span><span class="n">inferir</span><span class="p">()</span>
-<span class="n">display</span><span class="p">(</span><span class="n">tabla</span><span class="p">(</span><span class="s1">'supuestos_fase2.csv'</span><span class="p">))</span>
-<span class="n">display</span><span class="p">(</span><span class="n">tabla</span><span class="p">(</span><span class="s1">'contrastes_fase2.csv'</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.multitest</span><span class="w"> </span><span class="kn">import</span> <span class="n">multipletests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.proportion</span><span class="w"> </span><span class="kn">import</span> <span class="n">proportions_ztest</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9d356799">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Código: Elegir una víctima por accidente.</strong> Selecciona al azar una víctima por accidente de 2017–2023, sin usar su desenlace para decidir la selección.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=99406fb2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+<span class="n">dev</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">ano</span><span class="o">.</span><span class="n">le</span><span class="p">(</span><span class="mi">2023</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
+<span class="n">one</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">rng</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dev</span><span class="p">))]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="k">assert</span> <span class="n">one</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">is_unique</span>
+<span class="n">hypotheses</span><span class="p">,</span> <span class="n">checks</span> <span class="o">=</span> <span class="p">([],</span> <span class="p">[])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=84af541e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="H1-%E2%80%94-Sexo-y-desenlace">H1 — Sexo y desenlace<a class="anchor-link" href="#H1-%E2%80%94-Sexo-y-desenlace">¶</a></h3><p>Chi cuadrado comprueba la asociación. El tamaño del efecto indica si la diferencia es grande o pequeña.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1278c68b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Código: Probar la relación entre sexo y desenlace.</strong> Arma la tabla de frecuencias, aplica chi cuadrado y calcula la fuerza de la asociación con su intervalo.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=bb15b7d6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">sex</span> <span class="o">=</span> <span class="n">one</span><span class="p">[</span><span class="n">one</span><span class="o">.</span><span class="n">sexo</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">'MASCULINO'</span><span class="p">,</span> <span class="s1">'FEMININO'</span><span class="p">])]</span>
+<span class="n">ct</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">sex</span><span class="o">.</span><span class="n">sexo</span><span class="p">,</span> <span class="n">sex</span><span class="o">.</span><span class="n">fallecido</span><span class="p">)</span>
+<span class="n">chi</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">exp</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">chi2_contingency</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">effect</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">chi</span> <span class="o">/</span> <span class="n">ct</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+<span class="n">boot_cells</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span> <span class="n">ct</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">/</span> <span class="n">ct</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">size</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">boot_exp</span> <span class="o">=</span> <span class="n">boot_cells</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">boot_cells</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">boot_cells</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="n">boot_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">boot_cells</span> <span class="o">-</span> <span class="n">boot_exp</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">boot_exp</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="n">ct</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">v_ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">boot_v</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.975</span><span class="p">])</span>
+<span class="n">checks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">contraste</span><span class="o">=</span><span class="s1">'H1'</span><span class="p">,</span> <span class="n">supuesto</span><span class="o">=</span><span class="s1">'Una victima por accidente; frecuencias esperadas &gt;=5'</span><span class="p">,</span> <span class="n">resultado</span><span class="o">=</span><span class="sa">f</span><span class="s1">'min esperado </span><span class="si">{</span><span class="n">exp</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">; sin IDs duplicados'</span><span class="p">,</span> <span class="n">decision</span><span class="o">=</span><span class="s1">'Chi cuadrado; no requiere normalidad'</span><span class="p">))</span>
+<span class="n">hypotheses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">'H1'</span><span class="p">,</span> <span class="n">H0</span><span class="o">=</span><span class="s1">'Sexo y desenlace son independientes en una victima aleatoria por accidente'</span><span class="p">,</span> <span class="n">H1</span><span class="o">=</span><span class="s1">'Existe asociacion entre sexo y desenlace'</span><span class="p">,</span> <span class="n">prueba</span><span class="o">=</span><span class="s1">'Chi cuadrado independencia'</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">sex</span><span class="p">),</span> <span class="n">estadistico</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">chi</span><span class="p">),</span> <span class="n">gl</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="n">p</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">efecto</span><span class="o">=</span><span class="s1">'V de Cramer'</span><span class="p">,</span> <span class="n">valor_efecto</span><span class="o">=</span><span class="n">effect</span><span class="p">,</span> <span class="n">IC95_bajo</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">v_ci</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">IC95_alto</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">v_ci</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">alcance</span><span class="o">=</span><span class="s1">'Una victima aleatoria por accidente; sexo conocido; IC bootstrap multinomial'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56f6b4ce">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="H2-%E2%80%94-Edad-y-desenlace">H2 — Edad y desenlace<a class="anchor-link" href="#H2-%E2%80%94-Edad-y-desenlace">¶</a></h3><p>Revisamos normalidad y dispersión. Mann–Whitney compara distribuciones de edad sin exigir normalidad.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=158244f6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Código: Comparar las distribuciones de edad.</strong> Revisa los supuestos, aplica Mann–Whitney y estima el tamaño de la diferencia con remuestreo.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d3078ac6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="n">one</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">'idade'</span><span class="p">])</span>
+<span class="n">dead</span> <span class="o">=</span> <span class="n">age</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">age</span><span class="o">.</span><span class="n">fallecido</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="s1">'idade'</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">injured</span> <span class="o">=</span> <span class="n">age</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">age</span><span class="o">.</span><span class="n">fallecido</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s1">'idade'</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">sh1</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dead</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dead</span><span class="p">)),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">sh0</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">injured</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">injured</span><span class="p">)),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">lev</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">levene</span><span class="p">(</span><span class="n">dead</span><span class="p">,</span> <span class="n">injured</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="s1">'median'</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">mannwhitneyu</span><span class="p">(</span><span class="n">dead</span><span class="p">,</span> <span class="n">injured</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">'two-sided'</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'asymptotic'</span><span class="p">)</span>
+<span class="n">rrb</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">statistic</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dead</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">injured</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">levels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">dead</span><span class="p">,</span> <span class="n">injured</span><span class="p">]))</span>
+<span class="n">a_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">dead</span> <span class="o">==</span> <span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">levels</span><span class="p">])</span>
+<span class="n">b_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">injured</span> <span class="o">==</span> <span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">levels</span><span class="p">])</span>
+<span class="n">boot_a</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dead</span><span class="p">),</span> <span class="n">a_counts</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">dead</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<span class="n">boot_b</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">injured</span><span class="p">),</span> <span class="n">b_counts</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">injured</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<span class="n">boot_u</span> <span class="o">=</span> <span class="p">(</span><span class="n">boot_a</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">boot_b</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">boot_b</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">rank_ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">boot_u</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dead</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">injured</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.975</span><span class="p">])</span>
+<span class="n">checks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">contraste</span><span class="o">=</span><span class="s1">'H2'</span><span class="p">,</span> <span class="n">supuesto</span><span class="o">=</span><span class="s1">'Distribucion de edades, normalidad, dispersion e independencia por accidente'</span><span class="p">,</span> <span class="n">resultado</span><span class="o">=</span><span class="sa">f</span><span class="s1">'Shapiro submuestras: p fallecidos=</span><span class="si">{</span><span class="n">sh1</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s1">.3g</span><span class="si">}</span><span class="s1">, heridos=</span><span class="si">{</span><span class="n">sh0</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s1">.3g</span><span class="si">}</span><span class="s1">; Levene p=</span><span class="si">{</span><span class="n">lev</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s1">.3g</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="n">decision</span><span class="o">=</span><span class="s1">'Mann-Whitney compara distribuciones/rangos, no solo medianas; no exige varianzas iguales'</span><span class="p">))</span>
+<span class="n">hypotheses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">'H2'</span><span class="p">,</span> <span class="n">H0</span><span class="o">=</span><span class="s1">'Distribuciones de edad iguales entre fallecidos y heridos'</span><span class="p">,</span> <span class="n">H1</span><span class="o">=</span><span class="s1">'Las distribuciones de edad difieren'</span><span class="p">,</span> <span class="n">prueba</span><span class="o">=</span><span class="s1">'Mann-Whitney bilateral, correccion de empates'</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">age</span><span class="p">),</span> <span class="n">estadistico</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">statistic</span><span class="p">),</span> <span class="n">gl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">pvalue</span><span class="p">),</span> <span class="n">efecto</span><span class="o">=</span><span class="s1">'Correlacion biserial de rangos'</span><span class="p">,</span> <span class="n">valor_efecto</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">rrb</span><span class="p">),</span> <span class="n">IC95_bajo</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">rank_ci</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">IC95_alto</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">rank_ci</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">alcance</span><span class="o">=</span><span class="s1">'Una victima por accidente con edad 1..110; IC bootstrap estratificado por desenlace'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42321959">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="H3-%E2%80%94-Motos-y-otros-veh%C3%ADculos">H3 — Motos y otros vehículos<a class="anchor-link" href="#H3-%E2%80%94-Motos-y-otros-veh%C3%ADculos">¶</a></h3><p>Comparamos proporciones entre conductores y pasajeros con vehículo conocido. Usamos 5.000 remuestreos para un intervalo de la diferencia; no es riesgo por viaje.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2b0226b1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Código: Seleccionar usuarios comparables.</strong> Conserva conductores y pasajeros con tipo de vehículo conocido para comparar motos con otros vehículos.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4a9821c1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users</span> <span class="o">=</span> <span class="n">one</span><span class="p">[</span><span class="n">one</span><span class="o">.</span><span class="n">tipo_envolvido</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">'CONDUTOR'</span><span class="p">,</span> <span class="s1">'PASSAGEIRO'</span><span class="p">])</span> <span class="o">&amp;</span> <span class="n">one</span><span class="o">.</span><span class="n">tipo_veiculo</span><span class="o">.</span><span class="n">ne</span><span class="p">(</span><span class="s1">'DESCONOCIDO'</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7519ab67">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="H3-%E2%80%94-Motos-y-otros-veh%C3%ADculos">H3 — Motos y otros vehículos<a class="anchor-link" href="#H3-%E2%80%94-Motos-y-otros-veh%C3%ADculos">¶</a></h3><p>Comparamos proporciones entre conductores y pasajeros con vehículo conocido. Usamos 5.000 remuestreos para un intervalo de la diferencia; no es riesgo por viaje.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94e251d8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Código: Comparar proporciones de fallecidos.</strong> Calcula los porcentajes por grupo, aplica la prueba de dos proporciones y obtiene intervalos con 5.000 remuestreos.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a1a6a51f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">users</span><span class="p">[</span><span class="s1">'moto'</span><span class="p">]</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="n">tipo_veiculo</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">'MOTOCICLETA'</span><span class="p">,</span> <span class="s1">'MOTONETA'</span><span class="p">,</span> <span class="s1">'CICLOMOTOR'</span><span class="p">])</span>
+<span class="n">n1</span><span class="p">,</span> <span class="n">n0</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">moto</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span> <span class="nb">int</span><span class="p">((</span><span class="o">~</span><span class="n">users</span><span class="o">.</span><span class="n">moto</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+<span class="n">k1</span><span class="p">,</span> <span class="n">k0</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">users</span><span class="o">.</span><span class="n">moto</span><span class="p">,</span> <span class="s1">'fallecido'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span> <span class="nb">int</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">users</span><span class="o">.</span><span class="n">moto</span><span class="p">,</span> <span class="s1">'fallecido'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+<span class="n">p1</span><span class="p">,</span> <span class="n">p0</span> <span class="o">=</span> <span class="p">(</span><span class="n">k1</span> <span class="o">/</span> <span class="n">n1</span><span class="p">,</span> <span class="n">k0</span> <span class="o">/</span> <span class="n">n0</span><span class="p">)</span>
+<span class="n">z</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">proportions_ztest</span><span class="p">([</span><span class="n">k1</span><span class="p">,</span> <span class="n">k0</span><span class="p">],</span> <span class="p">[</span><span class="n">n1</span><span class="p">,</span> <span class="n">n0</span><span class="p">],</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">'two-sided'</span><span class="p">)</span>
+<span class="n">rd</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">-</span> <span class="n">p0</span>
+<span class="n">se</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p1</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n1</span> <span class="o">+</span> <span class="n">p0</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p0</span><span class="p">)</span> <span class="o">/</span> <span class="n">n0</span><span class="p">)</span>
+<span class="n">classic</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">rd</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">se</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">rd</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">se</span><span class="p">)]</span>
+<span class="n">bootstrap</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span> <span class="o">/</span> <span class="n">n1</span> <span class="o">-</span> <span class="n">rng</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n0</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span> <span class="o">/</span> <span class="n">n0</span>
+<span class="n">ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">bootstrap</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.975</span><span class="p">])</span>
+<span class="n">checks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">contraste</span><span class="o">=</span><span class="s1">'H3'</span><span class="p">,</span> <span class="n">supuesto</span><span class="o">=</span><span class="s1">'Muestras de accidentes disjuntos; exitos y fracasos &gt;=5'</span><span class="p">,</span> <span class="n">resultado</span><span class="o">=</span><span class="sa">f</span><span class="s1">'moto muertos/vivos=</span><span class="si">{</span><span class="n">k1</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">n1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">k1</span><span class="si">}</span><span class="s1">; otros=</span><span class="si">{</span><span class="n">k0</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">n0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">k0</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="n">decision</span><span class="o">=</span><span class="s1">'Prueba z dos proporciones; bootstrap de Bernoulli empiricas como contraste de IC'</span><span class="p">))</span>
+<span class="n">hypotheses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">'H3'</span><span class="p">,</span> <span class="n">H0</span><span class="o">=</span><span class="s1">'Proporcion de fallecimiento igual en usuarios de moto y otros vehiculos'</span><span class="p">,</span> <span class="n">H1</span><span class="o">=</span><span class="s1">'Las proporciones difieren'</span><span class="p">,</span> <span class="n">prueba</span><span class="o">=</span><span class="s1">'Z bilateral de dos proporciones'</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">),</span> <span class="n">estadistico</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">z</span><span class="p">),</span> <span class="n">gl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">efecto</span><span class="o">=</span><span class="s1">'Diferencia de riesgos moto menos otros'</span><span class="p">,</span> <span class="n">valor_efecto</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">rd</span><span class="p">),</span> <span class="n">IC95_bajo</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">ci</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">IC95_alto</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">ci</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">alcance</span><span class="o">=</span><span class="s1">'Una victima por accidente; conductores/pasajeros con vehiculo conocido'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12eb9ccd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="H4-%E2%80%94-Noche-considerando-otras-caracter%C3%ADsticas">H4 — Noche considerando otras características<a class="anchor-link" href="#H4-%E2%80%94-Noche-considerando-otras-caracter%C3%ADsticas">¶</a></h3><p>La regresión estudia la noche junto con edad, sexo, usuario, zona y año. Ajustamos la incertidumbre por accidente. Esta no es la regresión predictiva final.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=73637f9f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Código: Estudiar la noche con otras variables.</strong> Ajusta la regresión logística con los controles definidos y calcula intervalos considerando víctimas del mismo accidente.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4791aee1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">dev</span><span class="p">[</span><span class="n">dev</span><span class="o">.</span><span class="n">idade</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">dev</span><span class="o">.</span><span class="n">sexo</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">'MASCULINO'</span><span class="p">,</span> <span class="s1">'FEMININO'</span><span class="p">])</span> <span class="o">&amp;</span> <span class="n">dev</span><span class="o">.</span><span class="n">uso_solo</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">'SIM'</span><span class="p">,</span> <span class="s1">'NAO'</span><span class="p">])</span> <span class="o">&amp;</span> <span class="n">dev</span><span class="o">.</span><span class="n">fase_dia</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">'PLENA NOITE'</span><span class="p">,</span> <span class="s1">'PLENO DIA'</span><span class="p">])</span> <span class="o">&amp;</span> <span class="n">dev</span><span class="o">.</span><span class="n">tipo_envolvido</span><span class="o">.</span><span class="n">ne</span><span class="p">(</span><span class="s1">'DESCONOCIDO'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dev</span><span class="o">.</span><span class="n">tipo_veiculo</span><span class="o">.</span><span class="n">ne</span><span class="p">(</span><span class="s1">'DESCONOCIDO'</span><span class="p">)</span> <span class="o">|</span> <span class="n">dev</span><span class="o">.</span><span class="n">tipo_envolvido</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">'PEDESTRE'</span><span class="p">))]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'intercepto'</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">'noche'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">fase_dia</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">'PLENA NOITE'</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="s1">'edad_por_10'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">idade</span> <span class="o">/</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">'edad_por_10_cuadrado'</span><span class="p">:</span> <span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">idade</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'masculino'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">sexo</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">'MASCULINO'</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="s1">'usuario_moto'</span><span class="p">:</span> <span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">tipo_veiculo</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">'MOTOCICLETA'</span><span class="p">,</span> <span class="s1">'MOTONETA'</span><span class="p">,</span> <span class="s1">'CICLOMOTOR'</span><span class="p">])</span> <span class="o">&amp;</span> <span class="n">g</span><span class="o">.</span><span class="n">tipo_envolvido</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">'CONDUTOR'</span><span class="p">,</span> <span class="s1">'PASSAGEIRO'</span><span class="p">]))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="s1">'peaton'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">tipo_envolvido</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">'PEDESTRE'</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="s1">'rural'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">uso_solo</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">'NAO'</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="s1">'anio_desde_2017'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">ano</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2017</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">fit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">fallecido</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="n">X</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s1">'cluster'</span><span class="p">,</span> <span class="n">cov_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">'groups'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">id</span><span class="p">})</span>
+<span class="n">ci_log</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">conf_int</span><span class="p">()</span>
+<span class="n">coefs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'variable'</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="s1">'beta'</span><span class="p">:</span> <span class="n">fit</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">'SE_cluster_accidente'</span><span class="p">:</span> <span class="n">fit</span><span class="o">.</span><span class="n">bse</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">:</span> <span class="n">fit</span><span class="o">.</span><span class="n">pvalues</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">'OR'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="s1">'OR_IC95_bajo'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ci_log</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="s1">'OR_IC95_alto'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ci_log</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)})</span>
+<span class="n">table</span><span class="p">(</span><span class="n">coefs</span><span class="p">,</span> <span class="s1">'regresion_logistica_inferencial.csv'</span><span class="p">)</span>
+<span class="n">coef</span> <span class="o">=</span> <span class="n">coefs</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'variable'</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'noche'</span><span class="p">]</span>
+<span class="n">hypotheses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">'H4'</span><span class="p">,</span> <span class="n">H0</span><span class="o">=</span><span class="s1">'Coeficiente de noche igual a cero condicionado a los controles'</span><span class="p">,</span> <span class="n">H1</span><span class="o">=</span><span class="s1">'Coeficiente de noche distinto de cero'</span><span class="p">,</span> <span class="n">prueba</span><span class="o">=</span><span class="s1">'Wald z de GLM binomial; SE agrupados por accidente'</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="n">estadistico</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">tvalues</span><span class="p">[</span><span class="s1">'noche'</span><span class="p">]),</span> <span class="n">gl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">coef</span><span class="p">[</span><span class="s1">'p'</span><span class="p">]),</span> <span class="n">efecto</span><span class="o">=</span><span class="s1">'Odds ratio ajustado noche frente a pleno dia'</span><span class="p">,</span> <span class="n">valor_efecto</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">coef</span><span class="o">.</span><span class="n">OR</span><span class="p">),</span> <span class="n">IC95_bajo</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">coef</span><span class="o">.</span><span class="n">OR_IC95_bajo</span><span class="p">),</span> <span class="n">IC95_alto</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">coef</span><span class="o">.</span><span class="n">OR_IC95_alto</span><span class="p">),</span> <span class="n">alcance</span><span class="o">=</span><span class="s1">'Todas las victimas de desarrollo con covariables completas; dependencia dentro de accidente ajustada'</span><span class="p">))</span>
+<span class="n">checks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">contraste</span><span class="o">=</span><span class="s1">'H4'</span><span class="p">,</span> <span class="n">supuesto</span><span class="o">=</span><span class="s1">'Convergencia; dependencia intraccidente; forma funcional y confusores'</span><span class="p">,</span> <span class="n">resultado</span><span class="o">=</span><span class="sa">f</span><span class="s1">'convergio=</span><span class="si">{</span><span class="n">fit</span><span class="o">.</span><span class="n">converged</span><span class="si">}</span><span class="s1">; accidentes=</span><span class="si">{</span><span class="n">g</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s1">; rango X=</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="n">decision</span><span class="o">=</span><span class="s1">'Sandwich por accidente; edad cuadratica; no garantiza ausencia de confusion, independencia temporal o seleccion ignorable'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ee37809f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Correcci%C3%B3n-de-Holm-y-resultados">Corrección de Holm y resultados<a class="anchor-link" href="#Correcci%C3%B3n-de-Holm-y-resultados">¶</a></h3><p>Revisamos las cuatro pruebas juntas con un nivel de 0,05. Un valor p pequeño no demuestra causalidad ni una diferencia grande.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=71ca575d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Código: Revisar y guardar las pruebas.</strong> Aplica Holm a las cuatro hipótesis, guarda sus resultados y genera los gráficos de diagnóstico y remuestreo.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=df2d4638">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">reject</span><span class="p">,</span> <span class="n">adjusted</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">multipletests</span><span class="p">([</span><span class="n">h</span><span class="p">[</span><span class="s1">'p'</span><span class="p">]</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hypotheses</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'holm'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">h</span><span class="p">,</span> <span class="n">padj</span><span class="p">,</span> <span class="n">rej</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">hypotheses</span><span class="p">,</span> <span class="n">adjusted</span><span class="p">,</span> <span class="n">reject</span><span class="p">):</span>
+    <span class="n">h</span><span class="p">[</span><span class="s1">'p_Holm'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">padj</span><span class="p">)</span>
+    <span class="n">h</span><span class="p">[</span><span class="s1">'decision'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Rechazar H0'</span> <span class="k">if</span> <span class="n">rej</span> <span class="k">else</span> <span class="s1">'No rechazar H0'</span>
+<span class="n">table</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">hypotheses</span><span class="p">),</span> <span class="s1">'contrastes_fase2.csv'</span><span class="p">)</span>
+<span class="n">table</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">checks</span><span class="p">),</span> <span class="s1">'supuestos_fase2.csv'</span><span class="p">)</span>
+<span class="n">table</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'replica'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bootstrap</span><span class="p">)),</span> <span class="s1">'diferencia_riesgos'</span><span class="p">:</span> <span class="n">bootstrap</span><span class="p">}),</span> <span class="s1">'bootstrap_diferencia_moto.csv'</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'Agg'</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dead</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dead</span><span class="p">)),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Q-Q edad de fallecidos'</span><span class="p">)</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">injured</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">injured</span><span class="p">)),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Q-Q edad de heridos'</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">OUT</span> <span class="o">/</span> <span class="s1">'figures/f2_01_normalidad.png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">160</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bootstrap</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'#287c9b'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">ci</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">value</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'#d75b47'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">'Diferencia de letalidad: moto menos otros (puntos porcentuales)'</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">'Réplicas'</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'Bootstrap de una víctima por accidente: diferencia condicionada'</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">OUT</span> <span class="o">/</span> <span class="s1">'figures/f2_02_bootstrap.png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">160</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">n_desarrollo</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dev</span><span class="p">),</span> <span class="n">n_muestra_una_victima_por_accidente</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">one</span><span class="p">),</span> <span class="n">estimando_clasico</span><span class="o">=</span><span class="s1">'Caracteristicas de una victima aleatoria por accidente con al menos una victima herida/fallecida; accidentes ponderados por igual. No misma ponderacion que todas las victimas.'</span><span class="p">,</span> <span class="n">contrastes</span><span class="o">=</span><span class="n">hypotheses</span><span class="p">,</span> <span class="n">bootstrap</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">efecto</span><span class="o">=</span><span class="n">rd</span><span class="p">,</span> <span class="n">IC95_bootstrap</span><span class="o">=</span><span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ci</span><span class="p">],</span> <span class="n">IC95_clasico</span><span class="o">=</span><span class="n">classic</span><span class="p">,</span> <span class="n">razon_riesgos</span><span class="o">=</span><span class="n">p1</span> <span class="o">/</span> <span class="n">p0</span><span class="p">,</span> <span class="n">proporcion_moto</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">proporcion_otros</span><span class="o">=</span><span class="n">p0</span><span class="p">,</span> <span class="n">replicas</span><span class="o">=</span><span class="mi">5000</span><span class="p">),</span> <span class="n">GLM</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="n">accidentes</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">nunique</span><span class="p">()),</span> <span class="n">convergio</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">converged</span><span class="p">),</span> <span class="n">nota</span><span class="o">=</span><span class="s1">'No es el modelo predictivo final; complete case puede introducir seleccion; observaciones externas al mismo accidente pueden seguir dependientes'</span><span class="p">),</span> <span class="n">limites</span><span class="o">=</span><span class="s1">'Registros administrativos, sin muestreo probabilistico ni exposicion vial; p e IC describen incertidumbre bajo supuestos, no corrigen subregistro o sesgo de seleccion. Holm sobre cuatro contrastes; IC95 marginales, no simultaneos. No causalidad. No se seleccionan predictores solo por significancia.'</span><span class="p">)</span>
+<span class="n">save_json</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">OUT</span> <span class="o">/</span> <span class="s1">'fase2_resultados.json'</span><span class="p">)</span>
+<span class="n">log</span><span class="p">(</span><span class="s1">'Fase 2 terminada: cuatro contrastes con Holm, bootstrap y agrupacion por accidente'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7868,23 +8220,43 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>{'periodo': 'Solo desarrollo 2017-2023',
- 'alfa': 0.05,
- 'correccion': 'Holm, familia de cuatro contrastes',
- 'hipotesis': ['H1: asociacion entre sexo y desenlace',
-  'H2: diferencia de edad entre fallecidos y heridos',
-  'H3: diferencia de letalidad entre usuarios de moto y otros',
-  'H4: asociacion nocturnidad/desenlace ajustada por edad, sexo, moto y ruralidad'],
- 'dependencia': 'Agrupacion por accidente; unidad independiente por accidente para contrastes clasicos y errores robustos por accidente para regresion/IC poblacion de victimas. No causalidad.'}</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Fase 2 terminada: cuatro contrastes con Holm, bootstrap y agrupacion por accidente
 </pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5c56fa2b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Código: Mostrar las decisiones estadísticas.</strong> Presenta los supuestos revisados y los resultados de las cuatro hipótesis para poder interpretarlos.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bbc41b1f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">f2</span> <span class="o">=</span> <span class="n">result</span>
+<span class="n">display</span><span class="p">(</span><span class="n">tabla</span><span class="p">(</span><span class="s1">'supuestos_fase2.csv'</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">tabla</span><span class="p">(</span><span class="s1">'contrastes_fase2.csv'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
@@ -8065,7 +8437,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f0c0223b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6e96c4e9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8075,12 +8447,23 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b396b964">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=631c088a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Código: Consultar los gráficos y los intervalos.</strong> Muestra la revisión de las edades, el remuestreo de la diferencia entre vehículos y los coeficientes de la regresión.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12a886de">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">OUT</span><span class="o">/</span><span class="s1">'figures/f2_01_normalidad.png'</span><span class="p">)))</span>
@@ -8249,7 +8632,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=93daab65">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7845ed6c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
