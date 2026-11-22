@@ -7874,7 +7874,8 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Preparaci%C3%B3n-desde-los-archivos-originales">Preparación desde los archivos originales<a class="anchor-link" href="#Preparaci%C3%B3n-desde-los-archivos-originales">¶</a></h2><p>Comprobamos las huellas SHA-256 para usar los mismos archivos. Unimos cada víctima con su accidente mediante identificadores reales. Para contar los otros vehículos usamos todos los vehículos identificados del accidente, incluidos los de personas ilesas. Un vehículo con varios ocupantes se cuenta una sola vez.</p>
+<h2 id="Preparaci%C3%B3n-y-uso-del-corte-conservado">Preparación y uso del corte conservado<a class="anchor-link" href="#Preparaci%C3%B3n-y-uso-del-corte-conservado">¶</a></h2><p>Por defecto usamos el mismo dataset limpio del proyecto, comprobamos su huella, sus claves y sus cantidades, y repetimos el análisis exploratorio. Las tablas de unión, limpieza y diccionarios que acompañan ese corte son registros de la preparación original; no se presentan como una limpieza nueva.</p>
+<p>El código de lectura, unión y limpieza desde los ZIP se conserva debajo. Para ejecutarlo se cambia <code>RECONSTRUIR_ORIGINALES</code> a <code>True</code>; esa opción requiere los originales exactos y mantiene la verificación SHA-256. Los archivos actuales de PRF pueden haber cambiado. El modo habitual no descarga ni acepta archivos nuevos.</p>
 </div>
 </div>
 </div>
@@ -7953,11 +7954,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Código: Revisar la disponibilidad de las fuentes.</strong> Lee la lista de originales y descarga únicamente los archivos que falten.</p>
+<p><strong>Código: elegir el modo de ejecución.</strong> <code>False</code> usa el corte preparado, sin descargas. <code>True</code> solicita la reconstrucción completa desde los ZIP originales y verifica sus huellas.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4b40a65f">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4b40a65f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7965,10 +7966,28 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">manifest</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">((</span><span class="n">ROOT</span><span class="o">/</span><span class="s1">'data/fuentes.json'</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">'utf8'</span><span class="p">))</span>
-<span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="ow">not</span> <span class="p">(</span><span class="n">RAW</span><span class="o">/</span><span class="n">item</span><span class="p">[</span><span class="s1">'archivo'</span><span class="p">])</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">manifest</span><span class="p">):</span>
-    <span class="n">descargar_originales</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">RECONSTRUIR_ORIGINALES</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">manifest</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">((</span><span class="n">ROOT</span><span class="o">/</span><span class="s1">'data/fuentes.json'</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">'utf8'</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">RECONSTRUIR_ORIGINALES</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="ow">not</span> <span class="p">(</span><span class="n">RAW</span><span class="o">/</span><span class="n">item</span><span class="p">[</span><span class="s1">'archivo'</span><span class="p">])</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">manifest</span><span class="p">):</span>
+        <span class="n">descargar_originales</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Modo habitual: verificar el dataset conservado y recalcular el análisis, sin descargar originales.'</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Modo habitual: verificar el dataset conservado y recalcular el análisis, sin descargar originales.
+</pre>
 </div>
 </div>
 </div>
@@ -8499,7 +8518,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Ejecutar-la-preparaci%C3%B3n">Ejecutar la preparación<a class="anchor-link" href="#Ejecutar-la-preparaci%C3%B3n">¶</a></h3>
+<h3 id="Verificar-el-corte-conservado-o-reconstruir-desde-los-originales">Verificar el corte conservado o reconstruir desde los originales<a class="anchor-link" href="#Verificar-el-corte-conservado-o-reconstruir-desde-los-originales">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8510,7 +8529,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Código: Ejecutar la limpieza.</strong> Reconstruye el dataset desde los originales y muestra los controles de unión y las particiones temporales.</p>
+<p><strong>Código: cargar y comprobar los datos.</strong> Por defecto valida el dataset conservado y consulta sus auditorías originales. Solo la opción de reconstrucción vuelve a ejecutar la unión y la limpieza desde los ZIP.</p>
 </div>
 </div>
 </div>
@@ -8522,9 +8541,43 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="o">=</span><span class="n">prepare</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">original_dictionary</span><span class="p">()</span>
-<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">==</span><span class="mi">821689</span> <span class="ow">and</span> <span class="n">d</span><span class="o">.</span><span class="n">pesid</span><span class="o">.</span><span class="n">is_unique</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cargar_corte_conservado</span><span class="p">():</span>
+    <span class="n">corte</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">((</span><span class="n">ROOT</span><span class="o">/</span><span class="s1">'data/corte_conservado.json'</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">'utf8'</span><span class="p">))</span>
+    <span class="n">archivo</span> <span class="o">=</span> <span class="n">DATA</span><span class="o">/</span><span class="s1">'victimas_limpias.parquet'</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">archivo</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">'Falta el dataset conservado: data/processed/victimas_limpias.parquet. Recuperar ese archivo de la entrega o reconstruir con los ZIP originales exactos.'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">archivo</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span> <span class="o">!=</span> <span class="n">corte</span><span class="p">[</span><span class="s1">'sha256'</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'El dataset no coincide con la huella del corte conservado. No sustituirlo por datos nuevos.'</span><span class="p">)</span>
+    <span class="n">datos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">archivo</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">datos</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">corte</span><span class="p">[</span><span class="s1">'filas'</span><span class="p">],</span> <span class="n">corte</span><span class="p">[</span><span class="s1">'columnas'</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="n">datos</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="o">==</span> <span class="p">[</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'pesid'</span><span class="p">,</span> <span class="s1">'id_veiculo'</span><span class="p">,</span> <span class="s1">'fecha'</span><span class="p">,</span> <span class="s1">'ano'</span><span class="p">,</span> <span class="s1">'fallecido'</span><span class="p">]</span> <span class="o">+</span> <span class="n">FEATURES</span>
+    <span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">FEATURES</span><span class="p">)</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">corte</span><span class="p">[</span><span class="s1">'predictores'</span><span class="p">])</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">FEATURES</span><span class="p">)</span> <span class="o">==</span> <span class="mi">31</span>
+    <span class="k">assert</span> <span class="n">datos</span><span class="o">.</span><span class="n">pesid</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">datos</span><span class="o">.</span><span class="n">pesid</span><span class="o">.</span><span class="n">is_unique</span>
+    <span class="k">assert</span> <span class="ow">not</span> <span class="n">datos</span><span class="o">.</span><span class="n">duplicated</span><span class="p">([</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'pesid'</span><span class="p">])</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">datos</span><span class="o">.</span><span class="n">fallecido</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">datos</span><span class="o">.</span><span class="n">fallecido</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">==</span> <span class="n">corte</span><span class="p">[</span><span class="s1">'fallecidos'</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">datos</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">datos</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s1">'2017-01-01'</span><span class="p">,</span> <span class="s1">'2026-09-30'</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">datos</span><span class="o">.</span><span class="n">ano</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">datos</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">etiqueta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">datos</span><span class="o">.</span><span class="n">ano</span><span class="o">.</span><span class="n">le</span><span class="p">(</span><span class="mi">2023</span><span class="p">),</span> <span class="n">datos</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="s1">'2024-07-01'</span><span class="p">),</span> <span class="n">datos</span><span class="o">.</span><span class="n">ano</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">2024</span><span class="p">),</span> <span class="n">datos</span><span class="o">.</span><span class="n">ano</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">2025</span><span class="p">)],</span>
+        <span class="p">[</span><span class="s1">'desarrollo_2017_2023'</span><span class="p">,</span> <span class="s1">'calibracion_2024_H1'</span><span class="p">,</span> <span class="s1">'umbral_2024_H2'</span><span class="p">,</span> <span class="s1">'comparacion_retrospectiva_2025'</span><span class="p">],</span>
+        <span class="n">default</span><span class="o">=</span><span class="s1">'prueba_posterior_2026_ene_sep'</span><span class="p">)</span>
+    <span class="n">calculado</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">particion</span><span class="o">=</span><span class="n">etiqueta</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'particion'</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+        <span class="n">filas</span><span class="o">=</span><span class="p">(</span><span class="s1">'pesid'</span><span class="p">,</span> <span class="s1">'size'</span><span class="p">),</span> <span class="n">accidentes</span><span class="o">=</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'nunique'</span><span class="p">),</span> <span class="n">fallecidos</span><span class="o">=</span><span class="p">(</span><span class="s1">'fallecido'</span><span class="p">,</span> <span class="s1">'sum'</span><span class="p">))</span>
+    <span class="n">registrado</span> <span class="o">=</span> <span class="n">tabla</span><span class="p">(</span><span class="s1">'particiones.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'particion'</span><span class="p">)[</span><span class="n">calculado</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">calculado</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(),</span> <span class="n">registrado</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(),</span> <span class="n">check_dtype</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">auditoria</span> <span class="o">=</span> <span class="n">tabla</span><span class="p">(</span><span class="s1">'auditoria_preparacion_por_anio.csv'</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">auditoria</span><span class="o">.</span><span class="n">sin_union</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">auditoria</span><span class="o">.</span><span class="n">duplicados_clave</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Corte verificado: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1"> participaciones, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">FEATURES</span><span class="p">)</span><span class="si">}</span><span class="s1"> predictores; sin duplicados de participación.'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">datos</span>
+
+<span class="k">if</span> <span class="n">RECONSTRUIR_ORIGINALES</span><span class="p">:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">prepare</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">original_dictionary</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Unión y limpieza reconstruidas desde los originales verificados.'</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">cargar_corte_conservado</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Las auditorías y los diccionarios mostrados corresponden a la preparación original del corte.'</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">==</span> <span class="mi">821689</span> <span class="ow">and</span> <span class="n">d</span><span class="o">.</span><span class="n">pesid</span><span class="o">.</span><span class="n">is_unique</span>
 <span class="n">display</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 <span class="n">display</span><span class="p">(</span><span class="n">tabla</span><span class="p">(</span><span class="s1">'auditoria_preparacion_por_anio.csv'</span><span class="p">))</span>
 <span class="n">display</span><span class="p">(</span><span class="n">tabla</span><span class="p">(</span><span class="s1">'particiones.csv'</span><span class="p">))</span>
@@ -8540,70 +8593,8 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Preparacion 2017: 90,567 victimas con union validada
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Preparacion 2018: 81,969 victimas con union validada
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Preparacion 2019: 84,535 victimas con union validada
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Preparacion 2020: 76,810 victimas con union validada
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Preparacion 2021: 77,270 victimas con union validada
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Preparacion 2022: 78,506 victimas con union validada
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Preparacion 2023: 84,090 victimas con union validada
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Preparacion 2024: 90,758 victimas con union validada
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Preparacion 2025: 89,593 victimas con union validada
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Preparacion 2026: 67,591 victimas con union validada
+<pre>Corte verificado: 821,689 participaciones, 31 predictores; sin duplicados de participación.
+Las auditorías y los diccionarios mostrados corresponden a la preparación original del corte.
 </pre>
 </div>
 </div>
@@ -8812,7 +8803,7 @@ a.anchor-link {
 <td>89567</td>
 <td>224237</td>
 <td>{'Ileso': 103307, 'Lesões Leves': 65603, 'NA': 19833, 'Lesões Graves': 18716, 'Não Inf...</td>
-<td>2026-11-06T23:07:05.623489+00:00</td>
+<td>2026-11-09T16:37:07.572230+00:00</td>
 <td>Periodo publicado; no se presume anio completo ni seguimiento hospitalario a 30 dias</td>
 </tr>
 <tr>
@@ -8832,7 +8823,7 @@ a.anchor-link {
 <td>69333</td>
 <td>180061</td>
 <td>{'Ileso': 73902, 'Lesões Leves': 58971, 'Lesões Graves': 17724, 'NA': 15172, 'Não Info...</td>
-<td>2026-11-06T23:07:08.098086+00:00</td>
+<td>2026-11-09T16:37:09.798794+00:00</td>
 <td>Periodo publicado; no se presume anio completo ni seguimiento hospitalario a 30 dias</td>
 </tr>
 <tr>
@@ -8852,7 +8843,7 @@ a.anchor-link {
 <td>67558</td>
 <td>176104</td>
 <td>{'Ileso': 68694, 'Lesões Leves': 60564, 'Lesões Graves': 18631, 'NA': 13604, 'Não Info...</td>
-<td>2026-11-06T23:07:10.476722+00:00</td>
+<td>2026-11-09T16:37:12.078816+00:00</td>
 <td>Periodo publicado; no se presume anio completo ni seguimiento hospitalario a 30 dias</td>
 </tr>
 <tr>
@@ -8872,7 +8863,7 @@ a.anchor-link {
 <td>63585</td>
 <td>162245</td>
 <td>{'Ileso': 60878, 'Lesões Leves': 54384, 'Lesões Graves': 17134, 'NA': 14488, 'Não Info...</td>
-<td>2026-11-06T23:07:12.521369+00:00</td>
+<td>2026-11-09T16:37:14.203903+00:00</td>
 <td>Periodo publicado; no se presume anio completo ni seguimiento hospitalario a 30 dias</td>
 </tr>
 <tr>
@@ -8892,7 +8883,7 @@ a.anchor-link {
 <td>64567</td>
 <td>166287</td>
 <td>{'Ileso': 63364, 'Lesões Leves': 54192, 'Lesões Graves': 17681, 'NA': 15313, 'Não Info...</td>
-<td>2026-11-06T23:07:14.616992+00:00</td>
+<td>2026-11-09T16:37:16.362771+00:00</td>
 <td>Periodo publicado; no se presume anio completo ni seguimiento hospitalario a 30 dias</td>
 </tr>
 <tr>
@@ -8912,7 +8903,7 @@ a.anchor-link {
 <td>64606</td>
 <td>170825</td>
 <td>{'Ileso': 66263, 'Lesões Leves': 54892, 'Lesões Graves': 18173, 'NA': 15439, 'Não Info...</td>
-<td>2026-11-06T23:07:16.722331+00:00</td>
+<td>2026-11-09T16:37:18.487906+00:00</td>
 <td>Periodo publicado; no se presume anio completo ni seguimiento hospitalario a 30 dias</td>
 </tr>
 <tr>
@@ -8932,7 +8923,7 @@ a.anchor-link {
 <td>67766</td>
 <td>183361</td>
 <td>{'Ileso': 72067, 'Lesões Leves': 59505, 'Lesões Graves': 18958, 'NA': 16428, 'Não Info...</td>
-<td>2026-11-06T23:07:19.108924+00:00</td>
+<td>2026-11-09T16:37:20.783355+00:00</td>
 <td>Periodo publicado; no se presume anio completo ni seguimiento hospitalario a 30 dias</td>
 </tr>
 <tr>
@@ -8952,7 +8943,7 @@ a.anchor-link {
 <td>73202</td>
 <td>196448</td>
 <td>{'Ileso': 76705, 'Lesões Leves': 64223, 'Lesões Graves': 20372, 'NA': 17201, 'Não Info...</td>
-<td>2026-11-06T23:07:22.265563+00:00</td>
+<td>2026-11-09T16:37:23.258783+00:00</td>
 <td>Periodo publicado; no se presume anio completo ni seguimiento hospitalario a 30 dias</td>
 </tr>
 <tr>
@@ -8972,7 +8963,7 @@ a.anchor-link {
 <td>72529</td>
 <td>194629</td>
 <td>{'Ileso': 76406, 'Lesões Leves': 63532, 'Lesões Graves': 20018, 'NA': 17150, 'Não Info...</td>
-<td>2026-11-06T23:07:24.739487+00:00</td>
+<td>2026-11-09T16:37:25.800036+00:00</td>
 <td>Periodo publicado; no se presume anio completo ni seguimiento hospitalario a 30 dias</td>
 </tr>
 <tr>
@@ -8992,7 +8983,7 @@ a.anchor-link {
 <td>54895</td>
 <td>148868</td>
 <td>{'Ileso': 59402, 'Lesões Leves': 47985, 'Lesões Graves': 14996, 'NA': 13082, 'Não Info...</td>
-<td>2026-11-06T23:07:26.624589+00:00</td>
+<td>2026-11-09T16:37:27.677054+00:00</td>
 <td>Periodo publicado; no se presume anio completo ni seguimiento hospitalario a 30 dias</td>
 </tr>
 </tbody>
@@ -10252,7 +10243,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Código: Calcular resúmenes de desarrollo.</strong> Usa solo 2017–2023 para obtener frecuencias, edades, correlaciones y evolución mensual antes de las pruebas y modelos.</p>
+<p><strong>Código: Calcular resúmenes de desarrollo.</strong> Usa solo 2017-2023 para obtener frecuencias, edades, correlaciones y evolución mensual antes de las pruebas y modelos.</p>
 </div>
 </div>
 </div>

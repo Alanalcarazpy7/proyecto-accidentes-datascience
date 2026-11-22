@@ -42,7 +42,9 @@ python -m nbconvert --execute --to notebook --inplace --ExecutePreprocessor.time
 python src/inferencia.py --entrada data/ejemplo_inferencia.csv --salida tmp/predicciones.csv
 ```
 
-**Datos:** están incluidos el [dataset limpio](data/processed/victimas_limpias.parquet), el [modelo](output/modelo/modelo_final.joblib) y `output/modelado/`. La Fase 1 descarga los ZIP que falten en `data/raw/` y verifica sus SHA-256 según [data/fuentes.json](data/fuentes.json). Requiere internet; si PRF cambió un archivo, se necesita el ZIP del corte registrado. Las Fases 2 y 3 usan la base limpia incluida.
+**Datos:** están incluidos el [dataset limpio](data/processed/victimas_limpias.parquet), el [modelo](output/modelo/modelo_final.joblib), las auditorías de preparación y `output/modelado/`. Por defecto las tres fases trabajan sin descargar los ZIP. La Fase 1 comprueba la huella y la integridad del dataset mediante [data/corte_conservado.json](data/corte_conservado.json) y recalcula el análisis; consulta las auditorías de la limpieza original.
+
+**Reconstrucción opcional:** en la Fase 1, cambiar `RECONSTRUIR_ORIGINALES = True` vuelve a unir y limpiar desde los ZIP. Requiere los archivos exactos de [data/fuentes.json](data/fuentes.json); mantiene sus verificaciones SHA-256 y no acepta las versiones nuevas de PRF como sustitutos del corte original.
 
 **Salida:** cada fase termina con `Writing ... .ipynb`. El último comando muestra 30 predicciones y guarda `tmp/predicciones.csv`; es una demostración, no la evaluación completa. La Fase 3 verifica el modelo guardado con **`REENTRENAR = False`**. Activarlo repite la búsqueda y reemplaza el modelo; no crea una nueva prueba independiente.
 
